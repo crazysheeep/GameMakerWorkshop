@@ -83,13 +83,120 @@
             </div>
         
             <div>
-
+                <div class="page-header">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1 id="apt">apt-search</h1>
+                    </div>
+                  </div>
+                </div>
+                <p>You may know the use of this as <code>sudo apt-get install surprises</code> (or some sort of surprise). But sometimes you don't know what surprise to install.</p>
                 
-                sudo apt-get apt-cache
-                tar
-                make from source
-
+                <p>Introducing the command:</p>
+                
+<pre class="brush: bash;">
+apt-cache search surprises
+</pre>
             </div>
+            
+            <div>
+                <div class="page-header">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1 id="tar">tar</h1>
+                    </div>
+                  </div>
+                </div>
+                <p>You will be required to use tar to untar files many times in your life. Here's the two ways of using them:</p>
+                <p>You will need to know the following flags:</p>
+                
+                <table class="table table-hover">
+                    <th>Flag</th>
+                    <th>Use</th>
+                    
+                    <tr>
+                        <td>z</td>
+                        <td>Using the gzip program to archive files. Most popular with linux. You may need to use <strong>j</strong></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>j</td>
+                        <td>Zips in the bzip2 format. Better compression at slower speeds.</td>
+                    <tr>
+                        <td>v</td>
+                        <td>Verbose. As you should know by now, it means displays exactly what it's doing (i.e. what is being compressed or decompressed)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>f</td>
+                        <td>File name you are to archive to/from</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>c</td>
+                        <td>Compress. This compresses the files.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>x</td>
+                        <td>E<strong>x</strong>tract. Decompresses the tar archive.</td>
+                    </tr>
+                </table>
+                
+                <h2>Compress</h2>
+                <p>For this example, we will use gzip (as UNIX do).</p>
+<pre class="brush: bash;">
+# syntax: tar zcvf [tarname] [files/directories]
+$ tar zcvf lol.tar /path/to/file sample.html
+</pre>
+                
+                <h2>Decompress</h2>
+<pre class="brush: bash;">
+# syntax: tar zxvf [tarname]
+$ tar zcvf lol.tar
+</pre>            
+            </div>
+            
+            <div>
+                <div class="page-header">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1 id="install">Installing from Source</h1>
+                    </div>
+                  </div>
+                </div>
+                
+                <p>Installing specific versions of the program required (i.e. not the one in <code>sudo apt-get install</code> means you need to learn to install from source. This means getting the source of the code, compiling it yourself, then installing it. Below is a simplification of the usual steps required.</p>
+
+<pre class="brush: bash;">
+# in a directory of your choice
+$ wget http://example.com/tarball.tar
+# install progress will be shown
+
+# now we untar it
+$ tar zxvf tarball.tar
+# progress of tar is shown
+
+# now we go to the directory
+$ cd tarball
+
+# next, we configure, with commands as necessary
+$ ./configure
+# sometimes, you may need ./configure --setting=xavc - read the manual
+# sometimes, you will need to install extra things. But you can use sudo apt-cache search
+# this can take a while, and a lot of text appears
+
+# then we "make" it. A makefile (named "Makefile") has instructions to compile it
+$ make
+# this can take a while - we are compiling the entire program! a lot of textual vomit is shown
+
+# finally, after it compiles, we install it
+$ make install
+# a lot of vomit is spat, but at last, the program is installed
+</pre>     
+                
+            </div>
+            
             <!-- footer -->
             <footer>
                 <div class="row">
