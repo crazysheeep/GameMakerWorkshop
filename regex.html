@@ -89,7 +89,168 @@
             </div>
         
             <div>
-                                
+                <h3>
+                    What's a regular expression?
+                </h3>
+                <p>A <em>regular expression</em> is a pattern to match strings against. (You may see it abbreviated as regex or regexp.)</p>
+                <p>Regular expressions are very useful for searching for particular strings that you want. Let's start with an example. For example, let's say that you have a list of your fellow classmates' names. Let's also say that you hate all Olivers in the world, and want to find out which of your classmates has the name Oliver, so you can take their lunch money. (This approach is a bit flawed, and taking peoples' lunch money is mean, but no matter.)</p>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>In this case, the pattern you would use would be <code>Oliver</code>. This pattern would simply return everyone who had Oliver in their name. In case it isn't obvious, such a pattern for the list on the right would give back the names -</p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>Results for pattern <code>Oliver</code></strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>Oliver Fan</p>
+                                <p>Oliver Thanh</p>
+                                <p>Oliver Petrol</p>
+                            </div>
+                        </div>
+                        <p>Similarly, using a pattern of <code>Pucas</code> would return </p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>Results for pattern <code>Pucas</code></strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>Pucas Lickup</p>
+                            </div>
+                        </div>
+                        <p>and so on.</p>
+                        <p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>Sekrit List of Classmates' Names</strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>Pucas Lickup</p>
+                                <p>Oliver Fan</p>
+                                <p>Mr Inal</p>
+                                <p>Doge Superior</p>
+                                <p>Oliver Thanh</p>
+                                <p>Ke$ha</p>
+                                <p>Oliver Petrol</p>
+                                <p>Pear Pestephan</p>
+                                <p>Lavandar Khan</p>
+                                <p>North Best</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-info">
+                    <strong>Note: </strong>In this example, we've used whole first names as a search pattern. However, should we only search for a subsection of a name - for example, <code>liver</code> instead of <code>Oliver</code>, it will still return the same results <strong>DONT LIKE THE WORDING OF THIS</strong>. A string matches a regular expression if the expression is contained in the string.
+                </div> 
+            </div>
+
+            <div>
+                <h3>
+                    Regular Expressions and UNIX
+                </h3>
+                In UNIX, we can use the <code>grep</code> utility to perform searches for lines matching a regular expression. The basic syntax we use is:
+                <p><pre style="text-align:center">grep [OPTIONS] PATTERN [FILE]</pre></p>
+                <p>We don't have to specify files for it to search against. We can omit the <code>[FILE]</code> option, or instead use a hyphen <code>-</code>. This tells <code>grep</code> to read from standard input. So we can specify a pattern, and then we will be prompted to enter input. After pressing the enter key, grep will print out that line again with matching parts highlighted if it matches the regex you specified.</p>
+                
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>Let's return to our example of petty lunch-money-stealing. This time, we'll get <code>grep</code> to do our pattern matching for us. Download the names <a href="./names">here</a>, and save them into a folder you can easily access. Next, open up a terminal (if you don't have one open already) and navigate to the folder containing the file you just downloaded. Now, it's time to enter our command. Our pattern is <code>Oliver</code>, and the file we want to search through is called <code>names</code>. This should be fairly self explanatory:</p>
+                        <pre style="text-align:center">grep Oliver names</pre>
+                        <p>Enter the command. </p>
+                        <p>The terminal should give you back results exactly identical to those identified earlier with the same pattern (unless this content's writer is lacking in the head). Note that <code>grep</code> highlights the matching part of the string:</p>
+                        <pre><strong style="color:red">Oliver</strong> Fan
+<strong style="color:red">Oliver</strong> Thanh
+<strong style="color:red">Oliver</strong> Petrol</pre>
+                        <strong> need to fix how ugly this is</strong>
+                        <p>This comes in extremely handy when trying to figure out what's wrong with a pattern that isn't working.</p>
+                        <p>If you like, you can add extra names to the <code>names</code> file and verify that <code>grep</code> is indeed working and isn't merely fluking it. You can also change the pattern used and see what output you get!</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-info">
+                            <strong>Note:</strong> Say that you want to search for someone with a dollar sign in their name. What happens if you use the command <code>grep $ names</code>? Do you get the results you expect?
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Note 2:</strong> There is another way you can get <code>grep</code> to search through the specified file. You can use UNIX filters, although in this case it's clearly not very efficient: <code>cat names | grep Oliver</code>. In this case, the contents of <code>names</code> are being sent to standard output, and piped into <code>grep</code>. Since we haven't specified a file for <code>grep</code> to use, it uses the provided text from standard input - in this case, whatever's in <code>names</code>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3>
+                    Different Flavours of <code>grep</code>
+                </h3>
+                <p>Let's sidestep for a bit, and take a look at the manpage for <code>grep</code>. Note that there are several variants of <code>grep</code> - some of these you will use, some not:</p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Program</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><code>grep</code></td>
+                            <td>Our regular ol' regular expression program. (It may interest you to know that it stands for <strong><em>g</em></strong>lobal search and <strong><em>rep</em></strong>lace.)</td>
+                        </tr>
+                        <tr>
+                            <td><code>egrep</code></td>
+                            <td>The same thing as if you'd typed <code>grep -E</code>. What's the <code>-E</code>, you ask? It tells <code>grep</code> to interpret the pattern as an extended regular expression - that is, it supports additional expressions in your pattern. More on this later! <strong>This doesn't make sense. Pls fix later myself/someone else.</strong></td>
+                        </tr>
+                        <tr>
+                            <td><code>fgrep</code></td>
+                            <td>The same thing as if you'd typed <code>grep -F</code>. The <code>-F</code> flag allows you to specify as a pattern as a list of strings, separated by newlines, any of which is to be matched. (Yes, this was taken straight from the manpage.)</td>
+                        </tr>
+                        <tr>
+                            <td><code>rgrep</code></td>
+                            <td>You probably won't use this as often as the others - it will read all the files under each directory recursively.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="./assets/pictures/perl_camel.jpg" class="img-rounded">
+                    </div>
+                    <div class="col-md-8">
+                        <p>In this lesson, we'll be using the Perl flavour of regex. <a href="http://www.perl.org/">Perl</a> is a programming language that's very friendly with strings, and luckily for us, UNIX's <code>grep</code> allows us to interpret a pattern as a Perl regular expression. This is done by using the <code>-P</code> flag. Until we get into Perl regex-specific features, however, we'll use <code>grep</code> rather than <code>grep -P</code>.</p>
+                        <h4>
+                            Flags
+                        </h4>
+                        <p>There are also some very useful flags for <code>grep</code> that we can use. (I won't list them all; you can read the manpage yourself if you're a very keen bean.) The <code>-i</code> option ignores case when matching - so if you were to specify a pattern</p>
+                        <pre>grep -i fresh random_file</pre>
+                        <p>then it would find any strings containing the word <code>fresh</code>, whether its letters were capitalised or not.</p>
+                        <p>Another useful flag is <code>-v</code>. Instead of returning all lines that match, it returns all the lines that don't match.</p>
+                        <p><code>-c</code> will tell <code>grep</code> to output the number of matches for each input file, rather than to output the matching lines themselves.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3>
+                    Regex Basics
+                </h3>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>Now that <code>grep</code> and friends have been introduced, let's get into the meatiness of regex. In this section, basic expressions for patterns will be introduced. We'll also be using <code>/usr/share/dict/words</code>, a file of around 100000 words, to test out our regex patterns.</p>
+                        <p>First and foremost, the most intuitive part of regex is that a letter will only match itself. Naturally, if we specify a pattern <code>a</code>, it will match the letter <code>a</code>. If we have a pattern <code>aa</code>, it will match anything containing <code>aa</code>, and so on. This should be highly intuitive.</p>
+                        <p>Next, there is the <code>*</code> character. Putting this after a character tells the regex to match zero or more repetitions of the character. For example, if we test out the pattern <code>t*</code> using the command <code>grep "t*" /usr/share/dict/words</code>, we'll get back the entire file! This is because the asterisk also allows the matching of zero occurrences of the character.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-info">
+                            <p><strong>Note: </strong>Recall that arguments in bash are passed differently depending on whether there are quotes around them or not. If we do not enclose the pattern in quotes, then the shell will attempt to interpolate variables and special shell metacharacters will be interpreted. This can have interesting (read: frustrating) effects when using these special characters.</p>
+                            <p>If we enclose the pattern in single quotes - <code>'I love the $north'</code>, the shell will not touch the pattern. If we enclose it in double quotes - <code>"I love the $north"</code>, the shell will attempt to replace variables (in shell, variables begin with $ when being referenced. In this case, $north will be replaced by its respective value).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3>
+                    Exercises
+                </h3>
+
+            </div>
+
                 grep, egrep, regex, eregex, perl regex (use perl regex)
 
                 regex basics
@@ -107,9 +268,6 @@
                 examples using find
                 e.g. find -R . | grep lol
 
-                EXERCISES
-
-            </div>
             <!-- footer -->
             <footer>
                 <div class="row">
