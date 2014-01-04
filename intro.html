@@ -61,7 +61,7 @@
                 </li>
                     
                 <li>
-                  <a href="./tips.html">Oliver's Tips</a>
+                  <a href="./tips.html">Tips</a>
                 </li>
               </ul>
 
@@ -88,9 +88,47 @@
             </div>
         
             <div>
-                what is a shell?
+                <div class="page-header">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1 id="intro">Introduction</h1>
+                    </div>
+                  </div>
+                </div>
+                <p>Hello and welcome to the Beginner's Guide of the UNIXverse! Today we will cover useful features available in shell - through the website content, talks and exercises (and hopefully, by the time we finished this, with <a href="solutions.html">solutions</a>.</p>
                 
-                why do you see stuff like % or $
+                <p>But first of all, what is shell? Many of you may think that the terminal you use (xterm, terminator, etc.) is a shell - you are partially right - it is an <strong>interactive shell</strong>. A shell is basically an interface that allows you to interact with a system's interface. The reason terminals you are used to are interactive is because you get to...well...interact with it (you give it input, they give output/errors, you give it more inputs [or rage quit].</p>
+                
+                <p>One important thing to note about shells is...well, they are a "shell". All commands within a shell are self-contained - this will be an important concept in <a href="scripts.html">shell scripting</a>.</p>
+            </div>
+         
+            
+            <div>
+                <div class="page-header">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1 id="symbols">Cryptic Symbols</h1>
+                    </div>
+                  </div>
+                </div>
+                
+                <p>When we are interacting with the terminal (or you are viewing commands online), you commonly see symbols like <code>$</code>, <code>~</code> and <code>%</code> (and most probably a bunch of text) before commands. This is merely to indicate that the command is entered by the user, and is not the output of a program. Below is a demonstration of what you may see.</p>
+                
+<pre class="brush: bash;">
+# this is a comment
+$ echo "you may see it like this"
+you may see it like this
+Oliver $ echo "or like this, with Oliver in front"
+or like this, with Oliver in front
+Oliver % echo "or this"
+or this
+</pre>
+                <p>A common newbie mistake when using shell is to include the preceding commands. Please don't do it, or you'll be a pleb, like the rest of the world who don't know shell (consider yourself upgraded!).</p>
+            </div>    
+            
+            <div>
+            
+            </div>
                 
                 basic commands - cd, mkdir, touch, vim, gedit, etc.
                 
@@ -103,7 +141,7 @@
 
                 reading: more, less (less is more), cat
                 cat | cat | cat
-            </div>
+         
             <!-- footer -->
             <footer>
                 <div class="row">
