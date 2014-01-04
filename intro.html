@@ -127,12 +127,110 @@ or this
             </div>    
             
             <div>
-            
+                <div class="page-header">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1 id="commands">Basic Commands</h1>
+                    </div>
+                  </div>
+                </div>
+                
+                <p>There are commands today that are useful - especially in today's inventions in Shell.</p>
+                
+                <table class="table table-hover">
+                    <th>Command</th>
+                    <th>Description</th>
+                    
+                    <tr>
+                        <td>
+                            <code>cd</code>
+                        </td>                        
+                        <td>
+                            Changes your directory - what "folder" you are in within the system. Think about this like folders in Windows Explorer. Example: <code>cd ~</code>, which takes you to your home directory, or <code>cd folder</code>, which goes to the next folder, or <code>cd ..</code>, which goes to the parent directory, or <code>cd /</code>, which goes to the parent of all directories (think of this like your C drive).
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <code>mkdir</code>
+                        </td>                        
+                        <td>
+                            Makes a new directory, e.g. 
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <code>ls</code>
+                        </td>                        
+                        <td>
+                            Lists all files in a directory. <code>ls -la</code> lists all details and all files in a list, which may be more useful.
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <code>rm</code>
+                        </td>                        
+                        <td>
+                            Removes files or directories. You made need <code>-rf</code> to remove files from a directory if it is not empty. Example: <code>rm -rf directory</code>, <code>rm -rf directory lol.html</code> (the last arguments are deleted, so you can stack them on).
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <code>echo</code>
+                        </td>                        
+                        <td>
+                            Prints whatever arguments you give it to standard output with a new line, - for example, <code>echo "lol a"</code> prints "lol a" on screen.
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <code>rm</code>
+                        </td>                        
+                        <td>
+                            Removes files or directories. You made need <code>-rf</code> to remove files from a directory if it is not empty. Example: <code>rm -rf directory</code>, <code>rm -rf directory lol.html</code> (the last arguments are deleted, so you can stack them on).
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="alert alert-info">
+                    <i class="fa fa-lightbulb-o"></i>
+                    
+                    If your arguments contains spaces, or special characters (like <code>*</code>, <code>?</code>), you can use inverted commas to escape them, e.g. <code>cd "lol* special folder"</code> (although avoid using spaces in names).
+                </div>
             </div>
+            
+            <div>
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 id="shortcuts">Shell Shortcuts</h1>
+                        </div>
+                    </div>
+                </div>
                 
-                basic commands - cd, mkdir, touch, vim, gedit, etc.
+                <p>Here are a few (useful) shortcuts to shell.</p>
                 
-                tab completion and shortcuts
+                <h2>Reuse previous command</h2>
+				<p>Hitting the "up" key will automatically place a previously executed command in your next command to execute. Can do this as many times as you can go...</p>
+				
+				<p>Going down, of course, does the opposite if you need it</p>
+				
+				<h2>Tab Completion</h2>
+				<p>Essentially completes a command you have half-typed out so you don't have to waste precious milliseconds writing the rest of it. It is literally magical.</p>
+				<p>Mess around with the command above making directories and navigating through them so you get used to it all. Make a really long folder and then try out tab completion. An example might be:</p>
+<pre class="brush: bash;">
+mkdir antidisestablishmentarianism
+cd anti&lt;tab&gt; &lt;enter&gt;
+</pre>
+				<p>Try it, your life is now measurably better.</p>	
+				
+				<h2>CTRL-shortcuts</h2>
+				
+            </div>                
 
                 standard input, standard output, standard error
 
