@@ -88,7 +88,7 @@
             </div>
             <div id="filters_intro">
                 <p>UNIX Filters, filter things, as one might expect. S with a filter in the real world you have something that goes through and filter and then comes out as a slightly different, or vastly different, something. Like a water filter for example, you pass some water full of <em>dir</em>t through the filter the dirt gets filtered out and then you have clean water leaving the other end.</p> 
-                <p>That is the basis behind the UNIX filter below. They are little programs that you pass some data into, that data gets changed in some way and then gets output.</p> 
+                <p>That is the basis behind the UNIX filters below. They are little programs that you pass some data into, that data gets changed in some way and then gets output.</p> 
                 </br>
                 <div class="row">
                     <div class="col-md-8">
@@ -101,16 +101,96 @@
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <img href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lec/filters/Pic/filter1.png">
+                        <img src="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lec/filters/Pic/filter1.png" class="img-responsive">
                     </div>
                 </div>
             </div>        
             <div id="filter_descriptions">
                 <h3>Common and Useful Filters</h3>
 
-                <h4><code>wc</code></h4>
+                <div class="row">
+                    <h4><code>cat</code></h4>
+                    <hr>
+                    <div class="col-md-8">
+                        <p><code>cat</code> is probably the simpliest filter of all the filter. It outputs its input largely unchanged. If it is given a list of files instead of just one, then it concatenates the files together and then just outputs that.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-n</code> Will add line numbersto the front of every line starting from 1.</li>
+                                <li><code>-s</code> Will reduce consecutive blank lines into a single blank line.</li>
+                                <li><code>-v</code> Will display special control chracters such a new lines and such.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <pre>
+&gt; cat file1          &gt; cat file2
+line4                line0
+line5                line1
+line6                line2
+                     line3
+                                    
+&gt; cat file1 file2    &gt; cat file2 file1
+line4                line0
+line5                line1
+line6                line2
+line0                line3
+line1                line4
+line2                line5
+line3                line6
+                        </pre>
+                    </div>
+                </div>
 
-                <h4><code>head/tail</code></h4>
+                <div class="row">
+                    <h4><code>wc</code></h4>
+                    <hr>
+                    <div class="col-md-8">  
+                        <p><code>wc</code> is a filter that counts the number of lines, words and letters in its given input. Very useful when used in conjunction with other filters for counting things. The formote of it's output is as seen on the right. The number represent lines, words and characters respectivley and then the file name is printed if the input was a file.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-c</code> Will only display the number of chracters.</li>
+                                <li><code>-w</code> Will only display the number of words.</li>
+                                <li><code>-l</code> Will only display the number of lines.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        Using file1 and file2 from above:
+                        <pre>
+&gt; wc file1           &gt; wc file2
+ 3  3 18 file1        4  4 24 file2
+
+&gt; wc file1 file2
+ 3  3 18 file1
+ 4  4 24 file2
+ 7  7 42 total
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h4><code>head/tail</code></h4>
+                    <hr>
+                    <div class="col-md-8">  
+                        <p><code>head/tail</code> are filters that outpu the first or last 10 lines of input, respectively. So head will output the first 10, tail will output the last 10. The number of lines can be changed with the below command line option otherwise it defaults to 10. So they will have the same effect on our small example file1 and file2, outputting the whole file, unless the command line option is used.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-<em>x</em></code> Where <em>x</em> is a number, head/tail will display the first or the last <em>x</em> lines.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <pre>
+&gt; head -1 file1      &gt; head -2 file2
+line4                line0
+                     line1
+
+&gt; tail -2 file1      &gt; tail -1 file2
+line5                line3
+line6
+                        </pre>
+                    </div>
+                </div>
 
                 <h4><code>sort/uniq</code></h4>
 
@@ -120,7 +200,12 @@
 
                 <h4><code>tr</code></h4>
 
-                EXERCISES
+                <h4>Combining Filters</h4>
+                <p></p>
+            </div>
+
+            <div id="exercises">
+                <h3>EXERCISES</h3>
             </div>
             <!-- footer -->
             <footer>
