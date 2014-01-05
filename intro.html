@@ -295,7 +295,7 @@ cd anti&lt;tab&gt; &lt;enter&gt;
 			        </tr>
 			        <tr>
 			            <td>
-			                <code>ALT+F</code>
+			                <code>CTRL+RIGHT</code> or <code>ALT+F</code>
 			            </td>
 			            <td>
 			                Move forward one word
@@ -303,7 +303,7 @@ cd anti&lt;tab&gt; &lt;enter&gt;
 			        </tr>
 			        <tr>
 			            <td>
-			                <code>ALT+B</code>
+			                <code>CTRL+LEFT</code> or <code>ALT+B</code>
 			            </td>
 			            <td>
 			                Move backwards one word
@@ -371,10 +371,44 @@ cd anti&lt;tab&gt; &lt;enter&gt;
                 <p>Note all redirectors can be chained, for example, <code>./program &lt; lol.txt | ./program2 | ./program3 &gt; out.txt</code>. A chain of pipes is known as a pipeline.</p>
             </div>
             
-                reading: more, less (less is more), cat
-                cat | cat | cat
+            <div>
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 id="files">Reading Files</h1>
+                        </div>
+                    </div>
+                    
+                    <h2>cat</h2>
+                    <p>This takes unlimited arguments and outputs, into standard output, all the text files con<strong>cat</strong>enated together! For example, <code>cat a.txt b.txt</code> prints a.txt, then b.txt to standard output. This command can be useful for viewing a short file on screen temporarily.</p>
+                    
+                    <p>If you do not give it an argument, it'll wait for standard input, then the end of file character (<code>CTRL+D</code>) and prints that out. This may be used as a simple text editor</p>
+                    
+                    <h2>more or less</h2>
+                    <p>These are two basic text viewers for terminal - less being more (less being better than more. You can open up a file and navigate it simply by using <code>less a.txt</code>. This is useful if the file is long - you definitely do not what to simply <code>cat</code> this is out.</p>
+                    
+                    <h2>Text Editors</h2>
+                    <p>There are many available on UNIX (some of which you have to install), including <code>gedit</code>, <code>emacs</code> and <code>vim</code>. What you use today is up to you!</p>
+                </div>
+            </div>
             
-            
+            <div>
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 id="complete">Lesson Complete!</h1>
+                        </div>
+                    </div>
+                
+                </div>
+                
+                    <p>Congratulations, you have just completed the basics of shell. Let's move on while we're on a roll!</p>
+                    
+                    <div style="text-align: center">
+                        <a href="filters.html" class="btn btn-lg btn-success">UNIX Filters <i class="fa fa-arrow-right"></i></a>
+                    </div>
+
+            </div>
             
             <!-- footer -->
             <footer>
