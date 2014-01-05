@@ -209,7 +209,7 @@ line6
                     </div>
                     <div class="col-md-4">
                         <pre>
-
+                            TODO
                         </pre>
                     </div>
                 </div>
@@ -229,7 +229,7 @@ line6
                     </div>
                     <div class="col-md-4">
                         <pre>
-
+                            TODO
                         </pre>
                     </div>
                 </div>
@@ -249,7 +249,7 @@ line6
                     </div>
                     <div class="col-md-4">
                         <pre>
-
+                            TODO
                         </pre>
                     </div>
                 </div>
@@ -257,19 +257,69 @@ line6
                 <div class="row">
                     <h4><code>diff</code></h4>
                     <hr>
+                    <div class="col-md-8">  
+                        <p><code>diff</code> compares to input files and then outputs all the lines that are different in each file. It will specifiy if a line appears in file1 but not in file2 and visa versa. This is very usfull for checking the output of a program you might've written against test output data to see if everything is operating as expected.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-i</code> Ignore case.</li>
+                                <li><code>-i</code> Ignore blank lines.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <pre>
+                            TODO
+                        </pre>
+                    </div>
                 </div>
 
                 <div class="row">
                     <h4><code>tr</code></h4>
                     <hr>
+                    <div class="col-md-8"> 
+                        <p><code>tr</code> or transliterate converts its input character by character into its output according to a given mapping. Use of the command takes the form <code>tr 'sourceChars' 'destinationChars'</code>. The examples will best explain how tr works. Some shorthand can be used such as 'a-z' which corresponds to the entire alphabet.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-c</code> map every chracter not in source chars..</li>
+                                <li><code>-d</code> Delete every character from source chars that occurs.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <pre>
+                        TODO
+                        </pre>
+                    </div>
                 </div>
-
-                <h4>Combining Filters</h4>
+                <p>
                 <p></p>
             </div>
 
             <div id="exercises">
                 <h3>EXERCISES</h3>
+
+                <div class="row" id="sortq1">
+                    Consider the following columnated (space-delimited) data file containing marks information for a single subject:
+                    <div class="col-md-2">
+                        <pre>
+2111321 37 FL
+2166258 67 CR
+2168678 84 DN
+2186565 77 DN
+2190546 78 DN
+2210109 50 PS
+2223455 95 HD
+2266365 55 PS
+</pre>
+                </div>
+                <div class="col-md-10">
+                    Using <code>sort</code> and its command line options output the above data in the following formats:
+                    <ol>
+                        <li>In order on student number.</li>
+                        <li>In ascending order of mark.</li>
+                        <li>In descending order of mark.</li>
+                    </ol>
+                </div>
             </div>
             <!-- footer -->
             <footer>
