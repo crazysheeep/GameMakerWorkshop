@@ -61,7 +61,7 @@
                 </li>
                     
                 <li>
-                  <a href="./tips.html">Tips</a>
+                  <a href="./tips.html">Oliver's Tips</a>
                 </li>
               </ul>
 
@@ -86,19 +86,39 @@
                     UNIX Filters
                 </h1>
             </div>
-        
-            <div>
-                wc
+            <div id="filters_intro">
+                <p>UNIX Filters, filter things, as one might expect. S with a filter in the real world you have something that goes through and filter and then comes out as a slightly different, or vastly different, something. Like a water filter for example, you pass some water full of <em>dir</em>t through the filter the dirt gets filtered out and then you have clean water leaving the other end.</p> 
+                <p>That is the basis behind the UNIX filter below. They are little programs that you pass some data into, that data gets changed in some way and then gets output.</p> 
+                </br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>So in our case we have:
+                            <ul>
+                                <li>Commands and data (input) which we type into the shell.</li>
+                                <li>The fitler of our choosing which has the information to be transformed sent to it via the shell</li> 
+                                <li>Data (output) which is sent back to the shell by the filter, via a datastream (stdout)</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <img href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lec/filters/Pic/filter1.png">
+                    </div>
+                </div>
+            </div>        
+            <div id="filter_descriptions">
+                <h3>Common and Useful Filters</h3>
 
-                head/tail
+                <h4><code>wc</code></h4>
 
-                sort/uniq
+                <h4><code>head/tail</code></h4>
 
-                cut
+                <h4><code>sort/uniq</code></h4>
 
-                diff
+                <h4><code>cut</code></h4>
 
-                tr
+                <h4><code>diff</code></h4>
+
+                <h4><code>tr</code></h4>
 
                 EXERCISES
             </div>
