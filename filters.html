@@ -61,7 +61,7 @@
                 </li>
                     
                 <li>
-                  <a href="./tips.html">Tips</a>
+                  <a href="./tips.html">Oliver's Tips</a>
                 </li>
               </ul>
 
@@ -155,7 +155,6 @@ line3                line6
                         </p>
                     </div>
                     <div class="col-md-4">
-                        Using file1 and file2 from above:
                         <pre>
 &gt; wc file1           &gt; wc file2
  3  3 18 file1        4  4 24 file2
@@ -192,13 +191,78 @@ line6
                     </div>
                 </div>
 
-                <h4><code>sort/uniq</code></h4>
+                <div class="row">
+                    <h4><code>sort</code></h4>
+                    <hr>
+                    <div class="col-md-8">  
+                        <p><code>sort</code> as it's name suggests takes its input and outputs it in some particular order. By default it will sort lexicographically according the first character on each line.
+                        There are also some more advanced features such as being able to sort columnated by any of the columns, the last two command line options enable this feature.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-r</code> Sort in descending order (reverse).</li>
+                                <li><code>-n</code> Sort numerically instead of lexicographically.</li>
+                                <li><code>-d</code> Sort in dictionary order (will ignore non-letters and non-digits).</li>
+                                <li><code>-t'<em>c</em>'</code> Use character <em>c</em> as the column seperator.</li>
+                                <li><code>-k'<em>n</em>'</code> Sort the input using column <em>n</em>.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <pre>
 
-                <h4><code>cut</code></h4>
+                        </pre>
+                    </div>
+                </div>
 
-                <h4><code>diff</code></h4>
+                <div class="row">
+                    <h4><code>uniq</code></h4>
+                    <hr>
+                    <div class="col-md-8">  
+                        <p><code>uniq</code> by default removes every copy but one of <em>adjacent</em> identical lines. So that means is you have identical lines in your input but they are distributed uniq would not remove them. A combination of sort and uniq would need to be used.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-c</code> Print out the number of times each line is duplicated.</li>
+                                <li><code>-d</code> Print only lines that were duplicated (will only print one of each dupe).</li>
+                                <li><code>-u</code> Print only lines that were not duplicated (occured uniquely).</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <pre>
 
-                <h4><code>tr</code></h4>
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h4><code>cut</code></h4>
+                    <hr>
+                    <div class="col-md-8">  
+                        <p><code>cut</code> outputs certain parts of the input lines depending on the command line options specified. it is very useful for manipulating columnated data.</p>
+                        <p>It's useful command line options include:
+                            <ul>
+                                <li><code>-c(<em>x</em>|<em>x</em>-<em>x</em>|<em>x</em>,<em>x</em>..,<em>x</em>)</code> here <em>x</em> can be any integer and it represents a chracter postion in a line of input data, this will be easier to understand in practice.</li>
+                                <li><code>-f(<em>x</em>|<em>x</em>-<em>x</em>|<em>x</em>,<em>x</em>..,<em>x</em>)</code> here <em>x</em> is the same as above except it represents columns in input data which are spereated by tabs (unless otherwise specified using the next option).</li>
+                                <li><code>-d'<em>c</em>'</code> Sets the character <em>c</em> that seperates the columns in a given input.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <pre>
+
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h4><code>diff</code></h4>
+                    <hr>
+                </div>
+
+                <div class="row">
+                    <h4><code>tr</code></h4>
+                    <hr>
+                </div>
 
                 <h4>Combining Filters</h4>
                 <p></p>
