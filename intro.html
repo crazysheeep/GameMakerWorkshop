@@ -228,18 +228,154 @@ cd anti&lt;tab&gt; &lt;enter&gt;
 </pre>
 				<p>Try it, your life is now measurably better.</p>	
 				
-				<h2>CTRL-shortcuts</h2>
+				<h2>Keyboard Shortcuts</h2>
+				
+				<p>There are a number of Keyboard Shortcuts that are handy in a terminal, including:</p>
+			    
+			    <table class="table table-hover">
+			        <th>Shortcut</th>
+			        <th>Description</th>
+			        
+			        <tr>
+			            <td>
+			                <code>Alt+Backspace</code> or <code>CTRL+W</code
+			            </td>
+			            <td>
+			                Deletes the previous word you are on
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <code>CTRL+A</code>
+			            </td>
+			            <td>
+			                Go to beginning of line
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <code>CTRL+E</code>
+			            </td>
+			            <td>
+			                Goes to end of line
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <code>CTRL+L</code>
+			            </td>
+			            <td>
+			                Clears the screen - similar to <code>clear</code>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <code>CTRL+U</code>
+			            </td>
+			            <td>
+			                Clear up anything before the cursor
+			            </td>
+			        </tr>
+			        
+			        <tr>
+			            <td>
+			                <code>CTRL+K</code>
+			            </td>
+			            <td>
+			                Clears anything after the cursor
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <code>CTRL+R</code>
+			            </td>
+			            <td>
+			                Type in a command and it'll go through your command history
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <code>ALT+F</code>
+			            </td>
+			            <td>
+			                Move forward one word
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <code>ALT+B</code>
+			            </td>
+			            <td>
+			                Move backwards one word
+			            </td>
+			        </tr>
+			    </table>
 				
             </div>                
+            
+            <div>
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 id="streams">Standard Streams</h1>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>This workshop sometimes relies on you knowing what the standard streams are - standard input (<code>stdin</code>), standard output (<code>stdout</code>) and standard error (<code>stderr</code>). They are further described below:</p>
+                
+                <h2>Standard Input</h2>
+                <p>This is how data is read by the program - by user input unless it is redirected (see <a href="#redirection">redirection</a>). It is also known as <code>stdin</code>. You may know this as <code>scanf</code> in C or <code>raw_input()</code> in Python.</p>
+                
+                <h2>Standard Output</h2>
+                <p>This is how data is output by the program - usually onto your terminal unless it is redirected. This is also known as <code>stdout</code>. Known as <code>printf</code> in C, or <code>print</code> in Python.</p>
+                
+                <h2>Standard Error</h2>
+                <p>This is usually where all the error messages are written - which is also default to be written onto your terminal unless redirected. It is also known as <code>stderr</code>. You may know this as <code>fprintf(STDERR, "");</code> in C or <code>sys.stderr.write</code> in Python.</p>
+            </div>
+            
+            <div>
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 id="redirection">Redirection</h1>
+                        </div>
+                    </div>
+                </div>
 
-                standard input, standard output, standard error
-
-                pipes: > < | >>
-                advanced pipes: > /dev/null, 2> 2>&1 (use gcc example maybe?)
-
+                <p>You may sometimes want to rewrite where the standard streams go - for example, read a file as standard output, or log errors from standard error into a file.</p>
+                
+                <h2>&lt;</h2>
+                <p>This places the standard input from a file into the program, for example, <code>./program &lt; lol.txt</p> puts lol.txt into my program.</p>
+                
+                <h2>&gt;</h2>
+                <p>This places the standard output of a program into a file, for example, <code>./program &gt; lol.txt</p> puts the output of my program into lol.txt.</p>
+                
+                <p>You can use <code>&gt;&gt;</code> to append to the end, as <code>&gt;</code> by default rewrites the entire program.</p>
+                
+                <p>Note you can also combine redirectors: <code>./program &lt; in.txt &gt; out.txt</code>.</p>
+                
+                <div class="alert alert-info">
+                    <i class="fa fa-light-io"></i> Note you can use <code>&gt; /dev/null</code>, which is the equivalent of putting all standard output into a sink of darkness and nothingness. This is useful for cutting out terminal spam without recording anything.
+                </div>
+                
+                <h2>2&gt;</h2>
+                <p>This does the same redirection, but for standard error. For example, <code>./program 2&gt; errors.txt</code> logs errors from the program into error.txt.</p>
+                
+                <p>You can also pipe standard error to standard input, for example, <code>./program 2&gt;&amp;1</code>. This is useful for logging all errors and output to a file, such as <code>./program 2&gt;&amp;1 > lol.txt</code></p>
+                
+                
+                <h2>|</h2>
+                <p>This is a pipe, which takes the standard output of the left hand side and puts it into the standard output of the right hand side. This is very useful for the upcoming section on <a href="filters.html">UNIX Filters</a>, and is the bane of all commands. For example, <code>./program | ./program2</code> puts all output of program 1 into program 2.</p>
+                
+                <p>Note all redirectors can be chained, for example, <code>./program &lt; lol.txt | ./program2 | ./program3 &gt; out.txt</code>. A chain of pipes is known as a pipeline.</p>
+            </div>
+            
                 reading: more, less (less is more), cat
                 cat | cat | cat
-         
+            
+            
+            
             <!-- footer -->
             <footer>
                 <div class="row">
