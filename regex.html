@@ -55,9 +55,9 @@
                         </li>
                         
                         
-						<li>
-						  <a href="./solutions.html">Solutions</a>
-						</li>
+                        <li>
+                          <a href="./solutions.html">Solutions</a>
+                        </li>
                     </ul>
                 </li>
                     
@@ -294,6 +294,8 @@
 
                         <p>A character matching against itself is all well and good, but leaves a little to be desired. What if you don't care about what a particular character is? Well, happily, there's also a character for that. The <code>.</code> (a full stop) character will match any character. So the pattern <code>.</code> will match any word you compare against it - it matches lines with at least one character in it.</p>
                         
+
+
                         <p>Next up are some quantifiers. Quantifiers specify how many of a particular character/group are to be matched.</p>
                     </div>
                     <div class="col-md-4">
@@ -323,6 +325,24 @@
                         </tr>
                     </tbody>
                 </table>
+                <p>These characters have other functions:</p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Character/s</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><code>()</code></td>
+                            <td><p>The parentheses are used for grouping. For example, the pattern <code>a(,a)*</code> accepts comma separated lists of <em>a</em>s.</p></td>
+                        </tr>
+                        <tr>
+                            <td><code>|</code></td>
+                            <td>This symbol you may have seen before: it acts as an <em>or</em>. So if you have a pattern <code>north|south</code>, it would accept <code>north</code> or <code>south</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
             <div>
                 <div class="page-header">
@@ -355,6 +375,57 @@ capturing</pre>
 
 
             </div>
+
+            <div>
+                <div class="page-header">
+                    <h1>
+                        Bracket Expressions
+                    </h1>
+                </div>
+                <p>What's a bracket expression?</p>
+                <ul>
+                    <li>It's denoted by [<em>list of characters</em>]</li>
+                    <li>It will match any single character from the list of characters.</li>
+                </ul>
+                <p>For example, <code>[aeiou]</code> will match any vowel.</p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>You might think that, then, in order to get (for example) the numbers zero to nine, you'd have to go <code>[0123456789]</code> in your pattern. But luckily, there's a nice shorthand for ranges of characters like these - <code>[0-9]</code>. Similarly, you can also use <code>[a-z]</code>, <code>[A-Z]</code> or even <code>[a-m]</code> or another section of the alphabet or numbers. You can even chain them together like <code>[a-zA-Z0-9]</code> - this will match any alphanumeric number.</p>
+                        <p>Sometimes, you might want to match any character <em>except</em> anything that's in the list. That's fine! Simply add a <code>^</code> after the first bracket. For example, if I wanted to exclude all the numbers then I would use <code>[^0-9]</code>.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-info">
+                            <i class="fa fa-lightbulb-o"></i> <strong>Note: </strong>One useful range you could use is <code>[ -~]</code> - this will match any printable character.
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fa fa-lightbulb-o"></i> <strong>Note 2: </strong>Punctuation characters lose their special meaning when they're inside bracket expressions.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="page-header">
+                        <h1>
+                            Regex Behaviour
+                        </h1>
+                    </div>
+                    <p>Regex behaves in a certain way, and it would be of benefit to you to learn how it does.</p>
+                    
+                    <p><strong><em>Me first: </em></strong>If a pattern can match multiple parts of the input, then the first match will be chosen. For example if you had a pattern <code>[0-9]+</code> and a string of <code>1234 5678</code>, then it would match the <code>1234</code> and not the <code>5678</code>.</p>
+
+                    <p><strong><em>Greedyguts: </em></strong>By default, regex is <em>greedy</em>. This means that it will try to match as much of the string as possible. Note that with the example in the previous point that it matched as much of it as it could - so, <code>1234</code> instead of <code>1</code>. Simplying matching the <code>1</code> would have been <em>non-greedy</em>. If we wanted a particular quantifier to be non-greedy, we just need to put a question mark after it. So for the previous example, we would have the pattern <code>[0-9]+?</code> and this would match only the <code>1</code>.</p>
+
+                    <p><strong><em>The great escape: </em></strong>Sometimes, you probably won't want the special meaning of <code>[</code>, <code>]</code> or any other special character - you'll want to search for it literally. In this case, you preface the character with a backslash:</p>
+                </div>
+                                    <pre class="brush:bash">$ echo "[]" > example
+$ cat example
+[]                                    
+$ grep "[]" example
+grep: Unmatched [ or [^
+$ grep "\[\]" example
+[]</pre>
+                                    <p>As you can see, searching for the square brackets on their own isn't going to do you any good. However, escaping the respective brackets tells <code>grep</code> to search for a bracket literal. This is the reason why our earlier command <code>grep $ name</code> wasn't very useful.</p>                                      
             <div>
                 <h3>
                     Exercises
