@@ -89,11 +89,13 @@
             </div>
         
             <div>
-                <h3>
-                    What's a regular expression?
-                </h3>
+                <div class="page-header">
+                    <h1>
+                        What's a regular expression?
+                    </h1>
+                </div>
                 <p>A <em>regular expression</em> is a pattern to match strings against. (You may see it abbreviated as regex or regexp.)</p>
-                <p>Regular expressions are very useful for searching for particular strings that you want. Let's start with an example. For example, let's say that you have a list of your fellow classmates' names. Let's also say that you hate all Olivers in the world, and want to find out which of your classmates has the name Oliver, so you can take their lunch money. (This approach is a bit flawed, and taking peoples' lunch money is mean, but no matter.)</p>
+                <p>Regular expressions are very useful for searching for particular strings that you want. For example, let's say that you have a list of your fellow classmates' names. Let's also say that you hate all Olivers in the world, and want to find out which of your classmates has the name Oliver, so you can take their lunch money. (This approach is a bit flawed, and taking peoples' lunch money is mean, but no matter.)</p>
 
                 <div class="row">
                     <div class="col-md-8">
@@ -141,47 +143,51 @@
                     </div>
                 </div>
                 <div class="alert alert-info">
-                    <strong>Note: </strong>In this example, we've used whole first names as a search pattern. However, should we only search for a subsection of a name - for example, <code>liver</code> instead of <code>Oliver</code>, it will still return the same results <strong>DONT LIKE THE WORDING OF THIS</strong>. A string matches a regular expression if the expression is contained in the string.
+                    <i class="fa fa-lightbulb-o"></i> <strong> Note:</strong> In this example, we've used whole first names as a search pattern. However, should we only search for a subsection of a name - for example, <code>liver</code> instead of <code>Oliver</code>, it will still return the same results <strong>DONT LIKE THE WORDING OF THIS</strong>. A string matches a regular expression if the expression is contained in the string.
                 </div> 
             </div>
 
             <div>
-                <h3>
-                    Regular Expressions and UNIX
-                </h3>
+                <div class="page-header">
+                    <h1>
+                        Regular Expressions and UNIX
+                    </h1>
+                </div>
                 In UNIX, we can use the <code>grep</code> utility to perform searches for lines matching a regular expression. The basic syntax we use is:
-                <p><pre style="text-align:center">grep [OPTIONS] PATTERN [FILE]</pre></p>
+                <p><pre class="brush:bash; gutter:false">$ grep [OPTIONS] PATTERN [FILE]</pre></p>
                 <p>We don't have to specify files for it to search against. We can omit the <code>[FILE]</code> option, or instead use a hyphen <code>-</code>. This tells <code>grep</code> to read from standard input. So we can specify a pattern, and then we will be prompted to enter input. After pressing the enter key, grep will print out that line again with matching parts highlighted if it matches the regex you specified.</p>
                 
 
                 <div class="row">
                     <div class="col-md-8">
                         <p>Let's return to our example of petty lunch-money-stealing. This time, we'll get <code>grep</code> to do our pattern matching for us. Download the names <a href="./names">here</a>, and save them into a folder you can easily access. Next, open up a terminal (if you don't have one open already) and navigate to the folder containing the file you just downloaded. Now, it's time to enter our command. Our pattern is <code>Oliver</code>, and the file we want to search through is called <code>names</code>. This should be fairly self explanatory:</p>
-                        <pre style="text-align:center">grep Oliver names</pre>
+                        <pre class="brush:bash; gutter:false">$ grep Oliver names</pre>
                         <p>Enter the command. </p>
                         <p>The terminal should give you back results exactly identical to those identified earlier with the same pattern (unless this content's writer is lacking in the head). Note that <code>grep</code> highlights the matching part of the string:</p>
-                        <pre><strong style="color:red">Oliver</strong> Fan
+                        <pre>$ grep Oliver names
+<strong style="color:red">Oliver</strong> Fan
 <strong style="color:red">Oliver</strong> Thanh
 <strong style="color:red">Oliver</strong> Petrol</pre>
-                        <strong> need to fix how ugly this is</strong>
                         <p>This comes in extremely handy when trying to figure out what's wrong with a pattern that isn't working.</p>
                         <p>If you like, you can add extra names to the <code>names</code> file and verify that <code>grep</code> is indeed working and isn't merely fluking it. You can also change the pattern used and see what output you get!</p>
                     </div>
                     <div class="col-md-4">
                         <div class="alert alert-info">
-                            <strong>Note:</strong> Say that you want to search for someone with a dollar sign in their name. What happens if you use the command <code>grep $ names</code>? Do you get the results you expect?
+                            <i class="fa fa-lightbulb-o"></i> <strong>Note:</strong> Say that you want to search for someone with a dollar sign in their name. What happens if you use the command <code>grep $ names</code>? Do you get the results you expect?
                         </div>
                         <div class="alert alert-info">
-                            <strong>Note 2:</strong> There is another way you can get <code>grep</code> to search through the specified file. You can use UNIX filters, although in this case it's clearly not very efficient: <code>cat names | grep Oliver</code>. In this case, the contents of <code>names</code> are being sent to standard output, and piped into <code>grep</code>. Since we haven't specified a file for <code>grep</code> to use, it uses the provided text from standard input - in this case, whatever's in <code>names</code>.
+                            <i class="fa fa-lightbulb-o"></i> <strong>Note 2:</strong> There is another way you can get <code>grep</code> to search through the specified file. You can use UNIX filters, although in this case it's clearly not very efficient: <code>cat names | grep Oliver</code>. In this case, the contents of <code>names</code> are being sent to standard output, and piped into <code>grep</code>. Since we haven't specified a file for <code>grep</code> to use, it uses the provided text from standard input - in this case, whatever's in <code>names</code>.
                         </div>
                     </div>
                 </div>
             </div>
 
             <div>
-                <h3>
-                    Different Flavours of <code>grep</code>
-                </h3>
+                <div class="page-header">
+                    <h1>
+                        Different Flavours of <code>grep</code>
+                    </h1>
+                </div>
                 <p>Let's sidestep for a bit, and take a look at the manpage for <code>grep</code>. Note that there are several variants of <code>grep</code> - some of these you will use, some not:</p>
                 <table class="table">
                     <tbody>
@@ -212,38 +218,143 @@
                         <img src="./assets/pictures/perl_camel.jpg" class="img-rounded">
                     </div>
                     <div class="col-md-8">
-                        <p>In this lesson, we'll be using the Perl flavour of regex. <a href="http://www.perl.org/">Perl</a> is a programming language that's very friendly with strings, and luckily for us, UNIX's <code>grep</code> allows us to interpret a pattern as a Perl regular expression. This is done by using the <code>-P</code> flag. Until we get into Perl regex-specific features, however, we'll use <code>grep</code> rather than <code>grep -P</code>.</p>
-                        <h4>
-                            Flags
-                        </h4>
-                        <p>There are also some very useful flags for <code>grep</code> that we can use. (I won't list them all; you can read the manpage yourself if you're a very keen bean.) The <code>-i</code> option ignores case when matching - so if you were to specify a pattern</p>
-                        <pre>grep -i fresh random_file</pre>
-                        <p>then it would find any strings containing the word <code>fresh</code>, whether its letters were capitalised or not.</p>
-                        <p>Another useful flag is <code>-v</code>. Instead of returning all lines that match, it returns all the lines that don't match.</p>
-                        <p><code>-c</code> will tell <code>grep</code> to output the number of matches for each input file, rather than to output the matching lines themselves.</p>
+                        <p>In this lesson, we'll be using extended regular expressions. These give us more features than basic regular expressions, and can make life a bit easier! To use extended regular expressions, as you may have guessed from above, we just need to add the <code>-E</code> option to our command. You can also use <code>egrep</code>, however, its use is deprecated.</p>
                     </div>
                 </div>
             </div>
 
             <div>
-                <h3>
-                    Regex Basics
-                </h3>
+                <div class="page-header">
+                    <h1>
+                        Flags
+                    </h1>
+                </div>
+                <p>There are also some very useful flags for <code>grep</code> that we can use. (I won't list them all; you can read the manpage yourself if you're a very keen bean.)</p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Flag</th>
+                            <th>Description</th>
+                        </tr> 
+                        <tr>
+                            <td><code>-i</code></td>
+                            <td>This option ignores case when matching - so if you were to specify a pattern</p>
+                            <pre class="brush:bash; gutter:false">$ grep -i fresh random_file</pre>
+                            <p>then it would find any strings containing the word <code>fresh</code>, whether its letters were capitalised or not.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>-v</code></td>
+                            <td>Instead of returning all lines that match, it returns all the lines that don't match. So going with the above example, the command </p><pre class="brush:bash; gutter:false">$ grep -v fresh random_file</pre>
+                                <p>would return all lines in the file that didn't have fresh in them.</p></td>
+                        </tr>
+                        <tr>
+                            <td><code>-c</code></td>
+                            <td>This option will tell <code>grep</code> to output the number of matches for each input file, rather than to output the matching lines themselves.</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <strong>Exercise Eins</strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>Thank god you're here! Oliver's mother has just rung us to tell you that someone has taken his lunch money! She's very upset, and would like someone to find out the names of the classmates who could've taken his money (Oliver refuses to tell her who it was). She knows that it wasn't any of the Olivers, as they're all friends.</p>
+                                <p>Write a grep command that finds all the people who could've taken Oliver's lunch money, so the thief can be brought to justice.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <strong>Exercise Zwei</strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>Thank god you're here again! Oliver has just recently acquired an obsession with the word "south". He'd like to find out how many words in the file <code>/usr/share/dict/words</code> contain the word "south" in it, and he doesn't care if some of the letters are capitalised.</p>
+                                <p>Write a grep command that counts the number of words in <code>/usr/share/dict/words</code> (you can just use this as the file name - it's included on the computer) which contain the word "south", case-insensitive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+            <div>
+                <div class="page-header">
+                    <h1>
+                        Regex Basics
+                    </h1>
+                </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <p>Now that <code>grep</code> and friends have been introduced, let's get into the meatiness of regex. In this section, basic expressions for patterns will be introduced. We'll also be using <code>/usr/share/dict/words</code>, a file of around 100000 words, to test out our regex patterns.</p>
+                        <p>Now that <code>grep</code> and friends have been introduced, let's get into the meatiness of regex. In this section, basic expressions for patterns will be introduced. Throughout this lesson, we'll be using <code>/usr/share/dict/words</code>, a file of around 100000 words, to test out our regex patterns.</p>
                         <p>First and foremost, the most intuitive part of regex is that a letter will only match itself. Naturally, if we specify a pattern <code>a</code>, it will match the letter <code>a</code>. If we have a pattern <code>aa</code>, it will match anything containing <code>aa</code>, and so on. This should be highly intuitive.</p>
-                        <p>Next, there is the <code>*</code> character. Putting this after a character tells the regex to match zero or more repetitions of the character. For example, if we test out the pattern <code>t*</code> using the command <code>grep "t*" /usr/share/dict/words</code>, we'll get back the entire file! This is because the asterisk also allows the matching of zero occurrences of the character.</p>
+
+                        <p>A character matching against itself is all well and good, but leaves a little to be desired. What if you don't care about what a particular character is? Well, happily, there's also a character for that. The <code>.</code> (a full stop) character will match any character. So the pattern <code>.</code> will match any word you compare against it - it matches lines with at least one character in it.</p>
+                        
+                        <p>Next up are some quantifiers. Quantifiers specify how many of a particular character/group are to be matched.</p>
                     </div>
                     <div class="col-md-4">
                         <div class="alert alert-info">
-                            <p><strong>Note: </strong>Recall that arguments in bash are passed differently depending on whether there are quotes around them or not. If we do not enclose the pattern in quotes, then the shell will attempt to interpolate variables and special shell metacharacters will be interpreted. This can have interesting (read: frustrating) effects when using these special characters.</p>
+                            <p><i class="fa fa-lightbulb-o"></i> <strong>Note: </strong>Recall that arguments in bash are passed differently depending on whether there are quotes around them or not. If we do not enclose the pattern in quotes, then the shell will attempt to interpolate variables and special shell metacharacters will be interpreted. This can have interesting (read: frustrating) effects when using these special characters.</p>
                             <p>If we enclose the pattern in single quotes - <code>'I love the $north'</code>, the shell will not touch the pattern. If we enclose it in double quotes - <code>"I love the $north"</code>, the shell will attempt to replace variables (in shell, variables begin with $ when being referenced. In this case, $north will be replaced by its respective value).</p>
                         </div>
                     </div>
                 </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Character</th>
+                            <th>Description</th>
+                        </tr> 
+                        <tr>
+                            <td><code>*</code></td>
+                            <td>Putting this after a character tells the regex to match zero or more repetitions of the character. For example, if we test out the pattern <code>t*</code> using the command <code>grep "t*" /usr/share/dict/words</code>, we'll get back the entire file! This is because the asterisk also allows the matching of zero occurrences of the character.</p></td>
+                        </tr>
+                        <tr>
+                            <td><code>+</code></td>
+                            <td><p>Sometimes, you don't want to allow a character to be matched zero times. That's okay, there's another character we can use. The <code>+</code> character matches its preceding character 1 or more times. This character is not included in basic regular expressions, so you'll need <code>-E</code> to use this one.</p></td>
+                        </tr>
+                        <tr>
+                            <td><code>?</code></td>
+                            <td>This one matches the previous character either once, or not at all. This one's also not part of basic regular expressions.</p></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            <div>
+                <div class="page-header">
+                    <h1>
+                        Anchors
+                    </h1>
+                </div>
+                <p>Now we'll introduce some extremely useful metacharacters - the <code>^</code> and <code>$</code> characters. The caret (<code>^</code>) specifies that whatever follows it <em>must</em> be at the start of the line. So for example, if we wanted to <em>ensure</em> that we search for Oliver as a first name only, then we have the pattern as</p>
+                <pre class="brush:bash; gutter:false">$ grep "^Oliver" names</pre>
+                <p>The dollar sign (<code>$</code>), in a similar fashion to the caret, specifies that whatever comes before it must be at the end of the word. So if we wanted to only accept lines that had "Oliver" in them, then we would use the command</p>
+                <pre class="brush:bash; gutter:false">$ grep "^Oliver$" names</pre>
+                <p>(In either of these cases, we didn't need to wrap quotes around the pattern, but it's good practice to just in case your pattern does have characters that can be interpreted by the shell.)</p>
+                <p>Let's look at at a couple of examples of anchor usage. Let's say that we want to look for all words that begin with a, end with z, and have at least one character in between them. Then the pattern we'd use would be - (note the <code>-E</code> flag, since we're using an extended regex character)</p>
+                <pre class="brush:bash; gutter:false">$ grep -E "^a.+z$" /usr/share/dict/words</pre>
+                <p>Oh...there are no results...let's modify our pattern a bit, then. Maybe if we change it to end in y we'd get more results.</p>
+                <pre class="brush:bash; gutter:false">$ grep -E "^a.+y$" /usr/share/dict/words
+abbey
+ability
+abjectly
+ably
+abnormality
+...                </pre>
+                <p>Woo, that worked! Now let's do a search for words that start with "capt" and end in "ing" (or you can pick a different combination, if you like). Hopefully the pattern here should be obvious:</p>
+                <pre class="brush:bash; gutter:false">$ grep -E "^capt.+ing$" /usr/share/dict/words
+captaining
+captioning
+captivating
+capturing</pre>
+                <p>Hopefully, you should get the same results as we did here.</p>
 
+
+            </div>
             <div>
                 <h3>
                     Exercises
