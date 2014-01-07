@@ -111,7 +111,7 @@
                 <div class="row">
                     <h3><code>cat</code></h3>
                     <hr>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <p><code>cat</code> is probably the simpliest filter of all the filter. It outputs its input largely unchanged. If it is given a list of files instead of just one, then it concatenates the files together and then just outputs that.</p>
                         <p>It's useful command line options include:
                             <ul>
@@ -121,7 +121,7 @@
                             </ul>
                         </p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <pre class="brush:bash">
 &gt; cat file1          &gt; cat file2
 line4                line0
@@ -297,9 +297,18 @@ hlloo
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <pre>
-                            TODO
-                        </pre>
+                        <pre class="brush:bash">
+&gt; cat file1      &gt; cat file2
+line0               line0
+line1               line2
+line2               line1
+
+&gt; diff file1 file2
+2d1
+&lt; line1
+3a3
+&gt; line1
+</pre>
                     </div>
                 </div>
 
@@ -358,7 +367,7 @@ hlloo
                     <div class="col-lg-12">         
                         <p class="pull-right"><a href="#"><i class="fa fa-caret-up"></i> Back to top</a></p>
                         <p>Part of the <a href="http://cse.unsw.edu.au/">UNSW CSE</a> Summer Workshops, on behalf of <a href="http://www.compclub.com.au">CompClub</a>.</p>
-                        <p>Workshop content written by <a href="http://cgi.cse.unsw.edu.au/~otan/">Oliver Tan</a>, <a href="http://cgi.cse.unsw.edu.au/~vanessau/">Vanessa Ung</a> and <a href="http://cgi.cse.unsw.edu.au/~lpickup">Lucas Pickup</a>.</p>
+                        <p>Workshop content written by <a href="http://cgi.cse.unsw.edu.au/~otan/">Oliver Tan</a>, <a href="http://cgi.cse.unsw.edu.au/~vanessau/">Vanessa Ung</a>, <a href="http://cgi.cse.unsw.edu.au/~lpickup">Lucas Pickup</a> and <a href="http://cgi.cse.unsw.edu.au/~jwis261">John Wiseheart</a>.</p>
                         <p>
                     </div>
                 </div>
