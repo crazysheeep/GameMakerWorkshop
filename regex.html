@@ -429,47 +429,336 @@ $ grep "\[\]" example
             <div>
                 <h2>Exercises</h2>
                 <hr>
+
+                <p>On most Unix systems there's one or more dictionaries containing many thousands of words usually in <code>/usr/share/dict/</code> or <code>/usr/dict/</code>. A lot of the exercises below will use one of these dictionaries as a large base of words to search. To save repeatedly typing its full pathname for these exercises, make a symbolic link to the file with this command:</p>
+                <pre class="brush:bash">
+ln -s /home/cs2041/public_html/lab/sh/dictionary/words.txt mywords
+                </pre>
+                <p>(this creates a file in the current directory pointing to the original file, without taking up the space of a complete copy)</p>
+
                 <div class="row">
                     <h4>Less/Grep Practice</h4>
-                        <ol>
-                            <li>Use Less and its commands to find these words.</li>
-                            <ol type="a">
-                                <li>What word is on line 2000?</li>
-                                <li>Find the first word in the dictionary file ending with z.</li>
-                                <li>Find the last word in the dictionary that contains the substring ooz.</li>
-                            </ol>
-                            <li>There are a small number of English words that have all the vowels occuring in order. Find the first one of these using less, then quit the viewer
-                        (q command) and with the same regexp, use grep to find them all. Note: the word may contain more than 5 vowels but it must contain aeiou in that order.</li>
+                    <ol>
+                        <li>Use Less and its commands to find these words.</li>
                         <ol type="a">
-                            <li>Look at the output from the grep above.What are the first the last and the longest words, which the vowels aeiou in that order?</li>
-                            <li>How many are there?</li>
-                            <li><em>Challenge</em>, modify the regex so it matches only words containing exactly 5 vowels and the vowels are in order (aeiou).</li>
-                        <!--
-                        <div style="color:#000099;"><p><b>Answer:</b></p>
-                        Command: <tt>grep 'a.*e.*i.*o.*u' mywords</tt> <br>
-                        Words:
-                        <pre>abstemious
-                        ...
-                        supercalifragilisticexpialidocious
-                        ...
-                        valerianaceous
-                        </pre>
-                        <p>
-                        Command: <tt>grep 'a.*e.*i.*o.*u' mywords|wc</tt> <br>
-                        </p><pre>     53      53     785
-                        </pre>
-                        <p>
-                        Command: <tt>grep '^[^aeiou]*a[^aeiou]*e[^aeiou]*i[^aeiou]*o[^aeiou]*u[^aeiou]*$' mywords</tt> <br>
-                        </p><pre>abstemious
-                        abstemiously
-                        abstentious
-                        arsenious
-                        caesious
-                        facetious
-                        facetiously
-                        </pre></div>
-                        </li>-->
+                            <li>What word is on line 2000?</li>
+                            <li>Find the first word in the dictionary file ending with z.</li>
+                            <li>Find the last word in the dictionary that contains the substring ooz.</li>
                         </ol>
+                        <li>There are a small number of English words that have all the vowels occuring in order. Find the first one of these using less, then quit the viewer (q command) and with the same regexp, use grep to find them all. Note: the word may contain more than 5 vowels but it must contain aeiou in that order.</li>
+                        <ol type="a">
+                            <li>Look at the output from the grep above. What are the first, the last and the longest words, which have all the vowels in this order, 'aeiou'?
+                                <div class="collapse" style="color:green;">
+                                    <p><b>Answer:</b></p>
+                                    Command: <code>grep 'a.*e.*i.*o.*u' mywords</code>
+                                    Words:
+                                    <pre>
+abstemious
+...
+supercalifragilisticexpialidocious
+...
+valerianaceous
+</pre>
+                                </div>
+                            </li>
+                            <li>How many are there?
+                                <div class="collapse" style="color:green;">
+                                    <p><b>Answer:</b></p>
+                                    <p>Command: <code>grep 'a.*e.*i.*o.*u' mywords | wc</code></p>
+                                    <pre>
+53  53  785
+</pre>
+                                </div>
+                            </li>
+                            <li><strong><em>Challenge</em></strong>, modify the regex so it matches only words containing exactly 5 vowels and the vowels are in order (aeiou).
+                                <div class="collapse" style="color:green;">
+                                    <p><b>Answer:</b></p>
+                                    <p>Command: <code>grep '^[^aeiou]*a[^aeiou]*e[^aeiou]*i[^aeiou]*o[^aeiou]*u[^aeiou]*$' mywords</code></p>
+                                    <pre>
+abstemious
+abstemiously
+abstentious
+arsenious
+caesious
+facetious
+facetiously
+</pre>
+                                </div>
+                            </li>
+                        </ol>
+                    </ol>
+                </div>
+
+                <div class="row">
+                    <h4>Basic Pipelining</h4>
+                    <p>Write shell pipelines using grep, cat and wc which answer the following
+                    questions.  Provide both the command/pipeline and its output.</p>
+                    <ol type="a">
+                        <li>How many total words does the file mywords contain?
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>wc -w mywords</code> <br>
+                                Output: 390582
+                            </div>
+                        </li>
+                        <li>Note that some of these words are derivates of other words (e.g. "Aberdeen" and "Aberdeen's"). Maybe these shouldn't be included in the word count. How many total words, excluding those ending in "'s", are there in the dictionary?
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>grep -v "'s$" mywords | wc -w</code> <br>
+                                Output: 299845
+                            </div>
+                        </li>
+                        <li>How could you use cat -n and grep to find out which word is on line 100000? (You'll need to check the exact output format of cat -n.)
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>cat -n mywords | grep '^100000'</code> <br>
+                                Output: 100000  adviser <br>
+                                Note that each line coming out of the cat starts with some spaces, followed by a number, followed by a TAB character. You can explicitly match the TAB if you want, but you'll need to type control-V followed by TAB in order to get a TAB to appear in the command line.
+                            </div>
+                        </li>
+                        <li>How could you use cat -n and grep to print the 700th line, and no other lines? (You'll need to check the exact output format of cat -n.)
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>cat -n mywords | grep '^ *700[^0-9]'</code> <br>
+                                Output:    700  Adirondack <br>
+                            </div>
+                        </li>
+                        <li>How do you use head and tail to find out what word is on line 200000?
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>head -200000 mywords | tail -1</code> <br>
+                                Output: geodynamics's
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="row">
+                    <h4>Dictionaries bow down to GREP!</h4>
+                    <p>Consider how we might locate various "unusual" words in the dictionary using grep (or egrep or fgrep):</p>
+                    <ol type="a">
+                        <li>Which words contain the characters "lmn" consecutively?
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>grep 'lmn' mywords</code> <br>
+                                Output:
+                                <pre>
+Selmner
+Selmner's
+almner
+almners
+calmness
+calmness's
+calmnesses
+</pre>
+                            </div>
+                        </li>
+                        <li>How many words contain "zz", but do not end in apostrophe-s ('s)? 
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>grep 'zz' mywords | grep -v "'s$" | wc</code> <br>
+                                or <br>
+                                Command: <code>grep 'zz' mywords | grep -c -v "'s$"</code> <br>
+                                Output: 628
+                            </div>
+                        </li>
+                        <li>How many words contain four consecutive vowels? 
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                Command: <code>grep '[aeiou][aeiou][aeiou][aeiou]' mywords | wc</code> <br>
+                                or <br>
+                                Command: <code>egrep -c '[aeiou]{4}' mywords</code> <br>
+                                Output: 205
+                                <br> 
+                                <br>
+                                or ignoring case: <br>
+                                Command: <code>grep '[aeiouAEIOU][aeiouAEIOU][aeiouAEIOU][aeiouAEIOU]' mywords | wc</code> <br>
+                                or <br>
+                                Command: <code>egrep -ic '[aeiou]{4}' mywords</code> <br>
+                                Output: 207
+                            </div>
+                        </li>
+                        <li>Still on words, we want to know how many words have another 9-letter dictionary word embedded in them.
+                            <p>Place all the 9-letter words in the dictionary in a file called words9. How to do this? Use a grep pattern anchored at both ends, that matches exactly 9 characters of any kind. Redirect the output of the command using the &gt; shell notation. How many of these words are there?</p>
+                            <p>Now we want to use the list of words as a (huge) search pattern. fgrep uses a highly optimised algorithm to do this. Its usage is:</p>
+                            <pre class="brush:bash">
+fgrep -f WordListFile files...
+</pre>
+                            <p>However, we aren't interested in words that have any non-letter in them, to avoid matching possessives like Bernouilli's. We also don't want to match lines that are exactly 9 characters long either.</p>
+                            <p>
+                            <p><strong>Devise</strong> a pipeline that uses your word list (words9) and the original file to count the number of words composed of letters only that have a different 9-letter word as a substring. For example "luminesce" is a substring of "photoluminescence".</p>
+                            <p>Note there are a small number of non-English words in the dictionary which have <a href="http://en.wikipedia.org/wiki/Diacritic">diacritical marks</a> which are encoded as a separate character in ASCII - your regular expressions don't need to handle these correctly.</p>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <pre class="brush:bash">
+# Create the words9 file
+# Note that this ignores words ending in 's
+
+egrep '^[a-z]{9}$' mywords &gt; words9
+
+# Get the words containg these as a substring
+# First stage: extract all words that contain a "words9" word as a
+#              substring or are equal to a "words9" word
+# Second stage: eliminate all nine-character words (i.e. drop all
+#              of the extracted words that come from the "words9" file)
+
+fgrep -f words9 mywords | egrep -v '^[a-z]{9}$'
+</pre>
+                            <p>There are 39503 such words (run the above through wc -w).</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="row">
+                    <h4>Extraodinary Extra egrep Exercises</h4>
+                    <ol type="a">
+                        <li>Write a regular expression for egrep that matches any line containing at least one A and at least one B. For example:
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                            <tr><th>Matching</th>                       <th>Not Matching</th></tr>
+                                            <tr><td>Andrew's favourite Band is not</td> <td>George is Brillant</td></tr>
+                                            <tr><td>ABBA</td>                           <td>Andrew</td></tr>
+                                            <tr><td>BA</td>                             <td>B</td></tr>
+                                            <tr><td>AB</td>                             <td>A</td></tr>
+                                        </tbody>
+                                    </table> <br>
+                                </div>
+                            </div>
+                            <p>So to test with egrep you might do this:</p>
+                            <pre class="brush:bash">
+% cat &gt; file1 &lt;&lt; eof
+Andrew's favourite Band is not
+George is Brillant
+ABBA
+Andrew
+AB
+BA
+A
+B
+eof
+% egrep 'REGEXP' &lt; file1
+Andrew's favourite Band is not
+ABBBAB
+AB
+BA
+</pre>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <pre class="brush:bash">A.*B|B.*A</pre>
+                            </div>
+                        </li>
+                        <li>Write a regular expression for egrep that matches any line containing only the characters A and B such that all pairs of adjacent A's occur before any pairs of adjacent B's. In other words if there is pair of B's on the line, there can not be a pair of A's afterwards.
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                            <tr><th width="50%">Matching</th>   <th width="50%">Not Matching</th></tr>
+                                            <tr><td>ABAABAABAABBBBABB</td>      <td>BBAA</td></tr>
+                                            <tr><td>ABBA</td>                   <td>ABBAA</td></tr>
+                                            <tr><td>ABAAAAAAAAAABBA</td>        <td>ABBABABABABAA</td></tr>
+                                            <tr><td>ABABABABA</td>              <td>ABBBAAA</td></tr>
+                                            <tr><td>A</td>                      <td>BBABABABABABABAA</td></tr>
+                                        </tbody>
+                                    </table> <br>
+                                </div>
+                            </div>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <pre class="brush:bash">^(BA|A)*(|B)(AB|B)*(|A)$</pre>
+                                <p>or courtesy Squish:</p>
+                                <pre class="brush:bash">^(BA|A)*(BA|B)*$</pre>
+                            </div>
+                        </li>
+                        <li>Write a regular expression  for egrep that matches any line containing only the characters A and  B such that the number of A's is divisible by 4.
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                            <tr><th width="50%">Matching</th>   <th width="50%">Not Matching</th></tr>
+                                            <tr><td>AAAA</td>                   <td>AAAAA</td></tr>
+                                            <tr><td>BABABABAB</td>              <td>ABABBBBBBBBBBBBBBBAAA</td></tr>
+                                            <tr><td>AAAABBBBAAAA</td>           <td>AAAABBABBAAAA</td></tr>
+                                            <tr><td>BBBAABBBBBAABBBAAAA</td>    <td>BBBAABBABBBAABBBAAAA</td></tr>
+                                        </tbody>
+                                    </table> <br>
+                                </div>
+                            </div>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <pre class="brush:bash">^B*(AB*AB*AB*AB*)*$</pre>
+                            </div>
+                        </li>
+                        <li>Write a regular expression for egrep  that matches any line containingonly the characters A and  B such thatthere are exactly <em>n</em> A's followed byexactly <em>n</em> B's and no other characters.
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                            <tr><th width="50%">Matching</th>   <th width="50%">Not Matching</th></tr>
+                                            <tr><td>AAABBB</td>                 <td>AAABB</td></tr>
+                                            <tr><td>AB</td>                     <td>BA</td></tr>
+                                            <tr><td>AABB</td>                   <td>AABBB</td></tr>
+                                            <tr><td>AAAABBBB</td>               <td>AAAABBBBA</td></tr>
+                                        </tbody>
+                                    </table> <br>
+                                </div>
+                            </div>
+                            <p>If you can't invent a regular expression, can you write a shell script using egrep, sed and test, if &amp; while which performs the same task.</p>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <p>This can't be done with a (true) regular expression. You prove this via the the wonderfully named <a href="http://en.wikipedia.org/wiki/Pumping_lemma_for_regular_languages">pumping lemma</a>.</p>
+                                <p>It is possible <a href="http://faq.perl.org/perlfaq6.html#Can_I_use_Perl_regulextension"> with extensions to the regular expression language provided in languages such as Perl </a>.</p>
+                                <pre class="brush:bash">
+grep "^A*B*$" |
+sed "s/\(A*\)\(B*\)/|/;s/B/A/g" |
+sed -n "s/^\(A*\)|$/|/p" |
+sed -n "s/^\(A*\)|\(A*\)$/|/gp" |
+sed "/|/ s/A/B/g" |
+sed "N; s/|//"
+</pre>
+                            </div>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <p>Shell script which prints line containing n As followed by n B's</p>
+                                <pre class="brush:bash">
+#!/bin/sh
+while read line
+do
+    string="$line"
+    while test -n "`echo "$string" | egrep '^A.*B$'`"
+    do
+        string=`echo "$string" | sed 's/^A//'`
+        string=`echo "$string" | sed 's/B$//'`
+    done
+    test -z "$string" &amp;&amp; echo "$line"
+done
+</pre>
+                            </div>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <p>Grep &amp; sed script which prints line containing n As followed by n Bs</p>
+                                <pre class="brush:bash">
+#!/bin/sh
+# written by Alexis Shaw
+grep "^A*B*$" |
+sed "s/\(A*\)\(B*\)/\1|\2/;s/B/A/g" |
+sed -n "s/^\(A*\)|\1$/\1|\1/p" |
+sed -n "s/^\(A*\)|\(A*\)$/\1\n|\1/gp" |
+sed "/|/ s/A/B/g" |
+sed "N; s/\n|//"
+</pre>
+                            </div>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <p>Sed statment which prints line containing n As followed by n B's</p>
+                                <pre class="brush:bash">
+sed '/^A*B*$/!dhs/\(B*\)$/C\1/s/B/A/g/^\(A*\)C\1$/!dg'
+</pre>
+                            </div>
+                        </li>
+                    </ol>
                 </div>
             </div>
 
