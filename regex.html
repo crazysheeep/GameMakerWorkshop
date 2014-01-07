@@ -427,10 +427,50 @@ $ grep "\[\]" example
 []</pre>
                                     <p>As you can see, searching for the square brackets on their own isn't going to do you any good. However, escaping the respective brackets tells <code>grep</code> to search for a bracket literal. This is the reason why our earlier command <code>grep $ name</code> wasn't very useful.</p>                                      
             <div>
-                <h3>
-                    Exercises
-                </h3>
-
+                <h2>Exercises</h2>
+                <hr>
+                <div class="row">
+                    <h4>Less/Grep Practice</h4>
+                        <ol>
+                            <li>Use Less and its commands to find these words.</li>
+                            <ol type="a">
+                                <li>What word is on line 2000?</li>
+                                <li>Find the first word in the dictionary file ending with z.</li>
+                                <li>Find the last word in the dictionary that contains the substring ooz.</li>
+                            </ol>
+                            <li>There are a small number of English words that have all the vowels occuring in order. Find the first one of these using less, then quit the viewer
+                        (q command) and with the same regexp, use grep to find them all. Note: the word may contain more than 5 vowels but it must contain aeiou in that order.</li>
+                        <ol type="a">
+                            <li>Look at the output from the grep above.What are the first the last and the longest words, which the vowels aeiou in that order?</li>
+                            <li>How many are there?</li>
+                            <li><em>Challenge</em>, modify the regex so it matches only words containing exactly 5 vowels and the vowels are in order (aeiou).</li>
+                        <!--
+                        <div style="color:#000099;"><p><b>Answer:</b></p>
+                        Command: <tt>grep 'a.*e.*i.*o.*u' mywords</tt> <br>
+                        Words:
+                        <pre>abstemious
+                        ...
+                        supercalifragilisticexpialidocious
+                        ...
+                        valerianaceous
+                        </pre>
+                        <p>
+                        Command: <tt>grep 'a.*e.*i.*o.*u' mywords|wc</tt> <br>
+                        </p><pre>     53      53     785
+                        </pre>
+                        <p>
+                        Command: <tt>grep '^[^aeiou]*a[^aeiou]*e[^aeiou]*i[^aeiou]*o[^aeiou]*u[^aeiou]*$' mywords</tt> <br>
+                        </p><pre>abstemious
+                        abstemiously
+                        abstentious
+                        arsenious
+                        caesious
+                        facetious
+                        facetiously
+                        </pre></div>
+                        </li>-->
+                        </ol>
+                </div>
             </div>
 
                 grep, egrep, regex, eregex, perl regex (use perl regex)
