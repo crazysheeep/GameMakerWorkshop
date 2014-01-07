@@ -122,7 +122,7 @@
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <pre>
+                        <pre class="brush:bash">
 &gt; cat file1          &gt; cat file2
 line4                line0
 line5                line1
@@ -155,7 +155,7 @@ line3                line6
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <pre>
+                        <pre class="brush:bash">
 &gt; wc file1           &gt; wc file2
  3  3 18 file1        4  4 24 file2
 
@@ -179,7 +179,7 @@ line3                line6
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <pre>
+                        <pre class="brush:bash">
 &gt; head -1 file1      &gt; head -2 file2
 line4                line0
                      line1
@@ -208,9 +208,19 @@ line6
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <pre>
-                            TODO
-                        </pre>
+                        <pre class="brush:bash">
+&gt; cat file1
+3
+2
+5
+4
+ 
+&gt; sort file1     sort -r file1
+2                   5
+3                   4
+4                   3
+5                   2
+</pre>
                     </div>
                 </div>
 
@@ -228,9 +238,22 @@ line6
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <pre>
-                            TODO
-                        </pre>
+                        <pre class="brush:bash">
+&gt; cat file1
+cat
+dog
+mouse
+mouse
+ 
+&gt; uniq file1        &gt; uniq -c file1
+cat                 1 cat
+dog                 1 dog
+mouse               2 mouse
+
+&gt; uniq -d file1     &gt; uniq -u file1
+mouse               cat
+                    dog
+</pre>
                     </div>
                 </div>
 
@@ -248,9 +271,16 @@ line6
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <pre>
-                            TODO
-                        </pre>
+                        <pre class="brush:bash">
+&gt; cat file1
+hello world
+ 
+&gt; cut -c2 file1     &gt; cut -c1-5 file1
+e                   hello
+
+&gt; cut -c1,3-5,8 file1
+hlloo
+</pre>
                     </div>
                 </div>
 
