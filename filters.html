@@ -106,10 +106,10 @@
                 </div>
             </div>        
             <div id="filter_descriptions">
-                <h3>Common and Useful Filters</h3>
+                <h2>Common and Useful Filters</h2>
 
                 <div class="row">
-                    <h4><code>cat</code></h4>
+                    <h3><code>cat</code></h3>
                     <hr>
                     <div class="col-md-8">
                         <p><code>cat</code> is probably the simpliest filter of all the filter. It outputs its input largely unchanged. If it is given a list of files instead of just one, then it concatenates the files together and then just outputs that.</p>
@@ -142,7 +142,7 @@ line3                line6
                 </div>
 
                 <div class="row">
-                    <h4><code>wc</code></h4>
+                    <h3><code>wc</code></h3>
                     <hr>
                     <div class="col-md-8">  
                         <p><code>wc</code> is a filter that counts the number of lines, words and letters in its given input. Very useful when used in conjunction with other filters for counting things. The formote of it's output is as seen on the right. The number represent lines, words and characters respectivley and then the file name is printed if the input was a file.</p>
@@ -168,7 +168,7 @@ line3                line6
                 </div>
 
                 <div class="row">
-                    <h4><code>head/tail</code></h4>
+                    <h3><code>head/tail</code></h3>
                     <hr>
                     <div class="col-md-8">  
                         <p><code>head/tail</code> are filters that outpu the first or last 10 lines of input, respectively. So head will output the first 10, tail will output the last 10. The number of lines can be changed with the below command line option otherwise it defaults to 10. So they will have the same effect on our small example file1 and file2, outputting the whole file, unless the command line option is used.</p>
@@ -192,7 +192,7 @@ line6
                 </div>
 
                 <div class="row">
-                    <h4><code>sort</code></h4>
+                    <h3><code>sort</code></h3>
                     <hr>
                     <div class="col-md-8">  
                         <p><code>sort</code> as it's name suggests takes its input and outputs it in some particular order. By default it will sort lexicographically according the first character on each line.
@@ -215,7 +215,7 @@ line6
                 </div>
 
                 <div class="row">
-                    <h4><code>uniq</code></h4>
+                    <h3><code>uniq</code></h3>
                     <hr>
                     <div class="col-md-8">  
                         <p><code>uniq</code> by default removes every copy but one of <em>adjacent</em> identical lines. So that means is you have identical lines in your input but they are distributed uniq would not remove them. A combination of sort and uniq would need to be used.</p>
@@ -235,7 +235,7 @@ line6
                 </div>
 
                 <div class="row">
-                    <h4><code>cut</code></h4>
+                    <h3><code>cut</code></h3>
                     <hr>
                     <div class="col-md-8">  
                         <p><code>cut</code> outputs certain parts of the input lines depending on the command line options specified. it is very useful for manipulating columnated data.</p>
@@ -255,7 +255,7 @@ line6
                 </div>
 
                 <div class="row">
-                    <h4><code>diff</code></h4>
+                    <h3><code>diff</code></h3>
                     <hr>
                     <div class="col-md-8">  
                         <p><code>diff</code> compares to input files and then outputs all the lines that are different in each file. It will specifiy if a line appears in file1 but not in file2 and visa versa. This is very usfull for checking the output of a program you might've written against test output data to see if everything is operating as expected.</p>
@@ -274,7 +274,7 @@ line6
                 </div>
 
                 <div class="row">
-                    <h4><code>tr</code></h4>
+                    <h3><code>tr</code></h3>
                     <hr>
                     <div class="col-md-8"> 
                         <p><code>tr</code> or transliterate converts its input character by character into its output according to a given mapping. Use of the command takes the form <code>tr 'sourceChars' 'destinationChars'</code>. The examples will best explain how tr works. Some shorthand can be used such as 'a-z' which corresponds to the entire alphabet.</p>
