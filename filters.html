@@ -215,11 +215,11 @@ line6
 5
 4
  
-&gt; sort file1     sort -r file1
-2                   5
-3                   4
-4                   3
-5                   2
+&gt; sort file1     &gt; sort -r file1
+2                5
+3                4
+4                3
+5                2
 </pre>
                     </div>
                 </div>
@@ -240,18 +240,18 @@ line6
                     <div class="col-md-6">
                         <pre class="brush:bash">
 &gt; cat file1
-cat
+kitten
 dog
 mouse
 mouse
  
 &gt; uniq file1        &gt; uniq -c file1
-cat                 1 cat
+kitten              1 kitten
 dog                 1 dog
 mouse               2 mouse
 
 &gt; uniq -d file1     &gt; uniq -u file1
-mouse               cat
+mouse               kitten
                     dog
 </pre>
                     </div>
@@ -299,9 +299,9 @@ hlloo
                     <div class="col-md-6">
                         <pre class="brush:bash">
 &gt; cat file1      &gt; cat file2
-line0               line0
-line1               line2
-line2               line1
+line0            line0
+line1            line2
+line2            line1
 
 &gt; diff file1 file2
 2d1
@@ -325,9 +325,13 @@ line2               line1
                         </p>
                     </div>
                     <div class="col-md-6">
-                        <pre>
-                        TODO
-                        </pre>
+                        <pre class="brush:bash">
+&gt; cat file1
+compclub
+
+&gt; tr 'a-z' 'A-Z' &lt; file1      &gt; tr 'c' 'f' &lt; file1
+COMPCLUB                         fompflub
+</pre>
                     </div>
                 </div>
                 <p>
