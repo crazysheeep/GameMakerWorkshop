@@ -35,31 +35,31 @@
                 
                 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="active">
                           <a href="./intro.html">Introduction</a>
                         </li>
-                        
+
                         <li>
                           <a href="./filters.html">UNIX Filters</a>
                         </li>
-                        
+
                         <li>
                           <a href="./regex.html">Regular Expressions</a>
                         </li>
-                        
+
                         <li>
                           <a href="./scripts.html">Shell Scripting</a>
                         </li>
-                        
-                        
+
+
 						<li>
 						  <a href="./solutions.html">Solutions</a>
 						</li>
                     </ul>
                 </li>
-                    
+
                 <li>
                   <a href="./tips.html">Tips</a>
                 </li>
@@ -86,7 +86,7 @@
                     Introduction
                 </h1>
             </div>
-        
+
             <div>
                 <div class="page-header">
                   <div class="row">
@@ -95,11 +95,26 @@
                     </div>
                   </div>
                 </div>
-                <p>Hello and welcome to the Beginner's Guide of the UNIXverse! Today we will cover useful features available in shell - through the website content, talks and exercises (and hopefully, by the time we finished this, with <a href="solutions.html">solutions</a>.</p>
+                <p>Hello and welcome to the Beginner's Guide of the UNIXverse! 
+                Today we will cover useful features available in shell - 
+                through the website content, talks and exercises (and 
+                hopefully, by the time we finished this, with 
+                <a href="solutions.html">solutions</a>.</p>
                 
-                <p>But first of all, what is shell? Many of you may think that the terminal you use (xterm, terminator, etc.) is a shell - you are partially right - it is an <strong>interactive shell</strong>. A shell is basically an interface that allows you to interact with a system's interface. The reason terminals you are used to are interactive is because you get to...well...interact with it (you give it input, they give output/errors, you give it more inputs [or rage quit].</p>
+                <p>But first of all, what is shell? Many of you may think that 
+                the terminal you use (xterm, terminator, etc.) is a shell - 
+                you are partially right - it is an 
+                <strong>interactive shell</strong>. A shell is basically an 
+                interface that allows you to interact with a system's 
+                interface. The reason terminals you are used to are 
+                interactive is because you get to...well...interact 
+                with it (you give it input, they give output/errors, you 
+                give it more inputs [or rage quit].</p>
                 
-                <p>One important thing to note about shells is...well, they are a "shell". All commands within a shell are self-contained - this will be an important concept in <a href="scripts.html">shell scripting</a>.</p>
+                <p>One important thing to note about shells is...well, 
+                they are a "shell". All commands within a shell are 
+                self-contained - this will be an important concept in 
+                <a href="scripts.html">shell scripting</a>.</p>
             </div>
          
             
@@ -112,19 +127,30 @@
                   </div>
                 </div>
                 
-                <p>When we are interacting with the terminal (or you are viewing commands online), you commonly see symbols like <code>$</code>, <code>~</code> and <code>%</code> (and most probably a bunch of text) before commands. This is merely to indicate that the command is entered by the user, and is not the output of a program. Below is a demonstration of what you may see.</p>
+                <p>When we are interacting with the terminal (or you are 
+                viewing commands online), you commonly see symbols like 
+                <code>$</code>, <code>~</code> and <code>%</code> (and most 
+                probably a bunch of text) before commands. This is merely 
+                to indicate that the command is entered by the user, and is 
+                not the output of a program. Below is a demonstration of 
+                what you may see.</p>
                 
-<pre class="brush: bash;">
-# this is a comment
-$ echo "you may see it like this"
-you may see it like this
-Oliver $ echo "or like this, with Oliver in front"
-or like this, with Oliver in front
-Oliver % echo "or this"
-or this
-</pre>
+                <pre class="brush: bash;">
+                # this is a comment
+                $ echo "you may see it like this"
+                you may see it like this
+                Oliver $ echo "or like this, with Oliver in front"
+                or like this, with Oliver in front
+                Oliver % echo "or this"
+                or this
+                </pre>
                 <div class="alert alert-info">
-                    A common newbie mistake when using shell is to include the preceding text before commands when copying something from the shell. Please don't do this, as it only leads to confusing errors and CHAOS! Like that '$' jsut after Oliver, that's not apart of the echo command, so it shouldn't be copied.
+                    A common newbie mistake when using shell is to include the 
+                    preceding text before commands when copying something from 
+                    the shell. Please don't do this, as it only leads to 
+                    confusing errors and CHAOS! Like that '$' just after 
+                    Oliver, that's not a part of the echo command, so it 
+                    shouldn't be copied.
                 </div>
             </div>    
             
@@ -145,37 +171,90 @@ or this
                     
                     <tr>
                         <td>
-                            <code>cd</code>
+                            <code>cd</code><br />
+                            Stands for: Change Directory
                         </td>                        
                         <td>
-                            Changes your directory - what "folder" you are in within the system. Think about this like folders in Windows Explorer. Example: <code>cd ~</code>, which takes you to your home directory, or <code>cd folder</code>, which goes to the next folder, or <code>cd ..</code>, which goes to the parent directory, or <code>cd /</code>, which goes to the parent of all directories (think of this like your C drive).
+                            A directory is the formal name 
+                            for a folder. The first thing that you need to 
+                            know about <code>cd</code> is that UNIX sorts 
+                            directories in a hierarchy, which means that all 
+                            files and directories have a 'parent' directory 
+                            (the directory above the current one), and all
+                            directories can have 'children', which are 
+                            either files or directories.
+
+                            <code>cd</code> is the tool used to change from one
+                            directory to another. Think about this like the
+                            folders in Windows Explorer - double-clicking on a 
+                            folder opens it and shows its contents (its 
+                            children).
+                            
+                            Examples:
+                            <ul>
+                                <li><code>cd ~</code> - takes you to your home 
+                                    directory</li>
+                                <li><code>cd folder</code> - if there is a 
+                                    directory called "folder" in the current 
+                                    directory, moves into that directory.</li>
+                                <li><code>cd ..</code> - goes into the parent 
+                                    folder.</li>
+                                <li><code>cd /</code>, which goes to the root 
+                                    directory. The root directory is the only 
+                                    directory that doesn't have a parent. Every 
+                                    directory and file in your file system is 
+                                    therefore a child of the root directory, or 
+                                    a grandchild, or ...</li>
+                            </ul>
                         </td>
                     </tr>
                     
                     <tr>
                         <td>
-                            <code>mkdir</code>
+                            <code>mkdir</code><br />
+                            Stands for: Make Directory
                         </td>                        
                         <td>
-                            Makes a new directory, e.g. <code>mkdir beans</code> you now would have a folder named beans, cool right.
+                            Makes a new directory as a child of the current 
+                            directory.<br />
+                            
+                            e.g. <code>mkdir beans</code><br />
                         </td>
                     </tr>
                     
                     <tr>
                         <td>
-                            <code>ls</code>
+                            <code>ls</code><br />
+                            Stands for: List
                         </td>                        
                         <td>
-                            Lists all files in a directory. <code>ls -la</code> lists all details and all files in a list, which may be more useful.
+                            Lists all files in the current directory. All of 
+                            these commands have options. While 
+                            <code>ls</code> provides just file and directory 
+                            names, <code>ls -la</code> produces a vertical 
+                            list with the details of all files, including 
+                            hidden files. This can be incredibly useful!
                         </td>
                     </tr>
                     
                     <tr>
                         <td>
-                            <code>rm</code>
+                            <code>rm</code><br />
+                            Stands for: Remove
                         </td>                        
                         <td>
-                            Removes files or directories. You made need <code>-rf</code> to remove files from a directory if it is not empty. Example: <code>rm -rf directory</code>, <code>rm -rf directory lol.html</code> (the last arguments are deleted, so you can stack them on).
+                            Deletes files or directories. May require 
+                            additional options to delete folders and 
+                            protected files.<br />
+                            <code>rm -r</code> <em>recursively</em> deletes
+                            a folder, so it deletes all contents of the 
+                            folder first, and then the folder itself.<br />
+                            <code>rm -f</code> <em>force</em> the deletion 
+                            of something.
+                            <code>rm</code> can take multiple arguments,
+                            so you can delete more than one thing at a time.<br />
+                            For example: <code>rm file1 file2</code> will 
+                            delete the files named "file1" and "file2".
                         </td>
                     </tr>
                     
@@ -184,7 +263,11 @@ or this
                             <code>echo</code>
                         </td>                        
                         <td>
-                            Prints whatever arguments you give it to standard output with a new line, - for example, <code>echo "lol a"</code> prints "lol a" on screen.
+                            <code>echo</code> echoes (repeats) whatever 
+                            arguments you give it to standard output (the 
+                            screen), followed by a new line.<br />
+                            Use:<br />
+                            <code>echo "Hello World!"</code>
                         </td>
                     </tr>
 
@@ -192,8 +275,11 @@ or this
                 
                 <div class="alert alert-info">
                     <i class="fa fa-lightbulb-o"></i>
-                    
-                    If your arguments contains spaces, or special characters (like <code>*</code>, <code>?</code>), you can use inverted commas to escape them, e.g. <code>cd "lol* special folder"</code> (although avoid using spaces in names).
+                    If your arguments contains spaces, or special characters 
+                    (like <code>*</code>, <code>?</code>), you can use 
+                    quote marks to escape them, e.g. 
+                    <code>cd "lol* special folder"</code> (although avoid 
+                    using spaces in names).
                 </div>
             </div>
             
@@ -209,17 +295,26 @@ or this
                 <p>Here are a few (useful) shortcuts to shell.</p>
                 
                 <h2>Reuse previous command</h2>
-				<p>Hitting the "up" key will automatically place a previously executed command in your next command to execute. Can do this as many times as you can go...</p>
+				<p>Hitting the "up" key will automatically place a previously
+                executed command in your next command to execute. This works
+                up until you reach the earliest point of history that the
+                computer records.</p>
 				
 				<p>Going down, of course, does the opposite if you need it</p>
-				
+
 				<h2>Tab Completion</h2>
-				<p>Essentially completes a command you have half-typed out so you don't have to waste precious milliseconds writing the rest of it. It is literally magical.</p>
-				<p>Mess around with the command above making directories and navigating through them so you get used to it all. Make a really long folder and then try out tab completion. An example might be:</p>
-<pre class="brush: bash;">
-mkdir antidisestablishmentarianism
-cd anti&lt;tab&gt; &lt;enter&gt;
-</pre>
+				<p>Essentially completes a command you have half-typed out so
+                you don't have to waste precious milliseconds writing the 
+                rest of it. It is literally magical.</p>
+
+				<p>Mess around with the command above by making directories and
+                navigating through them so you get used to it all. Make a folder
+                with a really long name and then tab-complete the name when you
+                <code>cd</code> into it. An example might be:</p>
+                <pre class="brush: bash;">
+                    mkdir antidisestablishmentarianism
+                    cd anti&lt;tab&gt; &lt;enter&gt;
+                </pre>
 				<p>Try it, your life is now measurably better.</p>	
 				
 				<h2>Keyboard Shortcuts</h2>
@@ -232,7 +327,7 @@ cd anti&lt;tab&gt; &lt;enter&gt;
 			        
 			        <tr>
 			            <td>
-			                <code>Alt+Backspace</code> or <code>CTRL+W</code
+                            <code>Alt+Backspace</code> or <code>CTRL+W</code>
 			            </td>
 			            <td>
 			                Deletes the previous word you are on
@@ -284,7 +379,10 @@ cd anti&lt;tab&gt; &lt;enter&gt;
 			                <code>CTRL+R</code>
 			            </td>
 			            <td>
-			                Type in a command and it'll go through your command history
+			                Type in a command and it'll go through your command
+                            history. Sometimes this is a better option than
+                            holding down the Up key to get to a previous
+                            instruction.
 			            </td>
 			        </tr>
 			        <tr>
@@ -300,11 +398,10 @@ cd anti&lt;tab&gt; &lt;enter&gt;
 			                <code>CTRL+LEFT</code> or <code>ALT+B</code>
 			            </td>
 			            <td>
-			                Move backwards one word
-			            </td>
-			        </tr>
-			    </table>
-				
+                            Move backwards one word
+                        </td>
+                    </tr>
+                </table>
             </div>                
             
             <div>
@@ -316,16 +413,32 @@ cd anti&lt;tab&gt; &lt;enter&gt;
                     </div>
                 </div>
                 
-                <p>This workshop sometimes relies on you knowing what the standard streams are - standard input (<code>stdin</code>), standard output (<code>stdout</code>) and standard error (<code>stderr</code>). They are further described below:</p>
+                <p>This workshop sometimes relies on you knowing what the 
+                standard streams are - standard input (<code>stdin</code>), 
+                standard output (<code>stdout</code>) and standard error 
+                (<code>stderr</code>). They are further described below:</p>
                 
                 <h2>Standard Input</h2>
-                <p>This is how data is read by the program - by user input unless it is redirected (see <a href="#redirection">redirection</a>). It is also known as <code>stdin</code>. You may know this as <code>scanf</code> in C or <code>raw_input()</code> in Python.</p>
+                <p>This is where a program reads information from - input is 
+                provided by the user, or by 
+                <a href="#redirection">redirection</a>. It is also 
+                known as <code>stdin</code>. C reads from stdin using  
+                <code>scanf</code> in C, and Python uses 
+                <code>raw_input()</code>.
                 
                 <h2>Standard Output</h2>
-                <p>This is how data is output by the program - usually onto your terminal unless it is redirected. This is also known as <code>stdout</code>. Known as <code>printf</code> in C, or <code>print</code> in Python.</p>
+                <p>This is where data is usually printed out from a program. 
+                This information is usually displayed in your terminal, 
+                unless it is redirected. This is also known as 
+                <code>stdout</code>. To print to stdout, C uses 
+                <code>printf</code> in C, and Python uses
+                <code>print</code>.</p>
                 
                 <h2>Standard Error</h2>
-                <p>This is usually where all the error messages are written - which is also default to be written onto your terminal unless redirected. It is also known as <code>stderr</code>. You may know this as <code>fprintf(STDERR, "");</code> in C or <code>sys.stderr.write</code> in Python.</p>
+                <p>This is where errors are usually printed out from a
+                program. It is also known as <code>stderr</code>. C prints to 
+                stderr using <code>fprintf(STDERR, "");</code>, and Python
+                prints to stderr using <code>sys.stderr.write</code>.</p>
             </div>
             
             <div>
@@ -337,32 +450,57 @@ cd anti&lt;tab&gt; &lt;enter&gt;
                     </div>
                 </div>
 
-                <p>You may sometimes want to rewrite where the standard streams go - for example, read a file as standard output, or log errors from standard error into a file.</p>
+                <p>You may sometimes want to change where the standard streams
+                go or come from - for example, putting all messages printed to
+                stderr into a file.</p>
                 
                 <h2>&lt;</h2>
-                <p>This places the standard input from a file into the program, for example, <code>./program &lt; lol.txt</code> puts lol.txt into my program.</p>
+                <p>Redirects the contents of a file into stdin, for a
+                program to read. Example: <code>./program &lt;
+                information.txt</code> pushes the contents of information.txt 
+                into stdin, <code>program</code> to read.</p>
                 
                 <h2>&gt;</h2>
-                <p>This places the standard output of a program into a file, for example, <code>./program &gt; lol.txt</code> puts the output of my program into lol.txt.</p>
+                <p>Redirects stdout from a program to a file. Example:
+                <code>./program &gt; output.txt</code> puts the output of my
+                program into output.txt.</p>
                 
-                <p>You can use <code>&gt;&gt;</code> to append to the end, as <code>&gt;</code> by default rewrites the entire file.</p>
+                <p>You can use <code>&gt;&gt;</code> to append to the end of a
+                file, as <code>&gt;</code> rewrites the entire file.</p>
                 
                 <p>Note you can also combine redirectors: <code>./program &lt; in.txt &gt; out.txt</code>.</p>
                 
                 <div class="alert alert-info">
-                    <i class="fa fa-lightbulb-o"></i> Note you can use <code>&gt; /dev/null</code>, which is the equivalent of putting all standard output into a sink of darkness and nothingness. This is useful for cutting out terminal spam without recording anything.
+                    <i class="fa fa-lightbulb-o"></i> Note you can use
+                    <code>&gt; /dev/null</code>, the "data sink", which is the 
+                    equivalent of throwing output down the drain. This is 
+                    useful for redirecting information that you don't want to
+                    see without having to put that output into a file.
                 </div>
                 
                 <h2>2&gt;</h2>
-                <p>This does the same redirection, but for standard error. For example, <code>./program 2&gt; errors.txt</code> logs errors from the program into error.txt.</p>
+                <p>This does the same redirection, but for standard error. 
+                For example, <code>./program 2&gt; errors.txt</code> logs 
+                errors from the program into error.txt.</p>
                 
-                <p>You can also pipe standard error to standard input, for example, <code>./program 2&gt;&amp;1</code>. This is useful for logging all errors and output to a file, such as <code>./program 2&gt;&amp;1 > lol.txt</code></p>
+                <p>You can redirect multiple output streams at once, but this
+                can be messy and complicated. See <a
+                href='http://www.unix.com/94627-post2.html?s=3cd64d8252501b9cb64647f0bad89c28'>this</a>
+                for more information.</p>
                 
                 
                 <h2>|</h2>
-                <p>This is a pipe, which takes the standard output of the left hand side and puts it into the standard output of the right hand side. This is very useful for the upcoming section on <a href="filters.html">UNIX Filters</a>, and is the bane of all commands. For example, <code>./program | ./program2</code> puts all output of program 1 into program 2.</p>
+                <p>This is a pipe, which takes the standard output of the left
+                hand side of the pipe and "pipes" that output to standard input
+                of the command on the right hand side of the pipe. This is very
+                important in the next section, 
+                <a href="filters.html">UNIX Filters</a>, and is the basis of 
+                all commands. For example, <code>./program | ./program2</code> 
+                puts all output of program 1 into program 2.</p>
                 
-                <p>Note all redirectors can be chained, for example, <code>./program &lt; lol.txt | ./program2 | ./program3 &gt; out.txt</code>. A chain of pipes is known as a pipeline.</p>
+                <p>Note all redirectors can be chained, for example, 
+                <code>./program &lt; lol.txt | ./program2 | ./program3 &gt; out.txt</code>. 
+                A chain of pipes is known as a pipeline.</p>
             </div>
             
             <div>
@@ -374,15 +512,31 @@ cd anti&lt;tab&gt; &lt;enter&gt;
                     </div>
                     
                     <h2>cat</h2>
-                    <p>This takes unlimited arguments and outputs, into standard output, all the text files con<strong>cat</strong>enated together! For example, <code>cat a.txt b.txt</code> prints a.txt, then b.txt to standard output. This command can be useful for viewing a short file on screen temporarily.</p>
+                    <p>Takes unlimited arguments and outputs the contents of the
+                    files to standard output. This way, the files are 
+                    con<strong>cat</strong>enated together! For example, 
+                    <code>cat a.txt b.txt</code> prints a.txt, then b.txt to 
+                    standard output. This command can be useful for viewing a 
+                    short file on screen temporarily.</p>
                     
-                    <p>If you do not give it an argument, it'll wait for standard input, then the end of file character (<code>CTRL+D</code>) and prints that out. This may be used as a simple text editor</p>
+                    <p>If you do not give it an argument, it'll wait for 
+                    standard input from the user, followed by the end of file 
+                    character (<code>CTRL+D</code>) and prints that out.</p>
                     
-                    <h2>more or less</h2>
-                    <p>These are two basic text viewers for terminal - less being more (less being better than more. You can open up a file and navigate it simply by using <code>less a.txt</code>. This is useful if the file is long - you definitely do not what to simply <code>cat</code> this is out.</p>
+                    <h2>more and less</h2>
+                    <p>More and less are both basic text viewers for terminal.
+                    Less is better than more, but both are functional. You can
+                    read and navigate a file by entering the command 
+                    <code>less a.txt</code>. Less paginates output (displays it
+                    one page at a time), which is a very welcome feature when
+                    dealing with long files - you definitely do not what to 
+                    simply <code>cat</code> a long file.</p>
                     
                     <h2>Text Editors</h2>
-                    <p>There are many available on UNIX (some of which you have to install), including <code>gedit</code>, <code>emacs</code> and <code>vim</code>. What you use today is up to you!</p>
+                    <p>There are many available on UNIX (some of which you 
+                    have to install), including <code>gedit</code>, 
+                    <code>emacs</code> and <code>vim</code>. What you use 
+                    today is up to you!</p>
                 </div>
             </div>
             
