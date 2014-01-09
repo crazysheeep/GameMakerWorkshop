@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -87,16 +86,23 @@
                 </h1>
             </div>
             <div id="filters_intro">
-                <p>UNIX Filters, filter things, as one might expect. S with a filter in the real world you have something that goes through and filter and then comes out as a slightly different, or vastly different, something. Like a water filter for example, you pass some water full of <em>dir</em>t through the filter the dirt gets filtered out and then you have clean water leaving the other end.</p> 
-                <p>That is the basis behind the UNIX filters below. They are little programs that you pass some data into, that data gets changed in some way and then gets output.</p> 
+                <p>As the name suggest, UNIX Filters are used to filter 
+                things. As with a filter in the real world, you have 
+                something that goes through the filter and comes out as a
+                different thing.
+                <p>The idea of a filter is the basis of the UNIX filters that
+                we will now discuss. Filters are small programs that process
+                data, modifies the data, and outputs the new information.</p> 
                 </br>
                 <div class="row">
                     <div class="col-md-8">
                         <p>So in our case we have:
                             <ul>
                                 <li>Commands and data (input) which we type into the shell.</li>
-                                <li>The fitler of our choosing which has the information to be transformed sent to it via the shell</li> 
-                                <li>Data (output) which is sent back to the shell by the filter, via a datastream (stdout)</li>
+                                <li>The filter of choice, which we send
+                                information to via stdin.</li> 
+                                <li>Data (output) which is sent back to the
+                                shell by the filter, via stdout</li>
                             </ul>
                         </p>
                     </div>
@@ -106,18 +112,24 @@
                 </div>
             </div>        
             <div id="filter_descriptions">
-                <h2>Common and Useful Filters</h2>
+                <h2>Common and Filters and Tools</h2>
 
                 <div class="row">
                     <h3><code>cat</code></h3>
                     <hr>
                     <div class="col-md-6">
-                        <p><code>cat</code> is probably the simpliest filter of all the filter. It outputs its input largely unchanged. If it is given a list of files instead of just one, then it concatenates the files together and then just outputs that.</p>
-                        <p>It's useful command line options include:
+                        <p><code>cat</code> outputs its input. If it is given 
+                        a list of files instead of just one, <code>cat</code>
+                        con<b>cat</b>enates the files together and outputs
+                        the result.</p>
+                        <p>Its useful command line options include:
                             <ul>
-                                <li><code>-n</code> Will add line numbersto the front of every line starting from 1.</li>
-                                <li><code>-s</code> Will reduce consecutive blank lines into a single blank line.</li>
-                                <li><code>-v</code> Will display special control chracters such a new lines and such.</li>
+                                <li><code>-n</code> Adds line numbers to the
+                                front of every line, starting from 1.</li>
+                                <li><code>-s</code> Squelches consecutive blank 
+                                lines into a single blank line.</li>
+                                <li><code>-v</code> Display special control
+                                chracters such a new lines and tabs.</li>
                             </ul>
                         </p>
                     </div>
@@ -145,16 +157,26 @@ line3                line6
                     <h3><code>wc</code></h3>
                     <hr>
                     <div class="col-md-6">  
-                        <p><code>wc</code> is a filter that counts the number of lines, words and letters in its given input. Very useful when used in conjunction with other filters for counting things. The formote of it's output is as seen on the right. The number represent lines, words and characters respectivley and then the file name is printed if the input was a file.</p>
-                        <p>It's useful command line options include:
+                        <p><code>wc</code> stands for Word Count. It is a tool
+                        to count the number of lines, words, and letters of
+                        input. <code>wc</code> is very useful for counting 
+                        things, when combined with other filters. The format 
+                        of its output is on the right. The numbers represent 
+                        lines, words and characters respectively, followed by 
+                        the file name (if available).</p>
+                        <p>Its useful command line options include:
                             <ul>
-                                <li><code>-c</code> Will only display the number of chracters.</li>
-                                <li><code>-w</code> Will only display the number of words.</li>
-                                <li><code>-l</code> Will only display the number of lines.</li>
+                                <li><code>-c</code> Display the number of
+                                characters only.</li>
+                                <li><code>-w</code> Display the number of
+                                words only.</li>
+                                <li><code>-l</code> Display the number of
+                                lines only.</li>
                             </ul>
                         </p>
                     </div>
                     <div class="col-md-6">
+                        Format of <code>wc</code>'s output:
                         <pre class="brush:bash">
 &gt; wc file1           &gt; wc file2
  3  3 18 file1        4  4 24 file2
@@ -171,8 +193,11 @@ line3                line6
                     <h3><code>head/tail</code></h3>
                     <hr>
                     <div class="col-md-6">  
-                        <p><code>head/tail</code> are filters that outpu the first or last 10 lines of input, respectively. So head will output the first 10, tail will output the last 10. The number of lines can be changed with the below command line option otherwise it defaults to 10. So they will have the same effect on our small example file1 and file2, outputting the whole file, unless the command line option is used.</p>
-                        <p>It's useful command line options include:
+                        <p><code>head/tail</code> are filters that output the 
+                        first/last 10 lines of input, respectively. The number 
+                        of lines can be changed with the command line option
+                        below.</p>
+                        <p>Its useful command line options include:
                             <ul>
                                 <li><code>-<em>x</em></code> Where <em>x</em> is a number, head/tail will display the first or the last <em>x</em> lines.</li>
                             </ul>
@@ -195,13 +220,17 @@ line6
                     <h3><code>sort</code></h3>
                     <hr>
                     <div class="col-md-6">  
-                        <p><code>sort</code> as it's name suggests takes its input and outputs it in some particular order. By default it will sort lexicographically according the first character on each line.
-                        There are also some more advanced features such as being able to sort columnated by any of the columns, the last two command line options enable this feature.</p>
-                        <p>It's useful command line options include:
+                        <p><code>sort</code> sorts its input a particular
+                        order. By default, sort sorts lexicographically on a
+                        line-by-line basis.
+                        There are also some more advanced features such as 
+                        being able to sort on a certain column of input,
+                        instead of the beginning of each line.</p>
+                        <p>Its useful command line options include:
                             <ul>
-                                <li><code>-r</code> Sort in descending order (reverse).</li>
+                                <li><code>-r</code> Reverse sort (descending order).</li>
                                 <li><code>-n</code> Sort numerically instead of lexicographically.</li>
-                                <li><code>-d</code> Sort in dictionary order (will ignore non-letters and non-digits).</li>
+                                <li><code>-d</code> Dictionary sort (ignores non-letters and non-digits).</li>
                                 <li><code>-t'<em>c</em>'</code> Use character <em>c</em> as the column seperator.</li>
                                 <li><code>-k'<em>n</em>'</code> Sort the input using column <em>n</em>.</li>
                             </ul>
@@ -228,12 +257,19 @@ line6
                     <h3><code>uniq</code></h3>
                     <hr>
                     <div class="col-md-6">  
-                        <p><code>uniq</code> by default removes every copy but one of <em>adjacent</em> identical lines. So that means is you have identical lines in your input but they are distributed uniq would not remove them. A combination of sort and uniq would need to be used.</p>
-                        <p>It's useful command line options include:
+                        <p><code>uniq</code> removes <em>adjacent</em> copies of
+                        identical lines so that there is only one left. If
+                        identical lines are distributed across your input, a
+                        combination of <code>sort</code> and <code>uniq</code>
+                        will need to be used to remove duplicates.</p>
+                        <p>Its useful command line options include:
                             <ul>
-                                <li><code>-c</code> Print out the number of times each line is duplicated.</li>
-                                <li><code>-d</code> Print only lines that were duplicated (will only print one of each dupe).</li>
-                                <li><code>-u</code> Print only lines that were not duplicated (occured uniquely).</li>
+                                <li><code>-c</code> Count the number of times
+                                each line is repeated.</li>
+                                <li><code>-d</code> Print one copy of every
+                                duplicated line.</li>
+                                <li><code>-u</code> Print every unique line (not
+                                duplicated).</li>
                             </ul>
                         </p>
                     </div>
@@ -261,12 +297,23 @@ mouse               kitten
                     <h3><code>cut</code></h3>
                     <hr>
                     <div class="col-md-6">  
-                        <p><code>cut</code> outputs certain parts of the input lines depending on the command line options specified. it is very useful for manipulating columnated data.</p>
-                        <p>It's useful command line options include:
+                        <p><code>cut</code> outputs certain parts of the input 
+                        lines depending on the command line options specified.
+                        It is very useful for manipulating columnated data.</p>
+                        <p>Its useful command line options include:
                             <ul>
-                                <li><code>-c(<em>x</em>|<em>x</em>-<em>x</em>|<em>x</em>,<em>x</em>..,<em>x</em>)</code> here <em>x</em> can be any integer and it represents a chracter postion in a line of input data, this will be easier to understand in practice.</li>
-                                <li><code>-f(<em>x</em>|<em>x</em>-<em>x</em>|<em>x</em>,<em>x</em>..,<em>x</em>)</code> here <em>x</em> is the same as above except it represents columns in input data which are spereated by tabs (unless otherwise specified using the next option).</li>
-                                <li><code>-d'<em>c</em>'</code> Sets the character <em>c</em> that seperates the columns in a given input.</li>
+                                <li><code>-c(<em>x</em>|<em>x</em>-<em>x</em>|<em>x</em>,<em>x</em>,...,<em>x</em>)</code> 
+                                here <em>x</em> can be any integer and it 
+                                represents a character postion in a line 
+                                of input data. This is easiest to understand by
+                                actually using <code>cut</code>.</li>
+                                <li><code>-f(<em>x</em>|<em>x</em>-<em>x</em>|<em>x</em>,<em>x</em>,...,<em>x</em>)</code> 
+                                here <em>x</em> is the same as above except it 
+                                represents columns in input data which are
+                                separated by tabs (unless another tab delimiter
+                                is specified using the next option).</li>
+                                <li><code>-d'<em>c</em>'</code> Sets the 
+                                character <em>c</em> as the column separator.</li>
                             </ul>
                         </p>
                     </div>
@@ -288,8 +335,13 @@ hlloo
                     <h3><code>diff</code></h3>
                     <hr>
                     <div class="col-md-6">  
-                        <p><code>diff</code> compares to input files and then outputs all the lines that are different in each file. It will specifiy if a line appears in file1 but not in file2 and visa versa. This is very usfull for checking the output of a program you might've written against test output data to see if everything is operating as expected.</p>
-                        <p>It's useful command line options include:
+                        <p><code>diff</code> compares files against each other
+                        and outputs information about the differences of the
+                        files. <code>diff</code> specifies if a line appears 
+                        in file1 but not in file2 and visa versa. This is very 
+                        useful for checking the a program's output against its 
+                        expected output.</p>
+                        <p>Its useful command line options include:
                             <ul>
                                 <li><code>-i</code> Ignore case.</li>
                                 <li><code>-i</code> Ignore blank lines.</li>
@@ -316,11 +368,19 @@ line2            line1
                     <h3><code>tr</code></h3>
                     <hr>
                     <div class="col-md-6"> 
-                        <p><code>tr</code> or transliterate converts its input character by character into its output according to a given mapping. Use of the command takes the form <code>tr 'sourceChars' 'destinationChars'</code>. The examples will best explain how tr works. Some shorthand can be used such as 'a-z' which corresponds to the entire alphabet.</p>
-                        <p>It's useful command line options include:
+                        <p><code>tr</code>, or transliterate, converts a set of
+                        characters to another set of characters. Usage: 
+                        <code>tr 'sourceChars' 'destinationChars'</code>.
+                        The examples will best explain how tr works.
+                        <code>tr</code> has some useful shortcuts. For 
+                        example, 'a-z' is a shorthand for writing
+                        'abcdefghijklmnopqrstuvwxyz'.</p>
+                        <p>Its useful command line options include:
                             <ul>
-                                <li><code>-c</code> map every chracter not in source chars..</li>
-                                <li><code>-d</code> Delete every character from source chars that occurs.</li>
+                                <li><code>-c</code> Map every character
+                                <em>not</em> provided in the source chars.</li>
+                                <li><code>-d</code> Delete every character in
+                                the source chars from the input.</li>
                             </ul>
                         </p>
                     </div>
@@ -329,8 +389,8 @@ line2            line1
 &gt; cat file1
 compclub
 
-&gt; tr 'a-z' 'A-Z' &lt; file1      &gt; tr 'c' 'f' &lt; file1
-COMPCLUB                         fompflub
+&gt; tr 'a-z' 'A-Z' &lt; file1      &gt; cat file1 | tr 'c' 'f'
+COMPCLUB                      fompflub
 </pre>
                     </div>
                 </div>
@@ -343,7 +403,8 @@ COMPCLUB                         fompflub
                 <hr>
                 <div class="row" id="sortq1">
                     <h4>Sort Practice</h4>
-                    Consider the columnated (space-delimited) data file to the left containing marks information for a single subject:
+                    Consider the columnated (space-delimited) data file to the
+                    left containing marks information for a single subject.
                     <div class="col-md-2">
                         <pre>
 2111321 37 FL
