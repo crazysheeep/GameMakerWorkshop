@@ -180,9 +180,9 @@ $ x=5
 $ y="6"
 $ z=abc
 $ echo $(( $x + $y ))
-<strong>11</strong>
+11
 $ echo $(( $x + $z ))
-<strong>5</strong>
+5
                                 </pre>
                             </div>
                             <p>More examples:</p>
@@ -190,21 +190,21 @@ $ echo $(( $x + $z ))
 $ x=1
 $ y=fred
 $ echo $x$y
-<strong>1fred</strong>
+1fred
 $ echo $xy        # the aim is to display "1y"
 
 $ echo "$x"y
-<strong>1y</strong>
+1y
 $ echo ${x}y
-<strong>1y</strong>
+1y
 $ echo ${j-10}    # give value of j or 10 if no value
-<strong>10</strong>
+10
 $ echo ${j=33}    # set j to 33 if no value (and give $j)
-<strong>33</strong>
+33
 $ echo ${x:?No Value}   # display "No Value" if $x not set
-<strong>1</strong>
+1
 $ echo ${xx:?No Value}  # display "No Value" if $xx not set
-<strong>-bash: xx: No Value</strong>
+-bash: xx: No Value
                             </pre>
                         </div>
                         <div class="row">
@@ -223,12 +223,6 @@ $ echo ${xx:?No Value}  # display "No Value" if $xx not set
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <h3><code>if</code>, <code>while</code>, <code>for</code></h3>
-                        <hr>
-                        <p>Now onto some flow control, like most other languages have.
-                    </div>
 
                     <div class="row">
                         <h3>Quoting in all its varieties</h3>
@@ -254,11 +248,157 @@ $ echo ${xx:?No Value}  # display "No Value" if $xx not set
                             <li>Uses this string as the value of the expression.</li>
                         </ol>
                     </div>
+
+                    <div class="row">
+                        <h3><code>eval</code></h3>
+                        <hr>
+                        <p>This is just a quick little bit on a very useful command called <code>eval</code>. <code>eval</code> allows use to perform mathematical operations in the shell and then return the result as a string.</p>
+                        <p>
+                            So using our handy back quotes we just learned out above we can assign a variable to be some value defined by a mathematical operation of two other variables. Like so:
+                            <pre class="brush:bash">
+$ a=3
+$ b=30
+$ sum=`expr $a + $b`
+$ echo $sum
+33
+                            </pre>
+                    </div>
+
+                    <div class="row">
+                        <h3><code>if</code>, <code>while</code>, <code>for</code></h3>
+                        <hr>
+
+                        <h4><code>test</code></h4>
+                        <p>Before we can go into flow control, which involves conditions and tests to decide <strong>how</strong> to control the flow of the program we must tackle one feature of shell, the <code>test</code> command.</p>
+                        <p>
+                            The <code>test</code> command performs a test or combination of tests and:
+                            <ul>
+                                <li>Returns a zero exit status if the test succeeds.</li>
+                                <li>Returns a non-zero exit status if the test fails.</li>
+                            </ul>
+                            <code>test</code> has a variety of useful testing options:
+                            <ul>
+                                <li>String comparison - ( =  != )</li>
+                                <li>Numeric comparison - ( -eq  -ne  -lt )</li>
+                                <li>Checks on files - ( -f  -x  -r )</li>
+                                <li>Boolean operators - ( -a  -o  ! )</li>
+                            </ul>
+                            Here are some examples of how <code>test</code> can be used:
+                        </p>
+                        <pre class="brush:bash">
+test "$msg" = "Hello"
+    # does the variable msg have the value "Hello"?
+
+test "$x" -gt "$y"
+    # does x contain a numeric value larger than y?
+
+msg="hello there"
+test $msg = Hello
+    # Error: expands to "test hello there = Hello"?
+
+test "$x" -ge 10 -a "$x" -le 20
+    # is the value of x in range 10..20?
+
+test -r xyz -a -d xyz
+    # is the file xyz a readable directory?
+[ -r xyz -a -d xyz ]
+    # alternative syntax; requires closing ]
+                        </pre>
+                        <br>
+                        <h4><code>if</code></h4>
+                        <p>Now onto some flow control, like most other languages have. Hopefully you're familiar with if statements and looping. <code>if</code>'s being some test/condition then code executed based on the result. Loops being some test or condition deciding when to enter and exit loops.</p>
+                        <p>The easiest way to get you used to loops and if's is to have a look at examples and how their syntax works.</p>
+                        <pre class="brush:bash">
+if tests
+then
+   commands
+elif tests
+then
+   commands
+else
+   command
+fi
+                        </pre>
+                        <p>
+                            Important things to note:
+                            <ul>
+                                <li><code>test</code> is where you put you're conditions.</li>
+                                <li>Make sure each keyword (<code>then</code>, <code>if</code>, etc) is on a new line.</li>
+                                <li><code>elif</code> is just this languages <code>else if</code>, <code>elsif</code>, etc...</li>
+                                <li><code>fi</code> this ends the if statement, like the closing <code>}</code> in C or going back one level of indentation in python.</li>
+                            </ul>
+                        </p>
+
+                        <h4><code>while</code> and <code>for</code></h4>
+                        <p>
+                            Again here's the basic syntax for while and for loops:
+                            <h5><code>while</code></h5>
+                            <pre class="brush:bash">
+while tests
+do
+   commands
+done
+                            </pre>
+                            <h5><code>for</code></h5>
+                            <pre class="brush:bash">
+for var in wordList
+do
+   commands  # generally involving var
+done
+                            </pre>
+                        </p>
+                        <p>So <code>for</code> is the slightly more complicated loop as it loops through a list, each iteration loading the next item from the list into the variable specified where <code>var</code> is. Examples will make reveal how to go about using each loop.</p>
+
+                        <div class="row">
+                            <h4>Examples</h4>
+                            <div class="col-md-6">
+                                <pre class="brush:bash">
+# Check the system status every ten minutes
+
+while true
+do
+   uptime
+   sleep 600
+done
+                                </pre>
+                                <div class="brush:bash">
+# Process files in $PWD, asking for confirmation
+
+for file in *
+do
+   echo -n "Process $file? "
+   read answer
+   if test "$answer" = "y"
+      process &lt; $file &gt;&gt; results
+   fi
+done
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <pre class="brush:bash">
+# Interactively prompt the user to process files
+
+echo -n "Next file: "
+while read filename
+do
+   process &lt; "$filename" &gt;&gt; results
+   echo -n "Next file: "
+done
+                                </pre>
+                                <div class="brush:bash">
+# Compute sum of a list of numbers from command line
+
+sum=0
+for n in "$@"    # remember $@ is all of the command arguments
+do
+   sum=`expr $sum + "$n"`
+done
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-                eval
-
-                exercises
 
             </div>
 
