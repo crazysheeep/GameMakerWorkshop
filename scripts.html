@@ -153,27 +153,118 @@ read name
 echo Hello, $name
                         </pre>
                         <p>This is where shell scripting starts to look a bit different from normal commands that you would use in a command prompt. The first <em>echo</em> line does as you would expect, just prints out the text (-n means it won't print a newline at the end of the line).</p>
-                        <p>Though the next line has <code>read</code> and then 
+                        <p>Though the next line has <code>read</code> and then <code>name</code>, <code>name</code> is our very creative name for a variable.</p>
+                        <p>This is where your prior coding experience should help, you probably know what a variable is (if you don't just ask a helper) and you know that they store things. So if we want to read in someones name to our program we need to store it so we can then use it later, that's what our variable <code>name</code> does. The syntax for variable you'll pick up from just writing scripts but the general gist is when first put something in the variable you just type out what you want to call it such as <code>name</code>. Then whenever you want to use that variable again say to print it out with <code>echo</code> you just append a <em>$</em> to it.</p>
+                        <p>Here's an example script that shows a bit about how variable can be used:</p>
+                        <pre class="brush:bash">
+read x     # read a value into variable x
+y=John     # assign a value to variable y
+echo $x    # display the value of variable x
+z="$y $y"  # assign two copies of y to variable z
+                        </pre>
+                        <div class="alert alert-info">
+                            Note: spaces matter, do not put spaces around the = symbol or your variables won't work.
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>A couple more useful notes on shell variables</h4>
+                                <ul>
+                                    <li>There's no need to declare shell variables. You simply use them.</li>
+                                    <li>All variables have the type string.</li>
+                                    <li>Note that <code>x=1</code> is equivalent to <code>x="1"</code></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <pre class="brush:bash">
+$ x=5
+$ y="6"
+$ z=abc
+$ echo $(( $x + $y ))
+<strong>11</strong>
+$ echo $(( $x + $z ))
+<strong>5</strong>
+                                </pre>
+                            </div>
+                            <p>More examples:</p>
+                            <pre class="brush:bash">
+$ x=1
+$ y=fred
+$ echo $x$y
+<strong>1fred</strong>
+$ echo $xy        # the aim is to display "1y"
+
+$ echo "$x"y
+<strong>1y</strong>
+$ echo ${x}y
+<strong>1y</strong>
+$ echo ${j-10}    # give value of j or 10 if no value
+<strong>10</strong>
+$ echo ${j=33}    # set j to 33 if no value (and give $j)
+<strong>33</strong>
+$ echo ${x:?No Value}   # display "No Value" if $x not set
+<strong>1</strong>
+$ echo ${xx:?No Value}  # display "No Value" if $xx not set
+<strong>-bash: xx: No Value</strong>
+                            </pre>
+                        </div>
+                        <div class="row">
+                            <h4>Some built in shell variables</h4>
+                            <ul>
+                                <li><code>$0</code> - The name of the thing being run (command/script).</li>
+                                <li><code>$1</code> - The first command-line argument.</li>
+                                <li><code>$2</code> - The second command-line argument.</li>
+                                <li><code>$3</code> - The third command-line argument.</li>
+                                <li><code>$#</code> - Count of command-line arguments.</li>
+                                <li><code>$*</code> - All of the command-line arguments (together).</li>
+                                <li><code>$@</code> - All of the command-line arguments (separately).</li>
+                                <li><code>$?</code> - Exit status of the most recent command.</li>
+                                <li><code>$$</code> - Process ID of this shell.</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <h3>Variables</h3>
-                        <hr>
-
-                    </div>
 
                     <div class="row">
                         <h3><code>if</code>, <code>while</code>, <code>for</code></h3>
                         <hr>
+                        <p>Now onto some flow control, like most other languages have.
+                    </div>
 
+                    <div class="row">
+                        <h3>Quoting in all its varieties</h3>
+                        <hr>
+                        <p>Quoting can be used for three purposes in the shell:</p>
+                        <ul>
+                             <li>To group a sequence of words into a single "word".</li>
+                             <li>To control the kinds of transformations that are performed.</li>
+                             <li>To capture the output of commands (back-quotes).</li>
+                        </ul>
+                        <p>The three different types of quotes result in different things happening:</p>
+                        <ul>
+                            <li>Single Quote - <code>'</code> - Stops any variables inside the quotes from being treated as variables, $name would be printed instead of its contents.</li>
+                            <li>Double Quote - <code>"</code> - Allows variables inside the quotes to be substitutes for their contents.</li>
+                            <li>Back Quote - <code>`</code> - Will execute the text in the quotes as commands and then return the output.</li>
+                        </ul>
+                        <p>Back Quotes are very useful and it's useful to know how they are treated by the shell:</p>
+                        <ol>
+                            <li>Performs variable-substitution (as for double-quotes).</li>
+                            <li>Executes the resulting command and arguments.</li>
+                            <li>Captures the standard output from the command.</li>
+                            <li>Converts it to a single string.</li>
+                            <li>Uses this string as the value of the expression.</li>
+                        </ol>
                     </div>
                 </div>
-
-                quoting for commands for stdout e.g. lol=``
 
                 eval
 
                 exercises
+
+            </div>
+
+            <div class="row">
+                <h2>Exercises</h2>
+                <hr>
 
             </div>
 
