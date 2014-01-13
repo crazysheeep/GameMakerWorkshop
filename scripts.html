@@ -406,6 +406,577 @@ done
                 <h2>Exercises</h2>
                 <hr>
 
+                <div class="row" id="digits">
+                    <h3>Digits</h3>
+                    <p>Write a script <strong>digits.sh</strong> that reads from standard input and writes to standard output mapping all digit characters whose values are less than 5 into the character '&lt;' and all digit characters whose values are greater than 5 into the character '&gt;'. The digit character '5' should be left unchanged.</p>
+                    <center>
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Sample Input Data</th>
+                                    <th>Corresponding Output</th>
+                                </tr>
+                                <tr>
+                                    <td><pre>1 234 5 678 9</pre></td>
+                                    <td><pre>&lt; &lt;&lt;&lt; 5 &gt;&gt;&gt; &gt;</pre></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <pre>
+I can think of 100's
+of other things I'd rather
+be doing than these 3 questions</pre>
+                                    </td>
+                                    <td>
+                                        <pre>
+I can think of &lt;&lt;&lt;'s
+of other things I'd rather
+be doing than these &lt; questions</pre>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <pre>
+A line with lots of numbers:
+123456789123456789123456789
+A line with all zeroes
+000000000000000000000000000
+A line with blanks at the end
+1 2 3</pre>
+                                    </td>
+                                    <td>
+                                        <pre>
+A line with lots of numbers:
+&lt;&lt;&lt;&lt;5&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;5&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;5&gt;&gt;&gt;&gt;
+A line with all zeroes
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+A line with blanks at the end
+&lt; &lt; &lt;</pre>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <pre>
+Input with absolutely 0 digits in it
+Well ... apart from that one ...</pre>
+                                    </td>
+                                    <td>
+                                        <pre>
+Input with absolutely &lt; digits in it
+Well ... apart from that one ...</pre>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <pre>1 2 4 8 16 32 64 128 256 512 1024 2048 4096 8192 16384 32768 65536</pre>
+                                    </td>
+                                    <td>
+                                        <pre>
+&lt; &lt; &lt; &gt; &lt;&gt; &lt;&lt; &gt;&lt; &lt;&lt;&gt; &lt;5&gt; 5&lt;&lt; &lt;&lt;&lt;&lt; &lt;&lt;&lt;&gt; &lt;&lt;&gt;&gt; &gt;&lt;&gt;&lt; &lt;&gt;&lt;&gt;&lt; &lt;&lt;&gt;&gt;&gt; &gt;55&lt;&gt;</pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <p><b>Script:</b></p>
+                        <pre class="brush:bash">
+#!/bin/sh
+tr '0123456789' '&lt;&lt;&lt;&lt;&lt;5&gt;&gt;&gt;&gt;'
+                        </pre>
+                    </div>
+
+                </div>
+
+                <div class="row" id="echon">
+                    <h3>Echon</h3>
+                    <p>Write a shell script  a program echon.sh which given exactly two arguments, an integer <i>n</i> and a string, prints the string <i>n</i> times. For example:</p>
+                    <pre class="brush:bash">
+% ./echon.sh 5 hello
+hello
+hello
+hello
+hello
+hello
+% ./echon.sh 0 nothing
+% ./echon.sh 1 goodbye
+goodbye
+%
+                    </pre>
+                    <p>Your script should print an error message if it is not given exactly 2 arguments. For example:</p>
+                    <pre class="brush:bash">
+% ./echon.sh 
+Usage: ./echon.sh
+% ./echon.sh 1 2 3
+Usage: ./echon.sh
+                    </pre>
+                    <p>Also get your script to print an error message if its first argument isn't a non-negative integer. For example:</p>
+                    <pre class="brush:bash">
+% ./echon.sh hello world
+./ex2.sh: argument 1 must be a non-negative integer
+% ./echon.sh -42 lines
+./echon.sh: argument 1 must be a non-negative integer
+                    </pre>
+                    <p>Hint: you'll need to use the shell if, while and exit statements, shell arithmetic and the test command.</p>
+
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <b>Discussion</b>
+                        <p>Straight-forward shell programming except for checking that the first argument is an integer</p>
+                        <p>We could use the shell case to check the number of command-line args and also to check that the first argument is a non-negative integer.</p>
+                        <p>Note the display of a usage message, which gives useful feedback to the user about they should have done. Note also the use of exit to terminate the script if an error is discovered in the command line arguments.</p>
+                        <b>Sample Solution</b>
+                        <pre>
+#!/bin/sh
+
+# check command-line args
+if test $# != 2
+then
+    echo "Usage: $0
+    exit 1
+fi
+
+# standard error redirected because test will print
+# a warning message if $1 is not an integer
+
+if test "$1" -ge 0 2&gt;/dev/null
+then
+    :
+else
+    echo "$0: argument 1 must be a non-negative integer"
+    exit 1
+fi
+
+number_of_lines=$1
+text=$2
+
+line_count=0
+while test $line_count -lt $number_of_lines
+do
+    echo $text
+    line_count=$(($line_count + 1))
+done
+
+exit 0
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row" id="file_sizes">
+                    <h3>File Sizes</h3>
+                    <p>Write a shell script file_sizes.sh which prints the names of the files in the current directory splitting them into three categories:  <i>small</i>, <i>medium-sized</i> and <i>large</i>. A file is considered <i>small</i> if it contains less than 10 lines, <i>medium-sized</i> if contains less than 100 lines, otherwise it is considered  <i>large</i>.</p>
+                    <p>Your script should always print exactly three lines of output. Files should be listed in alphabetic order on each line. Your shell-script should match character-for-character
+                    the output shown in the example below. Notice the creation of a separate directory for testing and the use of
+                    the script from the last question to produce test files. You could also produce test files manually using an editor.</p>
+                    <pre class="brush:bash">
+% mkdir test
+% cd test
+% ../echon.sh 5 text &gt;a
+% ../echon.sh 505 text &gt;bbb
+% ../echon.sh 17 text &gt;cc
+% ../echon.sh 10 text &gt;d
+% ../echon.sh 1000 text &gt;e
+% ../echon.sh 0 text &gt;empty
+% ls -l
+total 24
+-rw-r--r-- 1 andrewt andrewt   25 Mar 24 10:37 a
+-rw-r--r-- 1 andrewt andrewt 2525 Mar 24 10:37 bbb
+-rw-r--r-- 1 andrewt andrewt   85 Mar 24 10:37 cc
+-rw-r--r-- 1 andrewt andrewt   50 Mar 24 10:37 d
+-rw-r--r-- 1 andrewt andrewt 5000 Mar 24 10:37 e
+-rw-r--r-- 1 andrewt andrewt    0 Mar 24 10:37 empty
+% ../file_sizes.sh 
+Small files: a empty
+Medium-sized files: cc d
+Large files: bbb e
+% rm cc d
+% ../echon.sh 10000 . &gt;lots_of_dots
+% ls -l
+total 36
+-rw-r--r-- 1 andrewt andrewt    25 Mar 24 10:37 a
+-rw-r--r-- 1 andrewt andrewt  2525 Mar 24 10:37 bbb
+-rw-r--r-- 1 andrewt andrewt  5000 Mar 24 10:37 e
+-rw-r--r-- 1 andrewt andrewt     0 Mar 24 10:37 empty
+-rw-r--r-- 1 andrewt andrewt 20000 Mar 24 10:39 lots_of_dots
+% ../file_sizes.sh 
+Small files: a empty
+Medium-sized files:
+Large files: bbb e lots_of_dots
+%
+                    </pre>
+                    <p>Hint: you can use the command wc to discover how many lines are in a file. You probably want to use the shell's back quotes, itsif statement, and
+                    the test command and</p>
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <b>Discussion</b>
+                        <p>A nice example of accumulating a results in variables.</p>
+                        <b>Sample Solution</b>
+                        <pre class="brush:bash">
+#!/bin/sh
+
+for file in *
+do
+    lines=`wc -l &lt;$file`
+    if test $lines -lt 10
+    then
+        small_files="$small_files $file"
+    elif test $lines -lt 100
+    then
+        medium_files="$medium_files $file"
+    else
+        large_files="$large_files $file"
+    fi
+done
+
+echo "Small files:$small_files"
+echo "Medium-sized files:$medium_files"
+echo "Large files:$large_files"
+
+exit 0
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row" id="wget">
+                    <h3>Challenge Question</h4>
+                    <p>Write a shell script courses.sh which prints a list of UNSW courses with the given prefix by extracting them from the UNSW handbook web pages. For example:</p>
+                    <pre class="brush:bash">
+% courses.sh JAPN
+JAPN4500 Japanese Studies Honours (Research)
+JAPN4550 Combined  Japanese Studies Honours (Research)
+JAPN5000 Special Project
+JAPN5011 Japanese Teaching Practicum
+JAPN5100 Business Japanese A
+JAPN5101 Business Japanese B
+JAPN5102 Professional Japanese A
+JAPN5103 Professional Japanese B
+% courses.sh MATH | wc
+    124     566    4751
+% courses.sh COMP | grep Soft
+COMP2041 Software Construction: Techniques and Tools
+COMP3111 Software Engineering
+COMP3141 Software System Design and Implementation
+COMP3431 Robotic Software Architecture
+COMP3711 Software Project Management
+COMP4001 Object-Oriented Software Development
+COMP4161 Advanced Topics in Software Verification
+COMP4181 Language-based Software Safety
+COMP9041 Software Construction: Techniques and Tools
+COMP9116 Software System Development Using the B-Method and B-Toolkit
+COMP9117 Architecture of Software Systems
+COMP9181 Language-based Software Safety
+COMP9431 Robotic Software Architecture
+                    </pre>
+                    <p>Your script must download the handbook web pages and extract the information from them when it is run.</p>
+                    <h6>Hints</h6>
+                    <p>This task can be done using the usual tools of grep, sed, sort &amp; uniq but the regular expressions take some thought.</p>
+                    <p>The UNSW handbook uses separate web pages for  undergraduate and postgraduate courses. These two web pages would need to be downloaded for the above example (JAPN): <br>
+                        <a href="http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp?StudyLevel=Undergraduate&amp;descr=J">http://www.handbook.unsw.edu.au/vbook2011/brCoursesByAtoZ.jsp?StudyLevel=Undergraduate&amp;descr=J</a> and
+                        <a href="http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp?StudyLevel=Postgraduate&amp;descr=J">http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp?StudyLevel=Postgraduate&amp;descr=J</a>.
+                    </p>
+                    <p>The command <code>wget</code> can be used to download a web page and has option which allow it to be used in shell pipelines. For example:</p>
+                    <pre class="brush:bash">
+% wget -q -O- "http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp?StudyLevel=Undergraduate&amp;descr=J" | wc
+    213     982   14222
+                    </pre>
+
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <p>Sample solution for courses.sh</p>
+                        <pre class="brush:bash">
+#!/bin/sh
+# written by andrewt@cse.unsw.edu.au Mar 2011 as a COMP2041 programming example
+if test $# != 1
+then
+    echo "Usage: $0 &lt;course-prefix&gt;"
+    exit 1
+fi
+
+course_prefix=$1
+first_letter=`echo $course_prefix|sed 's/\(.\).*/\1/'`
+base_url="http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp"
+ugrad_url="$base_url?StudyLevel=Undergraduate&amp;descr=$first_letter"
+pgrad_url="$base_url?StudyLevel=Postgraduate&amp;descr=$first_letter"
+wget -q -O- "$ugrad_url" "$pgrad_url" |
+grep "$course_prefix[0-9][0-9][0-9][0-9].html" |
+sed "s/.*\($course_prefix[0-9][0-9][0-9][0-9]\)\.html[^&gt;]*&gt; *\([^&lt;]*\).*/\1 \2/" |
+sort |
+uniq
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row" id="jpg2png">
+                    <h3>jpg2png</h3>
+
+                    <p>Write a shell script jpg2png.sh which converts all images in <a href="http://en.wikipedia.org/wiki/JPEG">JPEG</a> format in the current directory to <a href="http://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</a> format.</p>
+                    <p>You can assume that JPEG files and only JPEG files have the suffix jpg.</p>
+                    <p>If the conversion is succesful the JPEG file should be removed.</p>
+                    <p>Your script should stop with an appropriate error message and exit status if the PNG file already exists.</p>
+                    <pre class="brush:bash">
+% wget http://www.cse.unsw.edu.au/~cs2041/lab/sh/images/images.zip
+% unzip images.zip
+Archive:  images.zip
+  inflating: Johannes Vermeer - The Girl With The Pearl Earring.jpg  
+  inflating: nautilus.jpg            
+  inflating: panic.jpg               
+  inflating: penguins.jpg            
+  inflating: shell.jpg               
+  inflating: stingray.jpg            
+  inflating: treefrog.jpg            
+% ./jpg2png.sh
+% ls
+Johannes Vermeer - The Girl With The Pearl Earring.png  panic.png
+email_image.sh                                          penguins.png
+images.zip                                              shell.png
+index.php                                               stingray.png
+jpg2png.sh                                              treefrog.png
+nautilus.png
+% cp -p /home/cs2041/public_html/lab/sh/images/penguins.jpg
+% ./jpg2png.sh
+penguins.png already exists
+                    </pre>
+                    <h6>Hints</h6>
+                    <p>You may find sed and back quotes useful.</p>
+                    <p>The tool convert will convert between many image formats, for example:</p>
+                    <pre>
+% convert penguins.jpg penguins.png
+                    </pre>
+
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <p>Sample solution for jpg2png.sh</p>
+                        <pre class="brush:bash">
+#!/bin/sh
+
+for jpg_file in *.jpg
+do
+    png_file=`echo $jpg_file | sed 's/jpg$/png/'`
+    if test -e "$png_file" 
+    then
+        echo "$png_file" already exists
+        exit 1
+    fi
+    convert "$jpg_file" "$png_file" &amp;&amp; rm "$jpg_file" 
+done
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row" id="email_image">
+                    <h3>Email Image</h3>
+
+                    <p>Write a shell script email_image.sh which given a list of image files as arguments  displays them one-by-one.  After the user has viewed each image the script should prompt the user for an e-mail address. If the user does enter an email address, the script should prompt the user for a message to accompany the image and then send the image to that e-mail address.</p>
+                    <pre class="brush:bash">
+% ./email_image.sh penguins.png treefrog.png 
+Address to e-mail this image to? andrewt@cse.unsw.edu.au
+Message to accompany image? Penguins are cool.
+penguins.png sent to andrewt@cse.unsw.edu.au
+Address to e-mail this image to? andrewt@cse.unsw.edu.au
+Message to accompany image? This is a White-lipped Tree Frog
+treefrog.png sent to andrewt@cse.unsw.edu.au
+                    </pre>
+                    <h6>Hints</h6>
+                    <p>The program display can be used to view image files</p>
+                    <p>The program  mutt can be used to send mail from the command line including attachments, for example:</p>
+                    <pre class="brush:bash">
+% echo 'Penguins are cool.'|mutt -s 'penguins!' -a penguins.png -- nobody@nowhere.com
+                    </pre>
+
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <p>Sample solution for email_image.sh</p>
+                        <pre class="brush:bash">
+#!/bin/sh
+
+for png_file in "$@"
+do
+    display "$png_file"
+    echo -n "Address to e-mail this image to? "
+    read address
+    if test -n "$address"
+    then
+        echo -n "Message to accompany image? "
+        read message
+        echo "$message"| mutt -s 'image' -a "$png_file" --"$address"
+        echo "$png_file sent to $address"
+    else
+        echo "No email sent"
+    fi
+done
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row" id="date_image">
+                    <h3>Date Image</h3>
+
+                    <p>Write a shell script date_image.sh which, given a list of image files as arguments, labels each with the time it was taken. You can assume the last-modification time of the image file is the time it was taken.</p>
+                    <p>So for example if we these commands were run:</p>
+                    <pre class="brush:bash">
+% cp -p /home/cs2041/public_html/lab/sh/images/penguins.jpg
+% ls -l penguins.jpg 
+-rw-r--r-- 1 andrewt andrewt 58092 Mar 16 16:08 penguins.jpg
+% ./date_image.sh penguins.jpg
+% display  penguins.jpg 
+                    </pre>
+                    <p>Then penguins.jpg should have been be modified to look like this:</p>
+                    <p>
+                        <img class="img-responsive" alt="http://en.wikipedia.org/wiki/File:Emperor_penguins.jpg" src="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lab/sh/images/labelled_penguins.jpg">
+                    </p>
+                    <h6>Hints</h6>
+                    <p>The program convert can be used to label an image like this:</p>
+                    <pre class="brush:bash">
+% convert -gravity south -pointsize 36 -annotate 0  'Mar 16 16:08' penguins.jpg temporary_file.jpg
+                    </pre>
+                    <p>sed and/or cut may be useful to extract the date&amp;time from ls's output.</p><h4>Challenge Question</h4>
+                </div>
+
+                <div class="row" id="date_image_extend">
+                    <p>Modify date_image.sh so it doesn't affect the image file's last-modification time. For example:</p>
+                    <pre class="brush:bash">
+% cp -p /home/cs2041/public_html/lab/sh/images/penguins.jpg
+% ls -l penguins.jpg 
+-rw-r--r-- 1 andrewt andrewt 58092 Mar 16 16:08 penguins.jpg
+% ./date_image.sh penguins.jpg
+% ls -l penguins.jpg 
+-rw-r--r-- 1 andrewt andrewt 58092 Mar 16 16:08 penguins.jpg
+                    </pre>
+
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <p>Sample solution for date_image.sh</p>
+                        <pre class="brush:bash">
+#!/bin/sh
+
+for image_file in "$@"
+do
+    last_modify_time=`ls -l "$image_file" | cut -d\ -f5- | sed 's/^ *//' | cut -d\ -f2-4`
+    temporary_file="$image_file.tmp.$$"
+    if test -e "$temporary_file"
+    then
+        echo "$temporary_file" already exists
+        exit 1
+    fi
+    convert -gravity south -pointsize 36 -annotate 0 "$last_modify_time" $image_file $temporary_file &amp;&amp;
+    mv $temporary_file $image_file
+done
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="row"> 
+                    <h3>Challenge Question</h3>
+
+                    <p>Write a shell script webserver.sh which acts a webserver.</p>
+                    <p>Here is a <a href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lab/sh/webserver/webserver-simple.sh">starting-point</a> which uses the program netcat to run some shell commands when a connection is made to port 2041 on localhost</p>
+                    <p>If you do this:</p>
+                    <pre class="brush:bash">
+% cp /home/cs2041/public_html/lab/sh/webserver/webserver-simple.sh webserver.sh
+% ./webserver.sh
+listening on [any] 2041 ...
+                    </pre>
+                    <p>Then access the URL <a href="http://localhost:2041/">http://localhost:2041/</a></p>
+                    <p>You should should see the output of the shell commands in webserver.sh </p>
+                    <p>If it doesn't work try the URL <a href="http://127.0.0.1:2041/">http://127.0.0.1:2041/</a>. If that works replace localhost with 127.0.0.1 everywhere below.</p>
+                    <p>If you the browser you are using isn't working try another, e.g. if chrome doesn't work try firefox.</p>
+                    <h4>Extensions</h4>
+                    <ol>
+                        <li>
+                            <p>Modify webserver.sh  so it returns the contents of files from your public_html directory. So if you do this</p>
+                            <pre class="brush:bash">
+% cp /home/cs2041/public_html/lab/sh/webserver/example.html ~/public_html/example.html
+                            </pre>
+                            <p>The URL <a href="http://localhost:2041/example.html">http://localhost:2041/example.html</a> should send the contents of public_html/example.html to the browser which should looks <a href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lab/sh/webserver/example.html">like this</a>.</p>
+                            <p>Your webserver.sh should return a <a href="http://en.wikipedia.org/wiki/HTTP_404">404 response</a> to the browser if the file does not exist.</p>
+                        </li>
+                        <li> 
+                            <p>Modify webserver.sh so it handles directories.  If the directory contains an index.html file, its contents should be sent to the browser.  Otherwise a list of links to the files in the directory should be generated and sent to the browser. So if you:</p>
+                            <pre class="brush:bash">
+% rsync -a  /home/cs2041/public_html/lab/sh/webserver/example_directory/ ~/public_html/example_directory/
+                            </pre>
+                            <p>Then this URL <a href="http://localhost:2041/example_directory/">http://localhost:2041/example_directory/</a> should generate a list of links equivalent to this <a href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lab/sh/webserver/example_directory/">like this</a> (it can be simpler).</p>
+                            <p>And this URL <a href="http://localhost:2041/example_directory/sub_directory/">http://localhost:2041/example_directory/sub_directory/</a> should show the contents of <a href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lab/sh/webserver/example_directory/sub_directory/">public_html/example_directory/sub_directory/index.html</a></p>
+                        </li>
+                        <li> 
+                            <p>Modify webserver.sh  so when a file with suffix '.cgi' is requested it is executed rather than its contents returned. So if you:</p>
+                            <pre class="brush:bash">
+% cp -p  /home/cs2041/public_html/lab/sh/webserver/simple.cgi ~/public_html/simple.cgi
+                            </pre>
+                            <p>This URL <a href="http://localhost:2041/simple.cgi">http://localhost:2041/simple.cgi</a> should run simple.cgi and show something <a href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lab/sh/webserver/simple.cgi">like this</a>.</p>
+                            <p>Note this exercise is tricky to complete via ssh.  If you do try using a CSE server you may find another  student using port 2041 ("address in use") and remember localhost will be the machine your browser is running on.  It should be possible to complete it on your own Linux machine and perhaps on OSX. Possibly you can do it on windows with cygwin by installing netcat.</p>
+                            <p>You also might have to use firefox as the browser at CSE (or change your proxy setup) for localhost access to work.</p>
+                            <p>The webserver.sh process can be awkward to stop.  You may to run ps -ef | grep netcat and then kill netcat and its  parent process. An alternative is to use ctrl-z to background the netcat and then kill %1</p>
+                            <p>Remember this a challenge exercise, don't bug your tutor about what (for example) localhost is, look it up yourself - you do know how to search the web, right?</p>
+                            <div class="collapse" style="color:green;">
+                                <p><b>Answer:</b></p>
+                                <p>Sample solution for webserver.sh</p>
+                                <pre class="brush:bash">
+#!/bin/sh
+# kill any instances of this script &amp; netcat already running
+# otherwise the port 2041 wouldn't be available
+
+ps -ef |
+egrep '\b(sh .*\bwebserver.sh|netcat .* 2041)\b' |
+egrep -v "\b(egrep|$$)\b" |
+sed 's/^[^ ]* *//;s/ .*//' |
+xargs -r kill -9 2&gt;/dev/null
+
+while true
+do
+    netcat -vvl localhost -p 2041 -c '
+        set -x
+        read http_request || exit
+        request_type=`echo $http_request | cut -d\  -f1`
+        path=`echo $http_request | cut -d\  -f2`
+        local_path="$HOME/public_html/$path"
+        if test "$request_type" != GET
+        then
+            echo "HTTP/1.0 400 BAD REQUEST"
+            echo
+            echo "Unhandled request type: $request_type"
+        elif test -d "$local_path"
+        then
+            echo HTTP/1.0 200 OK
+            echo "Content-type: text/html"
+            echo
+            if test -r "$local_path/index.html"
+            then
+                cat "$local_path/index.html"
+            else
+                for f in "$local_path"/*
+                do
+                    b=`echo "$f" | sed "s?.*/??"`
+                    echo "&lt;li&gt;&lt;a href=\"$path/$b\"&gt;$b&lt;/a&gt;"
+                done
+            fi
+        elif test -r "$local_path"
+        then
+            echo HTTP/1.0 200 OK
+            suffix=`echo $local_path | sed "s/.*\.//"`
+            if test "$suffix" = cgi &amp;&amp; test -x "$local_path"
+            then
+                "$local_path"
+            else
+                echo
+                cat "$local_path"
+            fi
+        else
+            echo "HTTP/1.0 404 FILE NOT FOUND"
+            echo
+            echo "$local_path not found"
+        fi
+    '   
+done
+                                </pre>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+
             </div>
 
             <div style="text-align: center">
