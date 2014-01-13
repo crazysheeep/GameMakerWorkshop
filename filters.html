@@ -425,6 +425,25 @@ COMPCLUB                      fompflub
                         <li>In descending order of mark.</li>
                     </ol>
                 </div>
+
+                <div class="row" id="filter_qs">
+                    <h4>Some filter questions</h4>
+                    <ol>
+                        <li>How could you use head and tail in a pipeline to display lines 25 through 75 of a file?</li>
+                        <li>Using the above data set find a filter that will only display the student number and the their grade, not their raw mark.</li>
+                    </ol>
+
+                    <div class="collapse" style="color:green;">
+                        <p><b>Answer:</b></p>
+                        <pre class="brush:bash">
+cat file | head -75 | tail -50
+                        </pre>
+                        <pre class="brush:bash">
+cut -f1,3 &lt; data
+                        </pre>
+                    </div>
+                </div>
+
             </div>
 
             <div style="text-align: center">
