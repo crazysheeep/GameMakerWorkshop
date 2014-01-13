@@ -89,7 +89,7 @@
             <div>
 
                 <div class="row">
-                    <h3>Shell as an Interpreter</h3>
+                    <h2>Shell as an Interpreter</h2>
                     <hr>
                     <p>All of our interactions with the shell so far have been using a <em>command (program)</em> and passing it command line arguments. Usually taking the form of:</p>
                     <pre class="brush:bash">
@@ -99,7 +99,7 @@ Command Arg1 Arg2 Arg3 &lt; input &gt; output
                 </div>
 
                 <div class="row">
-                    <h3>Shell Scripts</h3>
+                    <h2>Shell Scripts</h2>
                     <hr>
                     <p>Since this is a, though quite basic, programming language we'll start with the classic and over done:</p>
                     <h4>Hello World Script!</h4>
@@ -118,7 +118,7 @@ echo Hello, World
                 </div>
 
                 <div class="row">
-                    <h3>Running Shell Scripts</h3>
+                    <h2>Running Shell Scripts</h2>
                     <hr>
                     <p>So before it was mentioned that <code>sh</code> is an interpreter that can read and execute shell scripts. One way we could run our script then would be to treat the script just like normal input from a file that we are going to give to a command, like every other filter we've been using so far. Like so:</p>
                     <pre class="brush:bash">
@@ -142,7 +142,7 @@ chmod +x file
                     </pre>
 
                     <div class="row">
-                        <h3>Input and Variables</h3>
+                        <h2>Input and Variables</h2>
                         <hr>
                         <p>Now we'll look at a script that does something crazy and amazing.</p>
                         <pre class="brush:bash">
@@ -225,7 +225,7 @@ $ echo ${xx:?No Value}  # display "No Value" if $xx not set
 
 
                     <div class="row">
-                        <h3>Quoting in all its varieties</h3>
+                        <h2>Quoting in all its varieties</h2>
                         <hr>
                         <p>Quoting can be used for three purposes in the shell:</p>
                         <ul>
@@ -250,7 +250,7 @@ $ echo ${xx:?No Value}  # display "No Value" if $xx not set
                     </div>
 
                     <div class="row">
-                        <h3><code>expr</code></h3>
+                        <h2><code>expr</code></h2>
                         <hr>
                         <p>This is just a quick little bit on a very useful command called <code>expr</code>. <code>expr</code> allows use to perform mathematical operations in the shell and then return the result as a string.</p>
                         <p>
@@ -265,7 +265,7 @@ $ echo $sum
                     </div>
 
                     <div class="row">
-                        <h3><code>if</code>, <code>while</code>, <code>for</code></h3>
+                        <h2><code>if</code>, <code>while</code>, <code>for</code></h2>
                         <hr>
 
                         <h4><code>test</code></h4>
