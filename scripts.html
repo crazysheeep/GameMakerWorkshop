@@ -88,13 +88,77 @@
         
             <div>
 
-                shell discussion - differences with bash - why doesn't cd work?
+                <div class="row">
+                    <h3>Shell as an Interpreter</h3>
+                    <hr>
+                    <p>All of our interactions with the shell so far have been using a <em>command (program)</em> and passing it command line arguments. Usually taking the form of:</p>
+                    <pre class="brush:bash">
+Command Arg1 Arg2 Arg3 &lt; input &gt; output
+                    </pre>
+                    <p>We extended that functionality using our friendly little pipes, <code>|</code>, to direct one programs output into another's input. With this we were able to perform some complicated operations. Now we're going to extend our capabilities even further with <strong>Shell Scripting</strong>.
+                </div>
 
-                chmod sh sh +x
+                <div class="row">
+                    <h3>Shell Scripts</h3>
+                    <hr>
+                    <p>Since this is a, though quite basic, programming language we'll start with the classic and over done:</p>
+                    <h4>Hello World Script!</h4>
+                    <pre class="brush:bash">
+#!/bin/sh
 
-                variables
+echo Hello, World
+                    </pre>
+                    <p>Looking at this script you can see what it will most likely do when run. It will execute the command <code>echo</code> with the input text <em>Hello, World</em>. <br>
+                    Now you'll probably be wondering what in the world does the first line of script mean or do? Very basically it tells the thing trying to run the script what <em>Interpreter</em> should be used to execute the code. In this case it is saying use <code>sh</code> which is one of the main shell interpreters. There's no need to know much more about it at this point beyond the facts that:</p>
+                    <ul>
+                        <li>You should include it as the first line of every shell script you write.</li>
+                        <li>Pretty much any command you can run in the command line will work with the <code>sh</code> interpreter.</li>
+                    </ul>
+                    <p>Now we have the ability to write some basic shell scripts BUT we need a way to execute (run) them. So just before the next section create a file called <em>hello</em> and save the Hello, World program into it.</p>
+                </div>
 
-                if, while, for
+                <div class="row">
+                    <h3>Running Shell Scripts</h3>
+                    <hr>
+                    <p>So before it was mentioned that <code>sh</code> is an interpreter that can read and execute shell scripts. One way we could run our script then would be to treat the script just like normal input from a file that we are going to give to a command, like every other filter we've been using so far. Like so:</p>
+                    <pre class="brush:bash">
+sh hello
+                    </pre>
+                    <p>This tells <code>sh</code> to take in the contents of <em>hello</em> and try to execute it. Now this sounds very similar to what that first line of our script is supposed to do. If we run our scripts using the above method we don't even need that first line but there is a better way to execute our scripts!</p>
+                    <br>
+                    <p>What we're going to do is turn our standard file that just contains some text into an executable, like a <em>.exe</em> on windows. To do this we need to change the <em>properties</em> of the file so that UNIX sees it as an executable file. To do this we use a program we haven't seen yet called <code>chmod</code>. To explain all about <code>chmod</code> and UNIX file permissions would take a while so I'll very quickly give you the three main permissions a file/folder can hold and how we add the executable permission to our scripts.</p>
+                    <h4><code>chmod</code></h4>
+                    Usage:
+                    <pre class="brush:bash">
+chmod permission file
+                    </pre>
+                    <ul>
+                        <li>The three basic permissions you can give to a file are <strong>read</strong>, <strong>write</strong> and <strong>execute</strong>.</li>
+                        <li>The <em>permission</em> section is where you put what type of permission you want to add or take away.</li>
+                    </ul>
+                    <p>Our usage will pretty much only consist of adding the executable permission to our scripts, to do this you do the following:</p>
+                    <pre class="brush:bash">
+chmod +x file
+                    </pre>
+
+                    <div class="row">
+                        <h3>Input</h3>
+                        <hr>
+
+                    </div>
+
+                    <div class="row">
+                        <h3>Variables</h3>
+                        <hr>
+
+                    </div>
+
+                    <div class="row">
+                        <h3><code>if</code>, <code>while</code>, <code>for</code></h3>
+                        <hr>
+
+                    </div>
+                </div>
 
                 quoting for commands for stdout e.g. lol=``
 
