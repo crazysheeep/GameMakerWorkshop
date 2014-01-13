@@ -142,9 +142,18 @@ chmod +x file
                     </pre>
 
                     <div class="row">
-                        <h3>Input</h3>
+                        <h3>Input and Variables</h3>
                         <hr>
+                        <p>Now we'll look at a script that does something crazy and amazing.</p>
+                        <pre class="brush:bash">
+#!/bin/sh
 
+echo -n "Enter your name: "
+read name
+echo Hello, $name
+                        </pre>
+                        <p>This is where shell scripting starts to look a bit different from normal commands that you would use in a command prompt. The first <em>echo</em> line does as you would expect, just prints out the text (-n means it won't print a newline at the end of the line).</p>
+                        <p>Though the next line has <code>read</code> and then 
                     </div>
 
                     <div class="row">
