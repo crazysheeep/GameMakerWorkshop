@@ -250,9 +250,9 @@ $ echo ${xx:?No Value}  # display "No Value" if $xx not set
                     </div>
 
                     <div class="row">
-                        <h3><code>eval</code></h3>
+                        <h3><code>expr</code></h3>
                         <hr>
-                        <p>This is just a quick little bit on a very useful command called <code>eval</code>. <code>eval</code> allows use to perform mathematical operations in the shell and then return the result as a string.</p>
+                        <p>This is just a quick little bit on a very useful command called <code>expr</code>. <code>expr</code> allows use to perform mathematical operations in the shell and then return the result as a string.</p>
                         <p>
                             So using our handy back quotes we just learned out above we can assign a variable to be some value defined by a mathematical operation of two other variables. Like so:
                             <pre class="brush:bash">
@@ -328,7 +328,7 @@ fi
                                 <li><code>fi</code> this ends the if statement, like the closing <code>}</code> in C or going back one level of indentation in python.</li>
                             </ul>
                         </p>
-
+                        <br>
                         <h4><code>while</code> and <code>for</code></h4>
                         <p>
                             Again here's the basic syntax for while and for loops:
@@ -361,7 +361,7 @@ do
    sleep 600
 done
                                 </pre>
-                                <div class="brush:bash">
+                                <pre class="brush:bash">
 # Process files in $PWD, asking for confirmation
 
 for file in *
@@ -372,7 +372,7 @@ do
       process &lt; $file &gt;&gt; results
    fi
 done
-                                </div> 
+                                </pre> 
                             </div>
                             <div class="col-md-6">
                                 <pre class="brush:bash">
@@ -385,7 +385,7 @@ do
    echo -n "Next file: "
 done
                                 </pre>
-                                <div class="brush:bash">
+                                <pre class="brush:bash">
 # Compute sum of a list of numbers from command line
 
 sum=0
@@ -393,7 +393,7 @@ for n in "$@"    # remember $@ is all of the command arguments
 do
    sum=`expr $sum + "$n"`
 done
-                                </div> 
+                                </pre> 
                             </div>
                         </div>
                     </div>

@@ -426,15 +426,70 @@ capturing</pre>
                     <p><strong><em>Greedyguts: </em></strong>By default, regex is <em>greedy</em>. This means that it will try to match as much of the string as possible. Note that with the example in the previous point that it matched as much of it as it could - so, <code>1234</code> instead of <code>1</code>. Simplying matching the <code>1</code> would have been <em>non-greedy</em>. If we wanted a particular quantifier to be non-greedy, we just need to put a question mark after it. So for the previous example, we would have the pattern <code>[0-9]+?</code> and this would match only the <code>1</code>.</p>
 
                     <p><strong><em>The great escape: </em></strong>Sometimes, you probably won't want the special meaning of <code>[</code>, <code>]</code> or any other special character - you'll want to search for it literally. In this case, you preface the character with a backslash:</p>
-                </div>
-                                    <pre class="brush:bash">$ echo "[]" > example
+
+                    <pre class="brush:bash">$ echo "[]" > example
 $ cat example
-[]                                    
+[]
 $ grep "[]" example
 grep: Unmatched [ or [^
 $ grep "\[\]" example
-[]</pre>
-                                    <p>As you can see, searching for the square brackets on their own isn't going to do you any good. However, escaping the respective brackets tells <code>grep</code> to search for a bracket literal. This is the reason why our earlier command <code>grep $ name</code> wasn't very useful.</p>                                      
+[]
+                    </pre>
+                    <p>As you can see, searching for the square brackets on their own isn't going to do you any good. However, escaping the respective brackets tells <code>grep</code> to search for a bracket literal. This is the reason why our earlier command <code>grep $ name</code> wasn't very useful.</p>
+                </div>
+
+                <div>
+                    <div class="page-header">
+                        <h1>
+                            The Stream Editor - <code>sed</code>
+                        </h1>
+                    </div> 
+                    <p>So we know about the data streams, <code>stdin</code> and <code>stdout</code>, and now we knwo about the basics of regular expressions and how one can single out peices of data from larger bodies of data. <code>sed</code> is another filter, like the ones we looked at before and it does exactly as it says, it edits the the stream of data. What makes <code>sed</code> special is it can use regex like <code>grep</code> can to single out bits of data in the <code>stdin</code> stream and then it can replace that singled out data with whatever it wants, using regex again if need be.</p>
+                    <p>
+                        Here are some examples of <code>sed</code> syntax:
+                        <pre class="brush:bash">
+sed -e 'EditCommands' DataFile
+sed -f EditCommandFile DataFile
+
+                        </pre>
+                    </p>
+                    <p>
+                        The <em>EditCommands</em> section inside the quotes is where all the magic goes on. The two main commands you'll be using with sed will be the replace commands:
+                        <ul>
+                            <li><code>s/RegExp/Replace/</code> - Substitute first occurrence of string matching <em>RegExp</em> with Replace string.</li>
+                            <li><code>s/RegExp/Replace/g</code> - Substitute all occurrences of string matching <em>RegExp</em> with Replace string.</li>
+                        </ul>
+                        But there are also other options you can add to the Edit Commands:
+                        <ul>
+                            <li><code>p</code> - Print the current line.</li>
+                            <li><code>d</code> - Delete (don't print) the current line.</li>
+                            <li><code>/RegExp/</code> - Selects all lines that match <em>RegExp</em>.</li>
+                            <li><code>/RegExp1/,/RegExp2/</code> - Selects all lines between lines matching reg exps.</li>
+                        </ul>
+                        Here are some examples of <code>sed</code> usage:
+                        <pre class="brush:bash">
+# print only lines containing 'xyz'
+sed -n -e '/xyz/p' &lt; file
+
+# print only lines not containing 'xyz'
+sed -e '/xyz/d' &lt; file
+
+# show the passwd file, displaying only the
+# lines from "root" up to "nobody" (i.e. system accounts)
+sed -n -e '/^root/,/^nobody/p' /etc/passwd
+ 
+# remove first column from ':'-separated file
+sed -e 's/[^:]*://' datafile
+
+# reverse the order of the first two columns
+sed -e 's/\([^:]*\):\([^:]*\):\(.*\)$/\2:\1:\3/'
+                        </pre>
+                    </p>
+                    <p>That last example touches on a feature present in most implementations of regular expression, <code>()</code> groupings and then the variables <code>\1, \2</code> that correspond to the contents of their respective brackets the the matching regex.</p>
+                    <p>It might sound a bit confusing but it will make more sense in practise and if you're too confused about it ask a helper or one of the teachers about it. :)</p>
+                </div>
+
+
             <div>
                 <h2>Exercises</h2>
                 <hr>
@@ -714,7 +769,7 @@ BA
                                     </table> <br>
                                 </div>
                             </div>
-                            <p>If you can't invent a regular expression, can you write a shell script using egrep, sed and test, if &amp; while which performs the same task.</p>
+                            <p>If you can't invent a regular expression, can you write a shell script using egrep, sed and test, if &amp; while which performs the same task. (Will be covered in the next section, come back to this.)</p>
                             <div class="collapse" style="color:green;">
                                 <p><b>Answer:</b></p>
                                 <p>This can't be done with a (true) regular expression. You prove this via the the wonderfully named <a href="http://en.wikipedia.org/wiki/Pumping_lemma_for_regular_languages">pumping lemma</a>.</p>
@@ -770,23 +825,6 @@ sed '/^A*B*$/!dhs/\(B*\)$/C\1/s/B/A/g/^\(A*\)C\1$/!dg'
                     </ol>
                 </div>
             </div>
-
-                grep, egrep, regex, eregex, perl regex (use perl regex)
-
-                regex basics
-                - ^$
-                - . ? *
-
-                regex greedy/non-greedy (e.g. '.*?')
-
-
-                grep -o -i options
-
-
-                s// with \1 \2 etc
-
-                examples using find
-                e.g. find -R . | grep lol
 
             <div style="text-align: center">
                 <a class="btn btn-lg btn-success" href="scripts.html">
