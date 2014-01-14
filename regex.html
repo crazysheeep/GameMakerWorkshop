@@ -823,6 +823,49 @@ sed '/^A*B*$/!dhs/\(B*\)$/C\1/s/B/A/g/^\(A*\)C\1$/!dg'
                         </li>
                     </ol>
                 </div>
+
+                <div class="row" id="parlement">
+                    <h4>Wooooo Politics</h4>
+                        <p>The file <a href="http://cgi.cse.unsw.edu.au/~cs2041/13s2/lab/sh/parliament/parliament.txt">parliament.txt</a> contains a list of the members of the Australian House of Representatives (MPs). For example:</p>
+                        <pre class="brush:bash"> 
+% head parliament.txt 
+The Hon Tony Abbott, Member for Warringah       
+The Hon Dick Adams, Member for Lyons        
+The Hon Anthony Albanese, Member for Grayndler      
+Mr John Alexander, Member for Bennelong     
+Mrs Karen Andrews, Member for McPherson
+The Hon Kevin Andrews, Member for Menzies       
+The Hon Bob Baldwin, Member for Paterson        
+Mr Adam Bandt, Member for Melbourne     
+The Hon Bruce Billson, Member for Dunkley       
+Ms Sharon Bird, Member for Cunningham
+                        </pre>
+                        <p>Each line contains the name of the MP followed by the name of their electorate.</p>
+                        <ol type="a">
+                            <li>Write a grep command that will print all the lines in the file where the electorate begins with W. There should be 9.</li>
+                            <li>Write a grep command that will list all the lines in the file where the MP's first name is Andrew.  There should be 5. </li>
+                            <li>Write a grep command that will print all the lines in the file with three consecutive vowels. There should be 1.</li>
+                            <li>Write a grep command that will print all the lines in the file where the MP's surname (last name) ends in the letter 'y'.  There should be 11.</li>
+                            <li>Write a grep command that will print all the lines in the file where the electorate ends in the letter 'y'.  There should be 16.</li>
+                            <li>Write a grep command to print all the lines in the file where there is a word in the MP's name or the electorate name ending in ng. There should be 7.</li>
+                            <li>Write a grep command that will print all the lines in the file where the MP's surname (last name) both begins and ends with a vowel.  There should be 1.</li>
+                            <li>Most electorate have names that are a single word, e.g. Warringah, Lyons &amp; Grayndler. A few electorates have multiple word names, for example, Kingsford Smith. Write a grep command that will print all the lines in the file where the electorate name contains multiple words (separated by spaces or hyphens). There should be 8.</li>
+                        </ol>
+                        <div class="collapse" style="green">
+                            <p><b>Answer:</b></p>
+                            <ol>
+                                <li>grep 'Member for W' parliament.txt</li>
+                                <li>grep ' Andrew ' parliament.txt</li>
+                                <li>grep -i '[aeiou][aeiou][aeiou]' parliament.txt or egrep -i '[aeiou]{3}' parliament.txt</li>
+                                <li>grep 'y,' parliament.txt</li>
+                                <li>grep 'y *$' parliament.txt</li>
+                                <li>grep 'ng[^a-z]|ng$' parliament.txt</li>
+                                <li>grep '[AEIOU][^ ]*[^aeiou],' parliament.txt</li>
+                                <li>grep 'Member for [^ ]*[ -][^ ]' parliament.txt</li>
+                            </ol>
+                        </div>
+                </div>
+
             </div>
 
             <div style="text-align: center">
