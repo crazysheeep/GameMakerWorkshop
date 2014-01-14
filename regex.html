@@ -364,8 +364,11 @@
                 <pre class="brush:bash; gutter:false">$ grep "^Oliver$" names</pre>
                 <p>(In either of these cases, we didn't need to wrap quotes around the pattern, but it's good practice to just in case your pattern does have characters that can be interpreted by the shell.)</p>
                 <p>Let's look at at a couple of examples of anchor usage. Let's say that we want to look for all words that begin with a, end with z, and have at least one character in between them. Then the pattern we'd use would be - (note the <code>-E</code> flag, since we're using an extended regex character)</p>
-                <pre class="brush:bash; gutter:false">$ grep -E "^a.+z$" /usr/share/dict/words</pre>
-                <p>Oh...there are no results...let's modify our pattern a bit, then. Maybe if we change it to end in y we'd get more results.</p>
+                <pre class="brush:bash; gutter:false">$ grep -E "^a.+z$" /usr/share/dict/words
+abuzz
+adz
+                </pre>
+                <p>Let's modify our pattern a bit, then. Maybe if we change it to end in y we'd get more results.</p>
                 <pre class="brush:bash; gutter:false">$ grep -E "^a.+y$" /usr/share/dict/words
 abbey
 ability
