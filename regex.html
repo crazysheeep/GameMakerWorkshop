@@ -579,21 +579,21 @@ facetiously
                     questions.  Provide both the command/pipeline and its output.</p>
                     <ol type="a">
                         <li>How many total words does the file mywords contain?
-                            <div class="collapse" style="color:green;">
+                            <div class="" style="color:green;">
                                 <p><b>Answer:</b></p>
                                 Command: <code>wc -w mywords</code> <br>
                                 Output: 390582
                             </div>
                         </li>
                         <li>Note that some of these words are derivates of other words (e.g. "Aberdeen" and "Aberdeen's"). Maybe these shouldn't be included in the word count. How many total words, excluding those ending in "'s", are there in the dictionary?
-                            <div class="collapse" style="color:green;">
+                            <div class="" style="color:green;">
                                 <p><b>Answer:</b></p>
                                 Command: <code>grep -v "'s$" mywords | wc -w</code> <br>
                                 Output: 299845
                             </div>
                         </li>
                         <li>How could you use cat -n and grep to find out which word is on line 100000? (You'll need to check the exact output format of cat -n.)
-                            <div class="collapse" style="color:green;">
+                            <div class="" style="color:green;">
                                 <p><b>Answer:</b></p>
                                 Command: <code>cat -n mywords | grep '^100000'</code> <br>
                                 Output: 100000  adviser <br>
@@ -601,14 +601,14 @@ facetiously
                             </div>
                         </li>
                         <li>How could you use cat -n and grep to print the 700th line, and no other lines? (You'll need to check the exact output format of cat -n.)
-                            <div class="collapse" style="color:green;">
+                            <div class="" style="color:green;">
                                 <p><b>Answer:</b></p>
                                 Command: <code>cat -n mywords | grep '^ *700[^0-9]'</code> <br>
                                 Output:    700  Adirondack <br>
                             </div>
                         </li>
                         <li>How do you use head and tail to find out what word is on line 200000?
-                            <div class="collapse" style="color:green;">
+                            <div class="" style="color:green;">
                                 <p><b>Answer:</b></p>
                                 Command: <code>head -200000 mywords | tail -1</code> <br>
                                 Output: geodynamics's
