@@ -34,14 +34,14 @@
             <a href="./">Home</a>
           </li>
           
-          <li class="dropdown active">
+          <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li class="active">
+              <li>
                 <a href="./intro.html">Introduction</a>
               </li>
 
-              <li>
+              <li class="active">
                 <a href="./sprites.html">Sprites</a>
               </li>
 
@@ -87,44 +87,64 @@
         <h1>
           <img src="assets/pictures/game_maker_logo.png" class="icon"></img>
 
-          Introduction
+          Sprites
         </h1>
       </div>
 
       <div>
         <div class="page-header">
-          <h1>Introduction</h1>
+          <h1>Sprites</h1>
         </div>
         <p>
-          <em>GameMaker</em> is a program that allows you to easily create games with drag and drop style commands, while also supporting more advanced programming. We will be using <em>GameMaker</em> to demonstrate some programming and game principles - and creating an awesome game of course!
+          A sprite is essentially an image. We'll need images for everything in the game. Let's start with the player.
         </p>
         <p>
-          Please note that this tutorial was created with <em>GameMaker: Studio</em> for Windows in mind. There may be slight differences if you are using <em>GameMaker Lite</em> for Mac or other versions of <em>GameMaker</em>.
-        </p>
-      </div>
+          To create a sprite:
+          <ol>
+            <li>
+              Right click on the sprites folder and click <strong>Create Sprite</strong> (or click the pacman icon)
+            </li>
+            <li>
+              Name your sprite <code>spr_player</code>
 
-      <div>
-        <div class="page-header">
-          <h1>Getting Started</h1>
-        </div>
-        <p>
-          If you're working on this from home you can install Game Maker in two ways:
-        </p>
-        <p>
-          <b>Option 1 - download from website:</b>
-          <ul>
-            <li><a href="https://www.yoyogames.com/studio">https://www.yoyogames.com/studio</a></li>
-          </ul>
-          <b>Option 2 - download from Steam:</b>
-          <ul>
-            <li>Search for <em>"GameMaker: Studio"</em> and download the free one</li>
-          </ul>
-        </p>
+              <div class="alert alert-info">
+                <i class="fa fa-lightbulb-o"></i> <strong> Note:</strong> Any name would be valid, but we will use the convention of having <code>spr_</code> at the start of the name for sprites to make it easy to tell that this is a sprite.
+              </div>
+            </li>
+            <li>
+              Click on <strong>Edit Sprite</strong>
+            </li>
+            <li>
+              In the Sprite Editor, click on the <strong>New Page</strong> icon and press ok. (Leave the width and height as 32x32. It represents the size of the image in pixels).
+            </li>
+            <li>
+              Double click on <code>image 0</code> and draw your player
+            </li>
+            <li>
+              Click on the <strong>Tick</strong> icon to save your sprite
+            </li>
+            <li>
+              Click on the <strong>Tick</strong> icon again to close the Sprite Editor
+            </li>
+            <li>
+              Press OK to save the Sprite Properties
+            </li>
+          </ol>
+          <p>
+            Draw the following sprites:
+            <ul>
+              <li>Tile</li>
+              <li>Spike</li>
+              <li>Enemy</li>
+              <li>Flag</li>
+              <li>Anything else you want to include in your game</li>
+            </ul>
+          </p>
       </div>
 
       <div style="text-align: center">
-        <a class="btn btn-lg btn-success" href="sprites.html">
-          Sprites
+        <a class="btn btn-lg btn-success" href="objectsmovement.html">
+          Objects, Rooms and Movement
           <i class="fa fa-arrow-right"></i>
         </a>
       </div>

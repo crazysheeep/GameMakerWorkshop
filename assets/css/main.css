@@ -26,7 +26,10 @@
 }
 
 .navbar-default .dropdown-menu > li > a:hover {
-  background-color: #005000;
+  background-color: #008000;
+}
+.navbar-default .dropdown-menu > li.active > a {
+  background-color: #008000;
 }
 
 .icon {
