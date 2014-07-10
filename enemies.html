@@ -49,11 +49,11 @@
                 <a href="./objectsmovement.html">Objects, Rooms and Movement</a>
               </li>
 
-              <li class="active">
+              <li>
                 <a href="./hazards.html">Hazards</a>
               </li>
 
-              <li>
+              <li class="active">
                 <a href="./enemies.html">Room Extension and Enemies</a>
               </li>
 
@@ -87,44 +87,50 @@
         <h1>
           <img src="assets/pictures/game_maker_logo.png" class="icon"></img>
 
-          Hazards
+          Room Extension and Enemies
         </h1>
       </div>
 
       <div>
         <div class="page-header">
-          <h1>The Spike of Doom</h1>
+          <h1>Room Extension</h1>
         </div>
         <p>
-          Let's add some hazards. These are things your player doesn't want to touch. For example, a <strong style="color: red;"><em>SPIKE OF DOOM.</em></strong>
+          Let's make our room a bit bigger by increasing the boundaries and also add some scrolling!
         </p>
         <p>
-          <b>To make our spike of doom:</b>
+          <b>To lengthen the size of the room:</b>
           <ol>
             <li>
-              First, go back to <code>spr_spike</code>'s <strong>properties</strong>
+              Go to <strong>Room Properties</strong>
             </li>
             <li>
-              Check <strong>"Precise collision checking"</strong>
-              <div class="alert alert-info">
-                <i class="fa fa-lightbulb-o"></i> <strong> Note:</strong> This means that the player will only die if they touch the drawn part of the spike. Without this, the player would die if they touched any part of the 32*32 hitbox.
-              </div>
+              Click on the <strong>settings</strong> tab
             </li>
             <li>
-              Create an object called <code>obj_sprite</code>
+              Increase the width to <code>1600</code>
+            </li>
+          </ol>
+        </p>
+
+        <p>
+          <b>To get the camera to follow your main character:</b>
+          <ol>
+            <li>
+              Go to <strong>Room Properties</strong>
             </li>
             <li>
-              Go to <code>obj_spike</code> <strong>Properties</strong>
+              Click on the <strong>views</strong> tab
             </li>
             <li>
-              <strong>Add event</strong> &rarr; <strong>Collision</strong> &rarr; <code>obj_player</code>
+              Check <strong>Enable the use of Views</strong>
             </li>
             <li>
-              <strong>Main 1</strong> tab &rarr; <strong>Destroy the instance</strong><br>
-              Check <strong>Applies to other</strong>
+              Check <strong>Visible when room starts</strong>
             </li>
             <li>
-              <strong>Main 1</strong> tab &rarr; <strong>Restart the current room</strong>
+              Scroll down to <strong>Object following</strong> and select <code>obj_player</code> from the drop down menu<br>
+              Let <code>Hbor = 640</code>, <code>Vbor = 480</code>, <code>Hsp = -1</code>, <code>Vsp = -1</code>
             </li>
           </ol>
         </p>
@@ -132,38 +138,64 @@
 
       <div>
         <div class="page-header">
-          <h1>Falling off the edge</h1>
+          <h1>Enemies</h1>
         </div>
         <p>
-          Right now, if the player falls of the map, nothing happens. Let's make it so the player dies if they fall off the map.
+          Enemies are a lot like spikes. You don't want to touch them. However, enemies can also move around!
+        </p>
+        <p>
+          First we need to make a <em>path</em> for the enemy to move on. Let's start with an enemy that simple patrols left and right.
         </p>
         <p>
           <ol>
             <li>
-              Right click on <code>obj_spike</code> and click on <strong>duplicate</strong>
+              Right click on the <strong>Paths</strong> folder and click on <strong>create path</strong> (or click on the swiggly arrow icon)
             </li>
             <li>
-              Name this new object <code>obj_spike_invis</code>
+              Name it <code>path_straight_line</code>
             </li>
             <li>
-              Uncheck <strong>Visible</strong>
+              Click on the <strong>Indicate the room to show as background</strong> button (shown)
             </li>
             <li>
-              Press OK
-            </li>
-            <li>
-              Go to your room's <strong>properties</strong>
-            </li>
-            <li>
-              Put invisible spikes where necessary
+              Add two points, by clicking on the grid
             </li>
           </ol>
+        </p>
+
+        <p>
+          Now we create an enemy, and give it this path.
+          <ol>
+            <li>
+              Create a new object, <code>obj_enemy</code> (You might want to make this have <strong>precise collision checking</strong> too)
+            </li>
+            <li>
+              <strong>Add Event</strong> &rarr; <strong>Create</strong>
+            </li>
+            <li>
+              <strong>Move</strong> tab &rarr; <strong>Set Path</strong><br>
+              Let <code>path = path_straight_line</code>, <code>speed = 8</code>, <code>at end = reverse</code>, <code>relative = relative</code>
+            </li>
+            <li>
+              Create a new event, collision with <code>obj_player</code>
+            </li>
+            <li>
+              Copy and paste the actions from <code>obj_spike</code>
+            </li>
+            <li>
+              Put the enemy in your room
+            </li>
+          </ol>
+        </p>
+        <br>
+        <p>
+          <em>How would you make an enemy that patrols in a square path?</em>
         </p>
       </div>
 
       <div style="text-align: center">
         <a class="btn btn-lg btn-success" href="next_html.html">
-          Room Extension and Enemies
+          Multiple Levels and Advanced Hazards
           <i class="fa fa-arrow-right"></i>
         </a>
       </div>
