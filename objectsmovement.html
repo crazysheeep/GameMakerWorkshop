@@ -114,12 +114,12 @@
               Click on the drop down menu icon and select <code>spr_player</code>
             </li>
             <li>
-              Check <strong>Visible</strong> and <strong>Solid</strong>
+              Check <strong>Visible</strong> but not Solid
             </li>
           </ol>
         </p>
         <p>
-          Try making a tile object!
+          Try making a tile object! <strong> Tile objects should be solid. </strong>
         </p>
       </div>
 
@@ -193,7 +193,7 @@
 
             <br>
             <p>
-              We're not done yet. So far the event will check if there's space left, and move left if that's the case. If there isn't space, we want to move left as much as possible. Or in other words, we want to move left until we are in contact with the tile.
+              Wait, we’re not done yet! So far the event will check if there are 5 pixels of space to the left, and move left if that’s the case. But if there isn’t space (see picture), we still want to move left as much as possible. Or in other words, we want to move left until we are in contact with the tile.
             </p>
             <br>
 
@@ -239,6 +239,10 @@
             <li>
               <strong>Add Event</strong> &rarr; <strong>Step</strong> &rarr; <strong>Step</strong>
             </li>
+			</p>
+			<p>
+			<b>If we're mid-air, gravity is 1.</b>
+			</p>
             <li>
               <strong>Control</strong> tab &rarr; <strong>Check Empty</strong> icon (1<sup>st</sup> column, 1<sup>st</sup> row)<br>
               Let <code>y = 1</code> and check <strong>Relative</strong>
@@ -250,6 +254,10 @@
               <strong>Move</strong> tab &rarr; <strong>Set gravity</strong> icon (3<sup>rd</sup> column, 2<sup>nd</sup> row)<br>
               Let <code>direction = 270</code>, <code>gravity = 1</code>
             </li>
+			</p>
+			<p>
+			<b>Otherwise, gravity is 0.</b>
+			</p>
             <li>
               <strong>Control</strong> tab &rarr; <strong>End of a block</strong> icon (1<sup>st</sup> column, 5<sup>th</sup> row)
             </li>
@@ -314,21 +322,22 @@
               <strong>Add Event</strong> &rarr; <strong>Keyboard</strong> &rarr; <code>&lt;Up&gt;</code>
             </li>
             <li>
-              <strong>Control</strong> tab &rarr; <strong>Check Empty</strong> icon<br>
-              Let <code>x = 0</code>, <code>y = 1</code>, <code>object = Only solid</code>, check <strong>Relative</strong>, check <strong>NOT</strong>// TODO
-              <div class="alert alert-info">
+              <strong>Control</strong> tab &rarr; <strong>Check Collision (2<sup>nd</sup> column, 1<sup>st</sup> row)</strong> icon<br>
+              Let <code>x = 0</code>, <code>y = 1</code>, <code>objects = Only solid</code>, check <strong>Relative</strong>
+              <!-- removed this alert because we no longer use the NOT checkbox
+			  <div class="alert alert-info">
                 <i class="fa fa-lightbulb-o"></i> <strong> Note:</strong> The <strong>NOT</strong> checkbox means that the command does the <em>opposite</em> of what it usually does. In this case we are saying <em>"if the area 1 unit directly below the player is NOT empty of solid objects"</em>
-              </div>
+              </div> -->
             </li>
             <li>
-              <strong>Control</strong> tab &rarr; <strong>Start of a block</strong>
+              <strong>Control</strong> tab &rarr; <strong>Start of a block (1<sup>st</sup> column, 4<sup>th</sup> row) </strong>
             </li>
             <li>
-              <strong>Move</strong> tab &rarr; <strong>Speed Vertical</strong><br>
+              <strong>Move</strong> tab &rarr; <strong>Speed Vertical (2<sup>nd</sup> column, 2<sup>nd</sup> row)</strong><br>
               Let <code>vert. speed = -12</code>
             </li>
             <li>
-              <strong>Control</strong> tab &rarr; <strong>End of a block</strong>
+              <strong>Control</strong> tab &rarr; <strong>End of a block (1<sup>st</sup> column, 5<sup>th</sup> row)</strong>
             </li>
           </ol>
         </p>
