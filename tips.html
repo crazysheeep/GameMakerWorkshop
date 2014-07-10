@@ -86,144 +86,70 @@
                 </h1>
             </div>
             
-            <p>Here are some other handy things I've found to be useful on Unix based systems over the years. There's plenty more, but I'm only bothered to write so much.</p>
+            <p>Here are a bunch of tips and common mistakes.</p>
             
             <div>
                 <div class="page-header">
                   <div class="row">
                     <div class="col-lg-12">
-                      <h1 id="xargs">xargs</h1>
+                      <h1 id="sprites">Sprites</h1>
                     </div>
                   </div>
                 </div>
                 
-                <p><code>xargs</code> is a command that, given standard output, converts words into program arguments. This is useful for many reasons, such as piping a file into a command as arguments. Examples are provided below.</p>
-<pre class="brush: bash;">
-# fun recursive example
-$ echo 1 2 3 4 | xargs echo
-# force yourself to a limited number of arguments
-$ echo 1 2 3 4 | xargs -n 2 echo
-# now compress an entire directory
-$ find -R . | xargs tar zcvf file.tar
-# which, of course, can also be done as "tar zcvf file.tar *"
-</pre>
-
-                <p>It can also do special things like deal with blanks or special characters (it is more useful than the backslashes in this way). <a href="http://www.cyberciti.biz/faq/linux-unix-bsd-xargs-construct-argument-lists-utility/">You can find more info here <i class="fa fa-external-link"></i>.</a></p>
+                <p>
+				1. Zoom in before you start drawing <br>
+				    (view => zoom in/out, or click on the magnifying glasses) <br>
+				2. You can have up to two colours on hand at once. You can select them by left or right clicking on the colour palette <br>
+				3. Use the line drawing tool to draw lines (L) <br>
+				4. Use the shape drawing tool to draw shapes (R for rectangle, I for circle) <br>
+				5. To make a good circle, start from the top left corner of the sprite, and drag to the bottom right corner <br>
+				6. If you want to draw a special shape, like a star, use the Polygon tool (P) <br>
+				7. Use the paint bucket tool to fill in an area with colour (F) <br>
+				</p>
             </div>
             
             <div>
                 <div class="page-header">
                   <div class="row">
                     <div class="col-lg-12">
-                      <h1 id="apt">apt-search</h1>
+                      <h1 id="cantmove">Can't move left or right unless player is jumping?</h1>
                     </div>
                   </div>
                 </div>
-                <p>You may know the use of this as <code>sudo apt-get install surprises</code> (or some sort of surprise). But sometimes you don't know what surprise to install.</p>
-                
-                <p>Introducing <code>apt-cache search</code></p>
-                
-<pre class="brush: bash;">
-$ apt-cache search surprises
-</pre>
+				
+                <p>Gravity is making your player constantly colliding with the floor. Double check how gravity is set up. 
+				Gravity should be 1 when the space below the player is empty, and 0 when there is a tile below the player.</p>
             </div>
             
             <div>
                 <div class="page-header">
                   <div class="row">
                     <div class="col-lg-12">
-                      <h1 id="tar">tar</h1>
+                      <h1 id="stuck">My player's foot is stuck in the floor, can't move</h1>
                     </div>
                   </div>
                 </div>
-                <p>You will be required to use tar to untar files many times in your life. Here's the two ways of using them:</p>
-                <p>You will need to know the following flags:</p>
-                
-                <table class="table table-hover">
-                    <th>Flag</th>
-                    <th>Use</th>
-                    
-                    <tr>
-                        <td>z</td>
-                        <td>Using the gzip program to archive files. Most popular with linux. You may need to use <strong>j</strong></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>j</td>
-                        <td>Zips in the bzip2 format. Better compression at slower speeds.</td>
-                    <tr>
-                        <td>v</td>
-                        <td>Verbose. As you should know by now, it means displays exactly what it's doing (i.e. what is being compressed or decompressed)</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>f</td>
-                        <td>File name you are to archive to/from</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>c</td>
-                        <td>Compress. This compresses the files.</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>x</td>
-                        <td>E<strong>x</strong>tract. Decompresses the tar archive.</td>
-                    </tr>
-                </table>
-                
-                <h2>Compress</h2>
-                <p>For this example, we will use gzip (as UNIX do).</p>
-<pre class="brush: bash;">
-# syntax: tar zcvf [tarname] [files/directories]
-$ tar zcvf lol.tar /path/to/file sample.html
-</pre>
-                
-                <h2>Decompress</h2>
-<pre class="brush: bash;">
-# syntax: tar zxvf [tarname]
-$ tar zcvf lol.tar
-</pre>            
+				
+                <p>
+				This is because you have enabled precise collision checking on your player, or the tile, or both. <br>
+				Precise collision checking means that GameMaker will use the pixels of the sprite to check for collisions, rather than the entire 32x32 area of the sprite. <br>
+				Fix 1 - disable precise collision checking. <br>
+				Fix 2 - redraw your sprite to have less pixels that stick out. Make sure that the character's legs are of equal length, and things like that. <br>
+				</p>
             </div>
             
             <div>
                 <div class="page-header">
                   <div class="row">
                     <div class="col-lg-12">
-                      <h1 id="install">Installing from Source</h1>
+                      <h1 id="test">I want to test the second room, but I have to play through the first room before I can get there</h1>
                     </div>
                   </div>
                 </div>
                 
-                <p>Installing specific versions of the program required (i.e. not the one in <code>sudo apt-get install</code> means you need to learn to install from source. This means getting the source of the code, compiling it yourself, then installing it. Below is a simplification of the usual steps required.</p>
-
-<pre class="brush: bash;">
-# in a directory of your choice
-$ wget http://example.com/tarball.tar
-# install progress will be shown
-
-# now we untar it
-$ tar zxvf tarball.tar
-# progress of tar is shown
-
-# now we go to the directory
-$ cd tarball
-
-# next, we configure, with commands as necessary
-$ ./configure
-# sometimes, you may need ./configure --setting=xavc - read the manual
-# sometimes, you will need to install extra things. But you can use sudo apt-cache search
-# this can take a while, and a lot of text appears
-
-# then we "make" it. A makefile (named "Makefile") has instructions to compile it
-$ make
-# this can take a while - we are compiling the entire program! a lot of textual vomit is shown
-
-# finally, after it compiles, we install it
-$ make install
-# a lot of vomit is spat, but at last, the program is installed
-</pre>     
-                
+                <p>Go to your first room, and put an obj_flag right next to the player. Now you can just skip the room! Don't forget to remove the obj_flag when you're done testing!</p>
+         
             </div>
 
             <div>
