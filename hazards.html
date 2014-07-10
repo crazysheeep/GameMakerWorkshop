@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Maker Workshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- styles -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/bootswatch.min.css" rel="stylesheet">
+    <link href="./assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./assets/css/shCore.css" rel="stylesheet">
+    <link href="./assets/css/shThemeDefault.css" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- navigation -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand">Game Maker Workshop</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+          <li>
+            <a href="./">Home</a>
+          </li>
+          
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="./intro.html">Introduction</a>
+              </li>
+
+              <li>
+                <a href="./sprites.html">Sprites</a>
+              </li>
+
+              <li>
+                <a href="./objectsmovement.html">Objects, Rooms and Movement</a>
+              </li>
+
+              <li class="active">
+                <a href="./hazards.html">Hazards</a>
+              </li>
+
+              <li>
+                <a href="./enemies.html">Room Extension and Enemies</a>
+              </li>
+
+              <li>
+                <a href="./advancedhazards.html">Multiple Levels and Advanced Hazards</a>
+              </li>
+
+              <li>
+                <a href="./extensions.html">Extensions</a>
+              </li>
+            </ul>
+          </li>
+            
+          <li>
+            <a href="./tips.html">Tips</a>
+          </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+          <li><a href="http://compclub.com.au/" target="_blank">CompClub</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- content -->
+    <div class="container">
+      <!-- hello everybody-->
+      <div class="jumbotron" style="margin-top: 30px">
+        <h1>
+          <img src="assets/pictures/game_maker_logo.png" class="icon"></img>
+
+          Hazards
+        </h1>
+      </div>
+
+      <div>
+        <div class="page-header">
+          <h1>The Spike of Doom</h1>
+        </div>
+        <p>
+          Let's add some hazards. These are things your player doesn't want to touch. For example, a <strong style="color: red;"><em>SPIKE OF DOOM.</em></strong>
+        </p>
+        <p>
+          <b>To make our spike of doom:</b>
+          <ol>
+            <li>
+              First, go back to <code>spr_spike</code>'s properties
+            </li>
+            <li>
+              Check <strong>"Precise collision checking"</strong>
+              <div class="alert alert-info">
+                <i class="fa fa-lightbulb-o"></i> <strong> Note:</strong> This means that the player will only die if they touch the drawn part of the spike. Without this, the player would die if they touched any part of the 32*32 hitbox.
+              </div>
+            </li>
+            <li>
+              Create an object called <code>obj_sprite</code>
+            </li>
+            <li>
+              Go to <code>obj_spike</code> <strong>Properties</strong>
+            </li>
+            <li>
+              <strong>Add event</strong> &rarr; <strong>Collision</strong> &rarr; <code>obj_player</code>
+            </li>
+            <li>
+              <strong>Main 1 tab</strong> &rarr; <strong>Destroy the instance</strong><br>
+              Check <strong>Applies to other</strong>
+            </li>
+            <li>
+              <strong>Main 1 tab</strong> &rarr; <strong>Restart the current room</strong>
+            </li>
+          </ol>
+        </p>
+      </div>
+
+      <div>
+        <div class="page-header">
+          <h1>Falling off the edge</h1>
+        </div>
+        <p>
+          Right now, if the player falls of the map, nothing happens. Let's make it so the player dies if they fall off the map.
+        </p>
+        <p>
+          <ol>
+            <li>
+              Right click on <code>obj_spike</code> and click on <strong>duplicate</strong>
+            </li>
+            <li>
+              Name this new object <code>obj_spike_invis</code>
+            </li>
+            <li>
+              Uncheck <strong>Visible</strong>
+            </li>
+            <li>
+              Press OK
+            </li>
+            <li>
+              Go to your room's <strong>properties</strong>
+            </li>
+            <li>
+              Put invisible spikes where necessary
+            </li>
+          </ol>
+        </p>
+      </div>
+
+      <div style="text-align: center">
+        <a class="btn btn-lg btn-success" href="next_html.html">
+          Room Extension and Enemies
+          <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+    
+      <!-- footer -->
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">     
+            <p class="pull-right"><a href="#"><i class="fa fa-caret-up"></i> Back to top</a></p>
+            <p>Part of the <a href="http://cse.unsw.edu.au/">UNSW CSE</a> Summer Workshops, on behalf of <a href="http://www.compclub.com.au">CompClub</a>.</p>
+            <p>Original website design by <a href="http://cgi.cse.unsw.edu.au/~otan/">Oliver Tan</a>, <a href="http://cgi.cse.unsw.edu.au/~vanessau/">Vanessa Ung</a>, <a href="http://cgi.cse.unsw.edu.au/~lpickup">Lucas Pickup</a> and <a href="http://cgi.cse.unsw.edu.au/~jwis261">John Wiseheart</a>.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div> <!-- container -->
+
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/shCore.js"></script>
+    <script src="./assets/js/shBrushBash.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+  </body>
+</html>
