@@ -1,201 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>The Beginner's Guide to the UNIXverse</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Maker Workshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <!-- styles -->
-        <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="./assets/css/bootswatch.min.css" rel="stylesheet">
-        <link href="./assets/css/font-awesome.min.css" rel="stylesheet">
-        <link href="./assets/css/shCore.css" rel="stylesheet">
-        <link href="./assets/css/shThemeDefault.css" rel="stylesheet">
-    </head>
+    <!-- styles -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/bootswatch.min.css" rel="stylesheet">
+    <link href="./assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./assets/css/shCore.css" rel="stylesheet">
+    <link href="./assets/css/shThemeDefault.css" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+  </head>
 
-    <body>
-        <!-- navigation -->
-        <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-              <a href="" class="navbar-brand">The Beginner's Guide to the UNIXverse</a>
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-              <ul class="nav navbar-nav">
-                <li>
-                  <a href="./">Home</a>
-                </li>
-                
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                          <a href="./intro.html">Introduction</a>
-                        </li>
-                        
-                        <li>
-                          <a href="./filters.html">UNIX Filters</a>
-                        </li>
-                        
-                        <li>
-                          <a href="./regex.html">Regular Expressions</a>
-                        </li>
-                        
-                        <li>
-                          <a href="./scripts.html">Shell Scripting</a>
-                        </li>
-                        
-						<li>
-						  <a href="./solutions.html">Solutions</a>
-						</li>
-                    </ul>
-                </li>
-                    
-                <li class="active">
-                  <a href="./tips.html">Tips</a>
-                </li>
-              </ul>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://compclub.com.au/" target="_blank">CompClub</a></li>
-              </ul>
-
-            </div>
-            </div>
+  <body>
+    <!-- navigation -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand">Game Maker Workshop</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
         </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+          <li>
+            <a href="./">Home</a>
+          </li>
+          
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="./intro.html">Introduction</a>
+              </li>
 
-        <!-- content -->
-        <div class="container">
-            <!-- hello everybody-->
-            <div class="jumbotron" style="margin-top: 30px">
-                <h1>
-                    <span class="fa-stack">
-                      <i class="fa fa-square fa-stack-2x"></i>
-                      <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
-                    </span>
+              <li>
+                <a href="./sprites.html">Sprites</a>
+              </li>
 
-                    Tips
-                </h1>
-            </div>
-            
-            <p>Here are a bunch of tips and common mistakes.</p>
-            
-            <div>
-                <div class="page-header">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h1 id="sprites">Sprites</h1>
-                    </div>
-                  </div>
-                </div>
-                
-                <p>
-				1. Zoom in before you start drawing <br>
-				    (view => zoom in/out, or click on the magnifying glasses) <br>
-				2. You can have up to two colours on hand at once. You can select them by left or right clicking on the colour palette <br>
-				3. Use the line drawing tool to draw lines (L) <br>
-				4. Use the shape drawing tool to draw shapes (R for rectangle, I for circle) <br>
-				5. To make a good circle, start from the top left corner of the sprite, and drag to the bottom right corner <br>
-				6. If you want to draw a special shape, like a star, use the Polygon tool (P) <br>
-				7. Use the paint bucket tool to fill in an area with colour (F) <br>
-				</p>
-            </div>
-            
-            <div>
-                <div class="page-header">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h1 id="cantmove">Can't move left or right unless player is jumping?</h1>
-                    </div>
-                  </div>
-                </div>
-				
-                <p>Gravity is making your player constantly colliding with the floor. Double check how gravity is set up. 
-				Gravity should be 1 when the space below the player is empty, and 0 when there is a tile below the player.</p>
-            </div>
-            
-            <div>
-                <div class="page-header">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h1 id="stuck">My player's foot is stuck in the floor, can't move</h1>
-                    </div>
-                  </div>
-                </div>
-				
-                <p>
-				This is because you have enabled precise collision checking on your player, or the tile, or both. <br>
-				Precise collision checking means that GameMaker will use the pixels of the sprite to check for collisions, rather than the entire 32x32 area of the sprite. <br>
-				Fix 1 - disable precise collision checking. <br>
-				Fix 2 - redraw your sprite to have less pixels that stick out. Make sure that the character's legs are of equal length, and things like that. <br>
-				</p>
-            </div>
-            
-            <div>
-                <div class="page-header">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h1 id="test">I want to test the second room, but I have to play through the first room before I can get there</h1>
-                    </div>
-                  </div>
-                </div>
-                
-                <p>Go to your first room, and put an obj_flag right next to the player. Now you can just skip the room! Don't forget to remove the obj_flag when you're done testing!</p>
-         
-            </div>
+              <li>
+                <a href="./objectsmovement.html">Objects, Rooms and Movement</a>
+              </li>
 
-            <div>
-                <div class="page-header">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h1 id="cheatsheet">Use a Cheatsheet</h1>
-                    </div>
-                  </div>
-                </div>
-                
-                <p>You will definitely not remember everything all the time. So it's easier to put a cheatsheet next to your wall. Or buy a CSESoc Shirt.</p>
-            </div>
+              <li>
+                <a href="./hazards.html">Hazards</a>
+              </li>
+
+              <li>
+                <a href="./enemies.html">Room Extension and Enemies</a>
+              </li>
+
+              <li>
+                <a href="./advancedhazards.html">Multiple Levels and Advanced Hazards</a>
+              </li>
+
+              <li>
+                <a href="./extensions.html">Extensions</a>
+              </li>
+            </ul>
+          </li>
             
-             <div>
-                <div class="page-header">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h1 id="bashrc">.bashrc</h1>
-                    </div>
-                  </div>
-                </div>
-                
-                <p>This changes your shell interface. This makes shell sexy. Google for one.</p>
-            </div>
+          <li class="active">
+            <a href="./tips.html">Tips</a>
+          </li>
+          </ul>
 
-            <!-- footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">         
-                        <p class="pull-right"><a href="#"><i class="fa fa-caret-up"></i> Back to top</a></p>
-                        <p>Part of the <a href="http://cse.unsw.edu.au/">UNSW CSE</a> Summer Workshops, on behalf of <a href="http://www.compclub.com.au">CompClub</a>.</p>
-                        <p>Workshop content written by <a href="http://cgi.cse.unsw.edu.au/~otan/">Oliver Tan</a>, <a href="http://cgi.cse.unsw.edu.au/~vanessau/">Vanessa Ung</a>, <a href="http://cgi.cse.unsw.edu.au/~lpickup">Lucas Pickup</a> and <a href="http://cgi.cse.unsw.edu.au/~jwis261">John Wiseheart</a>.</p>
-                        <p>
-                    </div>
-                </div>
-            </footer>
+          <ul class="nav navbar-nav navbar-right">
+          <li><a href="http://compclub.com.au/" target="_blank">CompClub</a></li>
+          </ul>
 
-        </div> <!-- container -->
+        </div>
+      </div>
+    </div>
 
-        <script src="./assets/js/jquery.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
-        <script src="./assets/js/shCore.js"></script>
-        <script src="./assets/js/shBrushBash.js"></script>
-        <script type="text/javascript">SyntaxHighlighter.all();</script>
-    </body>
+    <!-- content -->
+    <div class="container">
+      <!-- hello everybody-->
+      <div class="jumbotron" style="margin-top: 30px">
+        <h1>
+          <img src="assets/pictures/game_maker_logo.png" class="icon"></img>
+
+          Tips
+        </h1>
+      </div>
+
+      <p>Here are a bunch of tips and common mistakes.</p>
+      <div>
+        <div class="page-header">
+          <h1>Sprites</h1>
+        </div>
+        <p>
+          <ol>
+            <li>
+              Zoom in before you start drawing<br>
+              <em>(view => zoom in/out, or click on the magnifying glasses)</em>
+            </li>
+            <li>
+              You can have up to two colours on hand at once. You can select them by left or right clicking on the colour palette
+            </li>
+            <li>
+              Use the line drawing tool to draw lines (L)
+            </li>
+            <li>
+              Use the shape drawing tool to draw shapes (R for rectangle, I for circle)
+            </li>
+            <li>
+              To make a good circle, start from the top left corner of the sprite, and drag to the bottom right corner
+            </li>
+            <li>
+              If you want to draw a special shape, like a star, use the Polygon tool (P)
+            </li>
+            <li>
+              Use the paint bucket tool to fill in an area with colour (F)
+            </li>
+          </ol>
+        </p>
+      </div>
+
+      <div>
+        <div class="page-header">
+          <h1>FAQ</h1>
+        </div>
+        <h3>Can't move left or right unless player is jumping?</h3>
+        <p>
+          Gravity is making your player constantly colliding with the floor. Double check how gravity is set up.<br>
+          Gravity should be 1 when the space below the player is empty, and 0 when there is a tile below the player.
+        </p>
+
+        <h3>My player's foot is stuck in the floor, can't move</h3>
+        <p>
+          This is because you have enabled precise collision checking on your player, or the tile, or both.
+        </p>
+        <p>
+          Precise collision checking means that GameMaker will use the pixels of the sprite to check for collisions, rather than the entire 32x32 area of the sprite.
+        </p>
+        <p>
+          <strong>Fix 1</strong> - disable precise collision checking.<br>
+          <strong>Fix 2</strong> - redraw your sprite to have less pixels that stick out. Make sure that the character's legs are of equal length, and things like that. <br>
+        </p>
+
+        <h3>I want to test the second room, but I have to play through the first room before I can get there</h3>
+        <p>
+          Go to your first room, and put an <code>obj_flag</code> right next to the player. Now you can just skip the room! Don't forget to remove the <code>obj_flag</code> when you're done testing!
+        </p>
+      </div>
+    
+      <!-- footer -->
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">     
+            <p class="pull-right"><a href="#"><i class="fa fa-caret-up"></i> Back to top</a></p>
+            <p>Part of the <a href="http://cse.unsw.edu.au/">UNSW CSE</a> Summer/Winter Workshops, on behalf of <a href="http://www.compclub.com.au">CompClub</a>.</p>
+            <p>Original website design by <a href="http://cgi.cse.unsw.edu.au/~otan/">Oliver Tan</a>, <a href="http://cgi.cse.unsw.edu.au/~vanessau/">Vanessa Ung</a>, <a href="http://cgi.cse.unsw.edu.au/~lpickup">Lucas Pickup</a> and <a href="http://cgi.cse.unsw.edu.au/~jwis261">John Wiseheart</a>, modified by Leo Huang and Davy Mao.</p>
+            <p>Content written by Jason Lim and Daniel Li.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div> <!-- container -->
+
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/shCore.js"></script>
+    <script src="./assets/js/shBrushBash.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+  </body>
 </html>
-
-
