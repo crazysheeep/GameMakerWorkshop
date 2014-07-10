@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Maker Workshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- styles -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/bootswatch.min.css" rel="stylesheet">
+    <link href="./assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./assets/css/shCore.css" rel="stylesheet">
+    <link href="./assets/css/shThemeDefault.css" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- navigation -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand">Game Maker Workshop</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+          <li>
+            <a href="./">Home</a>
+          </li>
+          
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="./intro.html">Introduction</a>
+              </li>
+
+              <li>
+                <a href="./sprites.html">Sprites</a>
+              </li>
+
+              <li>
+                <a href="./objectsmovement.html">Objects, Rooms and Movement</a>
+              </li>
+
+              <li>
+                <a href="./hazards.html">Hazards</a>
+              </li>
+
+              <li class="active">
+                <a href="./enemies.html">Room Extension and Enemies</a>
+              </li>
+
+              <li>
+                <a href="./advancedhazards.html">Multiple Levels and Advanced Hazards</a>
+              </li>
+
+              <li>
+                <a href="./extensions.html">Extensions</a>
+              </li>
+            </ul>
+          </li>
+            
+          <li>
+            <a href="./tips.html">Tips</a>
+          </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+          <li><a href="http://compclub.com.au/" target="_blank">CompClub</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- content -->
+    <div class="container">
+      <!-- hello everybody-->
+      <div class="jumbotron" style="margin-top: 30px">
+        <h1>
+          <img src="assets/pictures/game_maker_logo.png" class="icon"></img>
+
+          Room Extension and Enemies
+        </h1>
+      </div>
+
+      <div>
+        <div class="page-header">
+          <h1>Room Extension</h1>
+        </div>
+        <p>
+          Let's make our room a bit bigger by increasing the boundaries and also add some scrolling!
+        </p>
+        <p>
+          <b>To lengthen the size of the room:</b>
+          <ol>
+            <li>
+              Go to <strong>Room Properties</strong>
+            </li>
+            <li>
+              Click on the <strong>settings</strong> tab
+            </li>
+            <li>
+              Increase the width to <code>1600</code>
+            </li>
+          </ol>
+        </p>
+
+        <p>
+          <b>To get the camera to follow your main character:</b>
+          <ol>
+            <li>
+              Go to <strong>Room Properties</strong>
+            </li>
+            <li>
+              Click on the <strong>views</strong> tab
+            </li>
+            <li>
+              Check <strong>Enable the use of Views</strong>
+            </li>
+            <li>
+              Check <strong>Visible when room starts</strong>
+            </li>
+            <li>
+              Scroll down to <strong>Object following</strong> and select <code>obj_player</code> from the drop down menu<br>
+              Let <code>Hbor = 640</code>, <code>Vbor = 480</code>, <code>Hsp = -1</code>, <code>Vsp = -1</code>
+            </li>
+          </ol>
+        </p>
+      </div>
+
+      <div>
+        <div class="page-header">
+          <h1>Enemies</h1>
+        </div>
+        <p>
+          Enemies are a lot like spikes. You don't want to touch them. However, enemies can also move around!
+        </p>
+        <p>
+          First we need to make a <em>path</em> for the enemy to move on. Let's start with an enemy that simple patrols left and right.
+        </p>
+        <p>
+          <ol>
+            <li>
+              Right click on the <strong>Paths</strong> folder and click on <strong>create path</strong> (or click on the swiggly arrow icon)
+            </li>
+            <li>
+              Name it <code>path_straight_line</code>
+            </li>
+            <li>
+              Click on the <strong>Indicate the room to show as background</strong> button (shown)
+            </li>
+            <li>
+              Add two points, by clicking on the grid
+            </li>
+          </ol>
+        </p>
+
+        <p>
+          Now we create an enemy, and give it this path.
+          <ol>
+            <li>
+              Create a new object, <code>obj_enemy</code> (You might want to make this have <strong>precise collision checking</strong> too)
+            </li>
+            <li>
+              <strong>Add Event</strong> &rarr; <strong>Create</strong>
+            </li>
+            <li>
+              <strong>Move</strong> tab &rarr; <strong>Set Path</strong><br>
+              Let <code>path = path_straight_line</code>, <code>speed = 8</code>, <code>at end = reverse</code>, <code>relative = relative</code>
+            </li>
+            <li>
+              Create a new event, collision with <code>obj_player</code>
+            </li>
+            <li>
+              Copy and paste the actions from <code>obj_spike</code>
+            </li>
+            <li>
+              Put the enemy in your room
+            </li>
+          </ol>
+        </p>
+        <br>
+        <p>
+          <em>How would you make an enemy that patrols in a square path?</em>
+        </p>
+      </div>
+
+      <div style="text-align: center">
+        <a class="btn btn-lg btn-success" href="advancedhazards.html">
+          Multiple Levels and Advanced Hazards
+          <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+    
+      <!-- footer -->
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">     
+            <p class="pull-right"><a href="#"><i class="fa fa-caret-up"></i> Back to top</a></p>
+            <p>Part of the <a href="http://cse.unsw.edu.au/">UNSW CSE</a> Summer Workshops, on behalf of <a href="http://www.compclub.com.au">CompClub</a>.</p>
+            <p>Original website design by <a href="http://cgi.cse.unsw.edu.au/~otan/">Oliver Tan</a>, <a href="http://cgi.cse.unsw.edu.au/~vanessau/">Vanessa Ung</a>, <a href="http://cgi.cse.unsw.edu.au/~lpickup">Lucas Pickup</a> and <a href="http://cgi.cse.unsw.edu.au/~jwis261">John Wiseheart</a>.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div> <!-- container -->
+
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/shCore.js"></script>
+    <script src="./assets/js/shBrushBash.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+  </body>
+</html>
